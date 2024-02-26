@@ -7,4 +7,4 @@ script = ExtResource("1_004fr")
 eventName = "Distasteful Post"
 eventDescription = "'s CEO has posted a very contrevertial post!  Consumers are outraged and have began to boycott!"
 eventDuration = 0.4
-eventScale = 1.3
+eventScale = 0.7

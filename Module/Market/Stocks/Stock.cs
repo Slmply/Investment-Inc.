@@ -83,6 +83,12 @@ public partial class Stock : Resource
         var i = 0.1d * Math.Sin((10 * volatility) * (time + volatility * seed)) + (expectedGrowth * time) / 15;
         i += -0.2d * volatility * Math.Sin(time - 3);
         i += 0.06d * volatility * Math.Sin(time);
+        i -= 0.8d * volatility * volatility * Math.Cos(10 * (time + seed + 4.8));
+        i += 0.8d * volatility * volatility * Math.Cos(20 * (time + seed + 54.83425));
+        i -= 0.8d * volatility * volatility * Math.Cos(8 * (time + seed + 8.8));
+        i -= volatility * volatility * volatility * Math.Cos(70 * (time + seed + 5.8));
+        i -= 0.4d * volatility * volatility * Math.Cos(100 * (time + seed + 43.8342));
+
         return i;
     }
 

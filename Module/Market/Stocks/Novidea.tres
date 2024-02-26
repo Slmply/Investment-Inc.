@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c16dqqyf1gb3r"]
+
+[ext_resource type="Script" path="res://Module/Market/Stocks/Stock.cs" id="1_5cknr"]
+
+[resource]
+script = ExtResource("1_5cknr")
+companyName = "Novidea"
+stockSymbol = "NVOD"
+stockPrice = 15.0
+volatility = 0.7
+expectedGrowth = 0.4

@@ -37,6 +37,37 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 
+[node name="Control3" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Control4" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Today" type="Button" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "Today
+"
+
+[node name="24Hours" type="Button" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "Past 24 Hours
+"
+
+[node name="5Days" type="Button" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "5 Days
+"
+
+[node name="AllTime" type="Button" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "All Time
+"
+
 [node name="YLabel" type="Label" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -88,3 +119,5 @@ text = "X Label
  "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="GridContainer/HBoxContainer/Today" to="." method="OnTodayPressed"]

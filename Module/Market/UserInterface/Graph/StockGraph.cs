@@ -74,13 +74,15 @@ public partial class StockGraph : Control
 			line.DefaultColor = growthColor;
 		}
 
+		// Current mode
+		
 
 		for (LinkedListNode<Godot.Vector2> i = targetStock.stockHistory.First; i != null; i = i.Next)
 		{
-			if (i.Value.X < minX)
-			{
-				minX = i.Value.X;
-			}
+			// if (i.Value.X < minX)
+			// {
+			// 	minX = i.Value.X;
+			// }
 			if (i.Value.X > maxX)
 			{
 				maxX = i.Value.X;
@@ -144,6 +146,7 @@ public partial class StockGraph : Control
 
 		for (LinkedListNode<Godot.Vector2> i = targetStock.stockHistory.First; i != null; i = i.Next)
 		{
+			if (i.Value.X < minX) continue;
 			line.AddPoint(new Godot.Vector2(scaleX(i.Value.X), scaleY(i.Value.Y)));
 		}
 
@@ -165,5 +168,10 @@ public partial class StockGraph : Control
 	public override void _Ready()
 	{
 		updateStockGraph();
+	}
+
+	public void OnTodayPressed() 
+	{
+		minX = (int)targetStock.stockHistory.Last.Value.X;
 	}
 }

@@ -1,18 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://ihaxhcjadw0n"]
+[gd_scene load_steps=12 format=3 uid="uid://ihaxhcjadw0n"]
 
 [ext_resource type="Script" path="res://Module/Market/StockManager.cs" id="1_7qwrp"]
 [ext_resource type="Resource" uid="uid://d3xbeeyxv4xlh" path="res://Module/Market/Stocks/FloorMart.tres" id="2_y2f23"]
 [ext_resource type="Resource" uid="uid://f6a8348r67fn" path="res://Module/Market/Events/ProductHit.tres" id="3_407cg"]
 [ext_resource type="Resource" uid="uid://bvjryy282t2wc" path="res://Module/Market/Stocks/GreatRailways.tres" id="3_if3lv"]
 [ext_resource type="Resource" uid="uid://ctvr6ofy5qisc" path="res://Module/Market/Stocks/Pear.tres" id="4_kthj0"]
+[ext_resource type="Resource" uid="uid://c16dqqyf1gb3r" path="res://Module/Market/Stocks/Novidea.tres" id="5_20d81"]
 [ext_resource type="PackedScene" uid="uid://dfteiby62cwd6" path="res://Module/Market/UserInterface/stocks_info_screen.tscn" id="5_jgp5f"]
 [ext_resource type="Resource" uid="uid://cejsf632wpwbh" path="res://Module/Market/Events/DistastefulPost.tres" id="6_74n68"]
+[ext_resource type="Script" path="res://Module/Market/Stocks/Stock.cs" id="6_rrhw5"]
+
+[sub_resource type="Resource" id="Resource_b7j27"]
+script = ExtResource("6_rrhw5")
+companyName = "Weather Report"
+stockSymbol = "WR"
+stockPrice = 0.01
+volatility = 0.0
+expectedGrowth = 100000.0
 
 [sub_resource type="Theme" id="Theme_rlleg"]
 
 [node name="Stock Manager" type="Node2D"]
 script = ExtResource("1_7qwrp")
-stocks = [ExtResource("2_y2f23"), ExtResource("3_if3lv"), ExtResource("4_kthj0")]
+stocks = [ExtResource("2_y2f23"), ExtResource("3_if3lv"), ExtResource("4_kthj0"), ExtResource("5_20d81"), SubResource("Resource_b7j27")]
 portfolio = {}
 eventList = [ExtResource("3_407cg"), ExtResource("6_74n68")]
 minEventWait = 0.2
