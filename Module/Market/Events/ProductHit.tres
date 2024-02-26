@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://f6a8348r67fn"]
+
+[ext_resource type="Script" path="res://Module/Market/Events/ProductHit.cs" id="1_mun17"]
+
+[resource]
+script = ExtResource("1_mun17")
+eventName = "Big Product Launch"
+eventDescription = "has launched a brand new product and its flying off the shelves!"
+eventDuration = 3.0
+eventScale = 1.0

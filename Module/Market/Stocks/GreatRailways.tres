@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bvjryy282t2wc"]
+
+[ext_resource type="Script" path="res://Module/Market/Stocks/Stock.cs" id="1_3wcxc"]
+
+[resource]
+script = ExtResource("1_3wcxc")
+companyName = "Great Railways"
+stockSymbol = "GR"
+stockPrice = 35.0
+volatility = 0.2
+expectedGrowth = 0.2

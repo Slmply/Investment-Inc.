@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bosbc5aea411e"]
+
+[node name="Footstep" type="CPUParticles2D"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://mlteo27kantj"]
+
+[ext_resource type="Script" path="res://Module/Player/Player.cs" id="1_e8dfr"]
+[ext_resource type="Texture2D" uid="uid://sc7nsmuas8wy" path="res://icon.svg" id="2_d4pm8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bayx"]
+radius = 65.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_e8dfr")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2bayx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_d4pm8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="DodgeTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true

@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://btdb0mc41iwwm"]
+
+[ext_resource type="Script" path="res://Module/Market/UserInterface/stock_info.cs" id="1_vag3d"]
+[ext_resource type="FontFile" uid="uid://d353wwchqpauh" path="res://RubikDoodleShadow-Regular.ttf" id="2_yh8a7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f75wy"]
+line_spacing = -4.0
+font = ExtResource("2_yh8a7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2syrx"]
+font = ExtResource("2_yh8a7")
+
+[node name="StockInfo" type="Control"]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 75.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_vag3d")
+deactiveColor = Color(0.211765, 0.211765, 0.211765, 0.784314)
+activeColor = Color(0.396078, 0.396078, 0.396078, 0.784314)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.176471, 0.176471, 0.176471, 0.537255)
+
+[node name="StockName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = 5.0
+offset_right = 46.5
+offset_bottom = 28.0
+grow_horizontal = 2
+text = "Stock Name"
+label_settings = SubResource("LabelSettings_f75wy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StockPrice" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.5
+offset_top = -30.0
+offset_right = 42.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Stock Price"
+label_settings = SubResource("LabelSettings_2syrx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
+[connection signal="mouse_entered" from="ColorRect" to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="ColorRect" to="." method="OnMouseExit"]

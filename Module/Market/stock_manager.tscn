@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://ihaxhcjadw0n"]
+
+[ext_resource type="Script" path="res://Module/Market/StockManager.cs" id="1_7qwrp"]
+[ext_resource type="Resource" uid="uid://d3xbeeyxv4xlh" path="res://Module/Market/Stocks/TestingStock.tres" id="2_y2f23"]
+[ext_resource type="Resource" uid="uid://f6a8348r67fn" path="res://Module/Market/Events/ProductHit.tres" id="3_407cg"]
+[ext_resource type="Resource" uid="uid://bvjryy282t2wc" path="res://Module/Market/Stocks/GreatRailways.tres" id="3_if3lv"]
+[ext_resource type="PackedScene" uid="uid://dfteiby62cwd6" path="res://Module/Market/UserInterface/stocks_info_screen.tscn" id="5_jgp5f"]
+
+[sub_resource type="Theme" id="Theme_rlleg"]
+
+[node name="Stock Manager" type="Node2D"]
+script = ExtResource("1_7qwrp")
+stocks = [ExtResource("2_y2f23"), ExtResource("3_if3lv")]
+portfolio = {}
+eventList = [ExtResource("3_407cg")]
+minEventWait = 2.0
+maxEventWait = 9.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="EventCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StocksInfoScreen" parent="." instance=ExtResource("5_jgp5f")]
+custom_minimum_size = Vector2(1150, 500)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1150.0
+offset_bottom = 655.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_rlleg")
+
+[connection signal="timeout" from="Timer" to="." method="TestTime"]

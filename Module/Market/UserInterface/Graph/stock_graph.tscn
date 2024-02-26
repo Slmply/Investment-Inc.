@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnlnosiyvgkwg"]
+
+[ext_resource type="Script" path="res://Module/Market/UserInterface/Graph/StockGraph.cs" id="1_887oi"]
+
+[node name="StockGraph" type="Control" node_paths=PackedStringArray("line")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_887oi")
+growthColor = Color(0, 1, 0, 1)
+decayColor = Color(1, 0, 0, 1)
+eventColor = Color(1, 1, 0, 1)
+lineWidth = 5.0
+backgroundColor = Color(0, 0, 0, 0.545098)
+line = NodePath("GridContainer/ColorRect/Line2D")
+xLabel = "Time"
+yLabel = "Value (USD)"
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.529412)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="YLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Y Label
+ "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YLabelContainer" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.929412, 0.929412, 0.929412, 1)
+
+[node name="Line2D" type="Line2D" parent="GridContainer/ColorRect"]
+default_color = Color(0.839216, 0.156863, 0.658824, 1)
+
+[node name="Control" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Control2" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="XLabelContainer" type="HBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Placeholder" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Placeholder2" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="XLabel" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "X Label
+ "
+horizontal_alignment = 1
+vertical_alignment = 1

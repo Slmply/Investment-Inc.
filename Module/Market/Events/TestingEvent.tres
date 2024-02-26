@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://brgqpek4t20q"]
+
+[ext_resource type="Script" path="res://Module/Market/Events/TestingEvent.cs" id="1_x3phv"]
+
+[resource]
+script = ExtResource("1_x3phv")
+eventName = "TestingEvent"
+eventDescription = "A event to test stuff"
+eventDuration = 5.0
+eventScale = 1.0
