@@ -19,15 +19,19 @@ public abstract partial class Event : Resource
     [Signal]
     public delegate void EventCompletionEventHandler(double time);
 
-    public void beginEvent(double time) {
+    public void beginEvent(double time)
+    {
         eventStartTime = time;
         GD.Print("Event Started: " + eventName);
     }
-    public virtual double eventFunction (double time) {
-        if (time - eventStartTime >= eventDuration) {
+    public virtual double eventFunction(double time)
+    {
+        if (time - eventStartTime >= eventDuration)
+        {
             EmitSignal(SignalName.EventCompletion, time);
+            return -1;
         }
-        return 0;
+        return 1;
     }
 
 }

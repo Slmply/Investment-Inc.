@@ -28,7 +28,7 @@ public partial class StockGraph : Control
 
 	private float minX, minY = 0;
 	private float maxY = 50;
-	private float maxX = 10;
+	private float maxX = 1;
 	private float rectHeight, rectWidth;
 	private float rectX, rectY;
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cejsf632wpwbh"]
+
+[ext_resource type="Script" path="res://Module/Market/Events/DistastefulPost.cs" id="1_004fr"]
+
+[resource]
+script = ExtResource("1_004fr")
+eventName = "Distasteful Post"
+eventDescription = "'s CEO has posted a very contrevertial post!  Consumers are outraged and have began to boycott!"
+eventDuration = 0.4
+eventScale = 1.3

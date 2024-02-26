@@ -6,5 +6,5 @@
 script = ExtResource("1_mun17")
 eventName = "Big Product Launch"
 eventDescription = "has launched a brand new product and its flying off the shelves!"
-eventDuration = 3.0
-eventScale = 1.0
+eventDuration = 0.4
+eventScale = 1.3

@@ -10,7 +10,7 @@ public partial class Stock : Resource
     [Export]
     public string stockSymbol;
     [Export]
-    public double stockPrice; 
+    public double stockPrice;
     [Export]
     public double volatility;
     [Export]
@@ -21,8 +21,9 @@ public partial class Stock : Resource
     private double startingPrice;
     private double timeOffset;
     private double seed;
-    
-    public void init() {
+
+    public void init()
+    {
         this.startingPrice = stockPrice;
         this.timeOffset = 0;
         Random rnd = new Random();
@@ -30,7 +31,8 @@ public partial class Stock : Resource
         GD.Print("Initializing - " + companyName);
     }
 
-    public void beginEvent(Event newEvent, double time) {
+    public void beginEvent(Event newEvent, double time)
+    {
         this.activeEvent = newEvent;
         activeEvent.beginEvent(time);
         activeEvent.EventCompletion += endEvent;
@@ -38,7 +40,8 @@ public partial class Stock : Resource
         GD.Print(companyName + " " + activeEvent.eventDescription);
     }
 
-    public void endEvent(double time) {
+    public void endEvent(double time)
+    {
         timeOffset = time;
         GD.Print("Event " + activeEvent.eventName + " Ended");
         activeEvent.EventCompletion -= endEvent;
@@ -46,30 +49,45 @@ public partial class Stock : Resource
         this.startingPrice = stockPrice;
     }
 
-    public double update(double time) {
+    public double update(double time)
+    {
 
         double res = stockPrice;
-        if (activeEvent != null) {
+        if (activeEvent != null)
+        {
             res = activeEvent.eventFunction(time);
-        } else {
+
+            if (activeEvent != null)
+            {
+                res = (res + 1) * startingPrice;
+                stockHistory.AddLast(new Godot.Vector2((float)time, (float)res));
+            }
+
+        }
+        else
+        {
             var offsetTime = time - timeOffset;
             res = this.stockPriceEq(offsetTime);
+
+            res = (res + 1) * startingPrice;
+            stockHistory.AddLast(new Godot.Vector2((float)time, (float)res));
         }
-        res = (res + 1) * startingPrice;
-        stockHistory.AddLast(new Godot.Vector2((float)time, (float)res));
-        
+
+
         stockPrice = res;
         return res;
     }
 
-    private double stockPriceEq(double time) {
+    private double stockPriceEq(double time)
+    {
         var i = 0.1d * Math.Sin((10 * volatility) * (time + volatility * seed)) + (expectedGrowth * time) / 15;
-        i += -0.2d * volatility * Math.Sin(time - 3); 
+        i += -0.2d * volatility * Math.Sin(time - 3);
         i += 0.06d * volatility * Math.Sin(time);
         return i;
     }
 
-    public Stock() {
+    public Stock()
+    {
         this.companyName = "companyName";
         this.stockSymbol = "stockSymbol";
         this.stockPrice = 0;
@@ -81,7 +99,8 @@ public partial class Stock : Resource
         this.seed = rnd.NextDouble() * 100;
     }
 
-    public Stock(string companyName, string stockSymbol, double stockPrice, double volatility, double expectedGrowth) {
+    public Stock(string companyName, string stockSymbol, double stockPrice, double volatility, double expectedGrowth)
+    {
         this.companyName = companyName;
         this.stockSymbol = stockSymbol;
         this.stockPrice = stockPrice;

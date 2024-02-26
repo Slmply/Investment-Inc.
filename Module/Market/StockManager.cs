@@ -99,7 +99,7 @@ public partial class StockManager : Node
 	public void TestTime()
 	{
 		updateStocks(i);
-		i += 0.1f;
+		i += 0.01f;
 	}
 
 }
