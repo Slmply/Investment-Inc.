@@ -24,7 +24,8 @@ public partial class StockTester : Node2D
 	{
 	}
 
-	public void StockTimerTimout() {
+	public void StockTimerTimout()
+	{
 		tStock.update(i);
 		graph.updateStockGraph();
 		GD.Print(tStock.stockPrice);
@@ -32,5 +33,5 @@ public partial class StockTester : Node2D
 		i += 0.1f;
 	}
 
-	
+
 }

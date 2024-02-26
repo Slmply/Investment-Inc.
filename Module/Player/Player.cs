@@ -24,28 +24,36 @@ public partial class Player : CharacterBody2D
 
 		Vector2 direction = Input.GetVector("Move_Left", "Move_Right", "Move_Up", "Move_Down");
 		direction = direction.Normalized();
-		if (dodgeTimer.IsStopped()) {
-			if (direction != Vector2.Zero) {
+		if (dodgeTimer.IsStopped())
+		{
+			if (direction != Vector2.Zero)
+			{
 				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * WalkSpeed, AccelSpeed * (float)delta * AccelMultiplier);
 				velocity.Y = Mathf.MoveToward(Velocity.Y, direction.Y * WalkSpeed, AccelSpeed * (float)delta * AccelMultiplier);
 			}
-			else {
+			else
+			{
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, DecelSpeed * (float)delta * AccelMultiplier);
-				velocity.Y= Mathf.MoveToward(Velocity.Y, 0, DecelSpeed * (float)delta * AccelMultiplier);
+				velocity.Y = Mathf.MoveToward(Velocity.Y, 0, DecelSpeed * (float)delta * AccelMultiplier);
 			}
-		} else {
-			if (direction != Vector2.Zero) {
+		}
+		else
+		{
+			if (direction != Vector2.Zero)
+			{
 				velocity.X = Mathf.MoveToward(Velocity.X, direction.X * WalkSpeed, AccelSpeed * (float)delta * AccelMultiplier / 2.0f);
 				velocity.Y = Mathf.MoveToward(Velocity.Y, direction.Y * WalkSpeed, AccelSpeed * (float)delta * AccelMultiplier / 2.0f);
 			}
-			else {
+			else
+			{
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, DecelSpeed * (float)delta * AccelMultiplier / 2.0f);
-				velocity.Y= Mathf.MoveToward(Velocity.Y, 0, DecelSpeed * (float)delta * AccelMultiplier / 2.0f);
+				velocity.Y = Mathf.MoveToward(Velocity.Y, 0, DecelSpeed * (float)delta * AccelMultiplier / 2.0f);
 			}
 		}
-		
 
-		if (Input.IsActionJustPressed("Dodge") && dodgeTimer.IsStopped()) {
+
+		if (Input.IsActionJustPressed("Dodge") && dodgeTimer.IsStopped())
+		{
 			velocity.X = direction.X * DodgeSpeed;
 			velocity.Y = direction.Y * DodgeSpeed;
 			dodgeTimer.Start();

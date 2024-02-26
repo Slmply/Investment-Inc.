@@ -14,44 +14,51 @@ public partial class StockManager : Node
 	[Export]
 	public float minEventWait;
 	[Export]
-	public float maxEventWait;	
+	public float maxEventWait;
 
 	private float nextEventTime;
 	private float i = 0;
 	private StocksInfoScreen sis;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		sis = GetNode<StocksInfoScreen>("StocksInfoScreen");
 		initializeStocks();
-    }
+	}
 
-    public void initializeStocks () {
+	public void initializeStocks()
+	{
 		Random random = new Random();
 		nextEventTime = ((float)random.NextDouble() * maxEventWait) + minEventWait;
 		GD.Print("Next Event at: " + nextEventTime);
-		for (int k = 0; k < stocks.Length; k++) {
+		for (int k = 0; k < stocks.Length; k++)
+		{
 			stocks[k].init();
 		}
 		sis.loadStocks(stocks);
 	}
 
-	public float purchaseStock (Stock s, float amount) {
+	public float purchaseStock(Stock s, float amount)
+	{
 		return 0.0f;
 	}
 
-	public void updateStocks(float time) {
+	public void updateStocks(float time)
+	{
 
-		for (int k = 0; k < stocks.Length; k++) {
+		for (int k = 0; k < stocks.Length; k++)
+		{
 			stocks[k].update(time);
 		}
 
-		if (time >= nextEventTime) {
+		if (time >= nextEventTime)
+		{
 			eventSelection(time);
 		}
 	}
 
-	public void eventSelection(float time) {
+	public void eventSelection(float time)
+	{
 
 		Random random = new Random();
 
@@ -64,31 +71,36 @@ public partial class StockManager : Node
 		GD.Print("Next Event at: " + nextEventTime);
 	}
 
-	public Stock randomWeighted () {
+	public Stock randomWeighted()
+	{
 
 		float total = 0;
 
-		foreach (Stock s in stocks) {
-			total += (float) s.volatility;
+		foreach (Stock s in stocks)
+		{
+			total += (float)s.volatility;
 		}
 
 		Random rand = new Random();
-		float random = (float) rand.NextDouble() * total;
+		float random = (float)rand.NextDouble() * total;
 
 		float cursor = 0;
-		foreach(Stock s in stocks) {
-			cursor += (float) s.volatility;
-			if (cursor >= random) {
+		foreach (Stock s in stocks)
+		{
+			cursor += (float)s.volatility;
+			if (cursor >= random)
+			{
 				return s;
 			}
 		}
 		return null;
 	}
 
-	public void TestTime() {
+	public void TestTime()
+	{
 		updateStocks(i);
 		i += 0.1f;
 	}
 
 }
- 
+

@@ -25,7 +25,7 @@ public partial class StockGraph : Control
 	public int yTicks = 7;
 	[Export]
 	public string xLabel, yLabel;
-	
+
 	private float minX, minY = 0;
 	private float maxY = 50;
 	private float maxX = 10;
@@ -33,12 +33,13 @@ public partial class StockGraph : Control
 	private float rectX, rectY;
 
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		updateStockGraph();
-    }
+	}
 
-    public void updateStockGraph() {
+	public void updateStockGraph()
+	{
 
 		var colorRect = GetNode<ColorRect>("GridContainer/ColorRect");
 
@@ -53,40 +54,54 @@ public partial class StockGraph : Control
 		var last = targetStock.stockHistory.Last;
 		var penult = last.Previous;
 
-		if(!(last == null || penult == null)) {
-			if (targetStock.activeEvent != null) {
+		if (!(last == null || penult == null))
+		{
+			if (targetStock.activeEvent != null)
+			{
 				line.DefaultColor = eventColor;
-			} else if (last.Value.Y - penult.Value.Y < 0) {
+			}
+			else if (last.Value.Y - penult.Value.Y < 0)
+			{
 				line.DefaultColor = decayColor;
-			} else {
+			}
+			else
+			{
 				line.DefaultColor = growthColor;
 			}
-		} else {
+		}
+		else
+		{
 			line.DefaultColor = growthColor;
 		}
-		
 
-		for(LinkedListNode<Godot.Vector2> i = targetStock.stockHistory.First; i != null; i = i.Next) {
-			if (i.Value.X < minX) {
+
+		for (LinkedListNode<Godot.Vector2> i = targetStock.stockHistory.First; i != null; i = i.Next)
+		{
+			if (i.Value.X < minX)
+			{
 				minX = i.Value.X;
 			}
-			if (i.Value.X > maxX) {
+			if (i.Value.X > maxX)
+			{
 				maxX = i.Value.X;
 			}
-			if (i.Value.Y > maxY) {
+			if (i.Value.Y > maxY)
+			{
 				maxY = i.Value.Y;
 			}
 		}
 
 		VBoxContainer yTickCont = GetNode<VBoxContainer>("GridContainer/YLabelContainer");
 
-		foreach (Node k in yTickCont.GetChildren()) {
+		foreach (Node k in yTickCont.GetChildren())
+		{
 			yTickCont.RemoveChild(k);
 			k.QueueFree();
 		}
-			
+
 		float yTickSize = (maxY - minY) / (yTicks - 1);
-		for (int i = 0; i < yTicks; i++) {
+		for (int i = 0; i < yTicks; i++)
+		{
 			Label label = new Label();
 			label.SizeFlagsVertical = SizeFlags.ExpandFill;
 			label.HorizontalAlignment = HorizontalAlignment.Center;
@@ -97,13 +112,15 @@ public partial class StockGraph : Control
 
 		HBoxContainer xTickCont = GetNode<HBoxContainer>("GridContainer/XLabelContainer");
 
-		foreach (Node k in xTickCont.GetChildren()) {
+		foreach (Node k in xTickCont.GetChildren())
+		{
 			xTickCont.RemoveChild(k);
 			k.QueueFree();
 		}
 
 		float xTickSize = (maxX - minX) / (xTicks - 1);
-		for (int i = 0; i < xTicks; i++) {
+		for (int i = 0; i < xTicks; i++)
+		{
 			Label label = new Label();
 			label.SizeFlagsHorizontal = SizeFlags.ExpandFill;
 			label.VerticalAlignment = VerticalAlignment.Center;
@@ -112,7 +129,7 @@ public partial class StockGraph : Control
 			xTickCont.AddChild(label);
 		}
 
-		
+
 
 		line.ClearPoints();
 
@@ -125,20 +142,23 @@ public partial class StockGraph : Control
 		rectWidth = rectX * (xTicks - 1);
 		rectHeight = rectY * (yTicks - 1);
 
-		for(LinkedListNode<Godot.Vector2> i = targetStock.stockHistory.First; i != null; i = i.Next) {
+		for (LinkedListNode<Godot.Vector2> i = targetStock.stockHistory.First; i != null; i = i.Next)
+		{
 			line.AddPoint(new Godot.Vector2(scaleX(i.Value.X), scaleY(i.Value.Y)));
 		}
 
 	}
 
-	private float scaleX (float pos) {
+	private float scaleX(float pos)
+	{
 		float dx = maxX - minX;
 		return ((pos - minX) * rectWidth / dx) + rectX / 2;
 	}
 
-	private float scaleY (float pos) {
+	private float scaleY(float pos)
+	{
 		float dy = maxY - minY;
-		return rectHeight - ((pos - minY) * rectHeight / dy) + rectY/2;
+		return rectHeight - ((pos - minY) * rectHeight / dy) + rectY / 2;
 	}
 
 	// Called when the node enters the scene tree for the first time.
