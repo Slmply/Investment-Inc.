@@ -25,6 +25,8 @@ public partial class StockGraph : Control
 	public int yTicks = 7;
 	[Export]
 	public string xLabel, yLabel;
+	[Export]
+	public Range rng = Range.AllTime;
 
 	private float minX, minY = 0;
 	private float maxY = 50;
@@ -36,6 +38,14 @@ public partial class StockGraph : Control
 	public override void _Process(double delta)
 	{
 		updateStockGraph();
+	}
+
+	public enum Range{
+		Today,
+		TwentyFour,
+		FiveDay,
+		AllTime
+
 	}
 
 	public void updateStockGraph()
@@ -75,14 +85,29 @@ public partial class StockGraph : Control
 		}
 
 		// Current mode
+		switch(rng) 
+		{
+			case Range.Today:
+				minX = (int)targetStock.stockHistory.Last.Value.X;
+				line.Width = 2;
+				break;
+			case Range.TwentyFour:
+				minX = Math.Clamp(targetStock.stockHistory.Last.Value.X - 1, 0, int.MaxValue);
+				line.Width = 2;
+				break;
+			case Range.FiveDay:
+				minX = Math.Clamp(targetStock.stockHistory.Last.Value.X - 5, 0, int.MaxValue);
+				line.Width = 2;
+				break;
+			case Range.AllTime:
+				minX = 0;
+				line.Width = 2;
+				break;
+		}
 		
 
 		for (LinkedListNode<Godot.Vector2> i = targetStock.stockHistory.First; i != null; i = i.Next)
 		{
-			// if (i.Value.X < minX)
-			// {
-			// 	minX = i.Value.X;
-			// }
 			if (i.Value.X > maxX)
 			{
 				maxX = i.Value.X;
@@ -172,6 +197,18 @@ public partial class StockGraph : Control
 
 	public void OnTodayPressed() 
 	{
-		minX = (int)targetStock.stockHistory.Last.Value.X;
+		rng = Range.Today;
+	}
+	public void OnTwentyFourPressed() 
+	{
+		rng = Range.TwentyFour;
+	}
+	public void OnFiveDaysPressed() 
+	{
+		rng = Range.FiveDay;
+	}
+	public void OnAllTimePressed() 
+	{
+		rng = Range.AllTime;
 	}
 }

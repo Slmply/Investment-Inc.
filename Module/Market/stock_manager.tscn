@@ -25,11 +25,11 @@ script = ExtResource("1_7qwrp")
 stocks = [ExtResource("2_y2f23"), ExtResource("3_if3lv"), ExtResource("4_kthj0"), ExtResource("5_20d81"), SubResource("Resource_b7j27")]
 portfolio = {}
 eventList = [ExtResource("3_407cg"), ExtResource("6_74n68")]
-minEventWait = 0.2
-maxEventWait = 0.5
+minEventWait = 0.05
+maxEventWait = 0.1
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.3
 autostart = true
 
 [node name="EventCooldownTimer" type="Timer" parent="."]

@@ -121,3 +121,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="GridContainer/HBoxContainer/Today" to="." method="OnTodayPressed"]
+[connection signal="pressed" from="GridContainer/HBoxContainer/24Hours" to="." method="OnTwentyFourPressed"]
+[connection signal="pressed" from="GridContainer/HBoxContainer/5Days" to="." method="OnFiveDaysPressed"]
+[connection signal="pressed" from="GridContainer/HBoxContainer/AllTime" to="." method="OnAllTimePressed"]
