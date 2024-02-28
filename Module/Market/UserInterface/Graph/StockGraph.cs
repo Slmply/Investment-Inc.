@@ -48,6 +48,42 @@ public partial class StockGraph : Control
 
 	}
 
+	public string timeToDay(double time) {
+
+		int day = (int)time;
+
+		return "6/" + (day + 1) + "/2024";
+	}
+
+	public string timeToHour(double time) {
+
+		string res = "";
+
+		time = time % 1;
+
+		time = time * 24.0;
+
+		if (time >= 12.0) {
+			res += "PM";
+		} else {
+			res += "AM";
+		}
+
+		time =  (time % 12);
+		if (time < 1) {
+			time += 12;
+		}
+		double mins = time % 1;
+
+		time = (int)time;
+
+		time += mins * .60;
+
+		res = string.Format("{0:N2}", time) + res;
+
+		return res.Replace('.', ':');
+	}
+
 	public void updateStockGraph()
 	{
 
@@ -90,18 +126,22 @@ public partial class StockGraph : Control
 			case Range.Today:
 				minX = (int)targetStock.stockHistory.Last.Value.X;
 				line.Width = 2;
+				xTicks = 7;
 				break;
 			case Range.TwentyFour:
 				minX = Math.Clamp(targetStock.stockHistory.Last.Value.X - 1, 0, int.MaxValue);
 				line.Width = 2;
+				xTicks = 7;
 				break;
 			case Range.FiveDay:
 				minX = Math.Clamp(targetStock.stockHistory.Last.Value.X - 5, 0, int.MaxValue);
 				line.Width = 2;
+				xTicks = 6;
 				break;
 			case Range.AllTime:
 				minX = 0;
 				line.Width = 2;
+				xTicks = 7;
 				break;
 		}
 		
@@ -133,7 +173,7 @@ public partial class StockGraph : Control
 			label.SizeFlagsVertical = SizeFlags.ExpandFill;
 			label.HorizontalAlignment = HorizontalAlignment.Center;
 			label.VerticalAlignment = VerticalAlignment.Center;
-			label.Text = string.Format("{0:N2}", maxY - (yTickSize * i));
+			label.Text = "$" + string.Format("{0:N2}", maxY - (yTickSize * i));
 			yTickCont.AddChild(label);
 		}
 
@@ -152,7 +192,7 @@ public partial class StockGraph : Control
 			label.SizeFlagsHorizontal = SizeFlags.ExpandFill;
 			label.VerticalAlignment = VerticalAlignment.Center;
 			label.HorizontalAlignment = HorizontalAlignment.Center;
-			label.Text = string.Format("{0:N2}", (xTickSize * i));
+			label.Text = timeToHour(xTickSize * i) + '\n' + timeToDay(xTickSize * i);
 			xTickCont.AddChild(label);
 		}
 
