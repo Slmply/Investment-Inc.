@@ -70,7 +70,6 @@ text = "All Time
 
 [node name="YLabel" type="Label" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "Y Label
  "
 horizontal_alignment = 1

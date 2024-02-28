@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class StocksInfoScreen : Control
+public partial class StocksInfoScreen : CanvasLayer
 {
 	private VBoxContainer stockInfoContainer;
 	private PackedScene stockScreen;

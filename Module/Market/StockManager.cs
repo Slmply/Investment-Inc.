@@ -96,10 +96,14 @@ public partial class StockManager : Node
 		return null;
 	}
 
-	public void TestTime()
+	public void showStockInfo()
 	{
-		updateStocks(i);
-		i += 0.0033f;
+		sis.Visible = true;
+	}
+
+	public void hideStockInfo()
+	{
+		sis.Visible = false;
 	}
 
 }

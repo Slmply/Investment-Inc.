@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bha67jtn3frxc"]
+
+[ext_resource type="Script" path="res://Module/GameManager/GameManager.cs" id="1_ox4q2"]
+[ext_resource type="PackedScene" uid="uid://ihaxhcjadw0n" path="res://Module/Market/stock_manager.tscn" id="2_0bbmr"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_ox4q2")
+
+[node name="Stock Manager" parent="." instance=ExtResource("2_0bbmr")]
+
+[node name="GameTick" type="Timer" parent="."]
+
+[connection signal="timeout" from="GameTick" to="." method="updateTime"]
