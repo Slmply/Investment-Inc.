@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://mlteo27kantj"]
+[gd_scene load_steps=6 format=3 uid="uid://mlteo27kantj"]
 
 [ext_resource type="Script" path="res://Module/Player/Player.cs" id="1_e8dfr"]
-[ext_resource type="Texture2D" uid="uid://sc7nsmuas8wy" path="res://icon.svg" id="2_d4pm8"]
+[ext_resource type="Texture2D" uid="uid://cp2p0wpwfythp" path="res://Module/Player/Artwork/Body01.png" id="2_00gf6"]
+[ext_resource type="Texture2D" uid="uid://j0qld13er64p" path="res://Module/Player/Artwork/Head01.png" id="3_7fmwt"]
+[ext_resource type="Texture2D" uid="uid://dl83oidhvgoqi" path="res://Module/Player/Artwork/Leg01.png" id="4_mue8c"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2bayx"]
-radius = 65.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nc3j"]
+radius = 26.0
+height = 158.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_e8dfr")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2bayx")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_d4pm8")
+shape = SubResource("CapsuleShape2D_0nc3j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -23,3 +23,22 @@ drag_vertical_enabled = true
 [node name="DodgeTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="PlayerSprite" type="Node2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="Body" type="Sprite2D" parent="PlayerSprite"]
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("2_00gf6")
+
+[node name="Head" type="Sprite2D" parent="PlayerSprite/Body"]
+position = Vector2(7.6923, -376.923)
+texture = ExtResource("3_7fmwt")
+
+[node name="LegL" type="Sprite2D" parent="PlayerSprite/Body"]
+position = Vector2(-123.077, 523.076)
+texture = ExtResource("4_mue8c")
+
+[node name="LegR" type="Sprite2D" parent="PlayerSprite/Body"]
+position = Vector2(153.846, 507.691)
+texture = ExtResource("4_mue8c")
