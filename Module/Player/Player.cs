@@ -3,11 +3,16 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float WalkSpeed = 350.0f;
-	public const float AccelSpeed = 100.0f;
-	public const float DecelSpeed = 100.0f;
-	public const float AccelMultiplier = 25.0f;
-	public const float DodgeSpeed = 800.0f;
+	[Export]
+	public float WalkSpeed = 350.0f;
+	[Export]
+	public float AccelSpeed = 100.0f;
+	[Export]
+	public float DecelSpeed = 100.0f;
+	[Export]
+	public float AccelMultiplier = 25.0f;
+	[Export]
+	public float DodgeSpeed = 800.0f;
 
 	public Timer dodgeTimer = null;
 

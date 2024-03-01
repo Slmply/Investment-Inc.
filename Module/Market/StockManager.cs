@@ -106,5 +106,14 @@ public partial class StockManager : Node
 		sis.Visible = false;
 	}
 
+	public void toggleStockInfo() {
+		if (sis.Visible) {
+			hideStockInfo();
+		}
+		else {
+			showStockInfo();
+		}
+	}
+
 }
 

@@ -30,3 +30,4 @@ maxEventWait = 0.1
 one_shot = true
 
 [node name="StocksInfoScreen" parent="." instance=ExtResource("5_jgp5f")]
+visible = false

@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://pi8q4eef8jam"]
+
+[ext_resource type="Script" path="res://Module/World/Interactable/InteractionBox.cs" id="1_gv6ah"]
+
+[node name="InteractionBox" type="Area2D"]
+script = ExtResource("1_gv6ah")
+
+[node name="InteractionPrompt" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -12.5
+offset_right = 45.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="InteractionPrompt"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -11.5
+offset_right = 42.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Interact (E)
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]

@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf5ikmpq34aqj"]
+[gd_scene load_steps=8 format=3 uid="uid://bf5ikmpq34aqj"]
 
 [ext_resource type="PackedScene" uid="uid://mlteo27kantj" path="res://Module/Player/player.tscn" id="1_5cg7d"]
+[ext_resource type="PackedScene" uid="uid://bha67jtn3frxc" path="res://Module/GameManager/game_manager.tscn" id="2_7uaau"]
+[ext_resource type="PackedScene" uid="uid://pi8q4eef8jam" path="res://Module/World/Interactable/InteractionBox.tscn" id="3_gepcf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r1ewa"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rs1fi"]
 noise = SubResource("FastNoiseLite_r1ewa")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_era35"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4asl2"]
+size = Vector2(155, 269)
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,3 +24,13 @@ texture = SubResource("NoiseTexture2D_rs1fi")
 
 [node name="Player" parent="." instance=ExtResource("1_5cg7d")]
 position = Vector2(734, 380)
+
+[node name="GameManager" parent="." instance=ExtResource("2_7uaau")]
+
+[node name="StockScreenIntBox" parent="." instance=ExtResource("3_gepcf")]
+position = Vector2(1014, 341)
+interactionPrompt = "Interact (Enter)"
+collisionShape = SubResource("RectangleShape2D_era35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StockScreenIntBox"]
+shape = SubResource("RectangleShape2D_4asl2")

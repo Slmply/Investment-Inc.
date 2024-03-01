@@ -26,12 +26,14 @@ public partial class GameManager : Node2D
 	private StockManager stockManager;
 	private Timer gameTick;
 
-	public override void _Ready()
+    public override void _Ready()
 	{
 		stockManager = GetNode<StockManager>("Stock Manager");
 		stockManager.updateStocks(0.0f);
 		gameTick = GetNode<Timer>("GameTick");
 		gameTick.Start();
+		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteraction += activateStockScreen;
+		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteractedLeave += disableStockScreen;
 	}
 
 
@@ -41,6 +43,12 @@ public partial class GameManager : Node2D
 		stockManager.updateStocks(currentTime);
 	}
 
+	public void activateStockScreen() {
+		stockManager.toggleStockInfo();
+	}
 
+	public void disableStockScreen() {
+		stockManager.hideStockInfo();
+	}
 
 }
