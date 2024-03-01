@@ -1,14 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://btdb0mc41iwwm"]
 
 [ext_resource type="Script" path="res://Module/Market/UserInterface/stock_info.cs" id="1_vag3d"]
-[ext_resource type="FontFile" uid="uid://d353wwchqpauh" path="res://RubikDoodleShadow-Regular.ttf" id="2_yh8a7"]
+[ext_resource type="FontFile" uid="uid://b8g5gkqsp0ufi" path="res://Fonts/DeliciousHandrawn-Regular.ttf" id="2_k03pw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f75wy"]
 line_spacing = -4.0
-font = ExtResource("2_yh8a7")
+font = ExtResource("2_k03pw")
+font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_2syrx"]
-font = ExtResource("2_yh8a7")
+font = ExtResource("2_k03pw")
+font_size = 20
 
 [node name="StockInfo" type="Control"]
 custom_minimum_size = Vector2(150, 75)

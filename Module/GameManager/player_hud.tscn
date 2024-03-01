@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://6cusovlngr28"]
+
+[ext_resource type="FontFile" uid="uid://b8g5gkqsp0ufi" path="res://Fonts/DeliciousHandrawn-Regular.ttf" id="1_f82lu"]
+[ext_resource type="Script" path="res://Module/GameManager/PlayerHud.cs" id="1_fsw8u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2g0g"]
+font = ExtResource("1_f82lu")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_47c46"]
+font = ExtResource("1_f82lu")
+font_size = 25
+
+[node name="PlayerHUD" type="CanvasLayer"]
+script = ExtResource("1_fsw8u")
+
+[node name="TimeMoneyContainer" type="Control" parent="."]
+custom_minimum_size = Vector2(150, 125)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 50.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TimeMoneyContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Time" type="Label" parent="TimeMoneyContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "00:00"
+label_settings = SubResource("LabelSettings_h2g0g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="TimeMoneyContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "mula
+"
+label_settings = SubResource("LabelSettings_47c46")
+horizontal_alignment = 1

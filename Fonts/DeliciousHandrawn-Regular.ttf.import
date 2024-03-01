@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://d353wwchqpauh"
-path="res://.godot/imported/RubikDoodleShadow-Regular.ttf-308374db66bcf3052e676f3ec652effc.fontdata"
+uid="uid://b8g5gkqsp0ufi"
+path="res://.godot/imported/DeliciousHandrawn-Regular.ttf-1917c800caccba3722649566807204f8.fontdata"
 
 [deps]
 
-source_file="res://RubikDoodleShadow-Regular.ttf"
-dest_files=["res://.godot/imported/RubikDoodleShadow-Regular.ttf-308374db66bcf3052e676f3ec652effc.fontdata"]
+source_file="res://Fonts/DeliciousHandrawn-Regular.ttf"
+dest_files=["res://.godot/imported/DeliciousHandrawn-Regular.ttf-1917c800caccba3722649566807204f8.fontdata"]
 
 [params]
 

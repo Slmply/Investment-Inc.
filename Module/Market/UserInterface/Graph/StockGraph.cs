@@ -26,6 +26,8 @@ public partial class StockGraph : Control
 	[Export]
 	public string xLabel, yLabel;
 	[Export]
+	public LabelSettings labelSettings;
+	[Export]
 	public Range rng = Range.AllTime;
 
 	private float minX, minY = 0;
@@ -174,6 +176,7 @@ public partial class StockGraph : Control
 			label.HorizontalAlignment = HorizontalAlignment.Center;
 			label.VerticalAlignment = VerticalAlignment.Center;
 			label.Text = "$" + string.Format("{0:N2}", maxY - (yTickSize * i));
+			label.LabelSettings = labelSettings;
 			yTickCont.AddChild(label);
 		}
 
@@ -193,6 +196,7 @@ public partial class StockGraph : Control
 			label.VerticalAlignment = VerticalAlignment.Center;
 			label.HorizontalAlignment = HorizontalAlignment.Center;
 			label.Text = timeToHour(xTickSize * i) + '\n' + timeToDay(xTickSize * i);
+			label.LabelSettings = labelSettings;
 			xTickCont.AddChild(label);
 		}
 

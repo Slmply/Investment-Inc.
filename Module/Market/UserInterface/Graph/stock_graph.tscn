@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnlnosiyvgkwg"]
+[gd_scene load_steps=6 format=3 uid="uid://dnlnosiyvgkwg"]
 
 [ext_resource type="Script" path="res://Module/Market/UserInterface/Graph/StockGraph.cs" id="1_887oi"]
+[ext_resource type="FontFile" uid="uid://b8g5gkqsp0ufi" path="res://Fonts/DeliciousHandrawn-Regular.ttf" id="2_2wf06"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bmxwc"]
+font = ExtResource("2_2wf06")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ic7sl"]
+font = ExtResource("2_2wf06")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kpl32"]
+font = ExtResource("2_2wf06")
 
 [node name="StockGraph" type="Control" node_paths=PackedStringArray("line")]
 layout_mode = 3
@@ -18,6 +29,7 @@ backgroundColor = Color(0, 0, 0, 0.545098)
 line = NodePath("GridContainer/ColorRect/Line2D")
 xLabel = "Time"
 yLabel = "Value (USD)"
+labelSettings = SubResource("LabelSettings_bmxwc")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -50,21 +62,25 @@ layout_mode = 2
 
 [node name="Today" type="Button" parent="GridContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2wf06")
 text = "Today
 "
 
 [node name="24Hours" type="Button" parent="GridContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2wf06")
 text = "Past 24 Hours
 "
 
 [node name="5Days" type="Button" parent="GridContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2wf06")
 text = "5 Days
 "
 
 [node name="AllTime" type="Button" parent="GridContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2wf06")
 text = "All Time
 "
 
@@ -72,6 +88,7 @@ text = "All Time
 layout_mode = 2
 text = "Y Label
  "
+label_settings = SubResource("LabelSettings_ic7sl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -116,6 +133,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "X Label
  "
+label_settings = SubResource("LabelSettings_kpl32")
 horizontal_alignment = 1
 vertical_alignment = 1
 
