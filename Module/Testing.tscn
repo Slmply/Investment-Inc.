@@ -1,14 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf5ikmpq34aqj"]
+[gd_scene load_steps=10 format=3 uid="uid://bf5ikmpq34aqj"]
 
 [ext_resource type="PackedScene" uid="uid://mlteo27kantj" path="res://Module/Player/player.tscn" id="1_5cg7d"]
 [ext_resource type="PackedScene" uid="uid://bha67jtn3frxc" path="res://Module/GameManager/game_manager.tscn" id="2_7uaau"]
 [ext_resource type="PackedScene" uid="uid://pi8q4eef8jam" path="res://Module/World/Interactable/InteractionBox.tscn" id="3_gepcf"]
 [ext_resource type="PackedScene" uid="uid://6cusovlngr28" path="res://Module/GameManager/player_hud.tscn" id="3_world"]
+[ext_resource type="PackedScene" uid="uid://rsfr8ntf1ysj" path="res://Module/Enemies/BankTeller/bank_teller_enemy.tscn" id="5_tnhq0"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_r1ewa"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qpuat"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rs1fi"]
-noise = SubResource("FastNoiseLite_r1ewa")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1gnbt"]
+noise = SubResource("FastNoiseLite_qpuat")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_era35"]
 size = Vector2(50, 50)
@@ -19,14 +20,31 @@ size = Vector2(155, 269)
 [node name="World" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(637.5, 360.5)
 scale = Vector2(3.49023, 2.4082)
-texture = SubResource("NoiseTexture2D_rs1fi")
+texture = SubResource("NoiseTexture2D_1gnbt")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://Aseprite/PlayerCharacter.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": false
+}
 
 [node name="Player" parent="." instance=ExtResource("1_5cg7d")]
 position = Vector2(734, 380)
 
 [node name="GameManager" parent="." instance=ExtResource("2_7uaau")]
+timeScale = 3.0
 
 [node name="PlayerHUD" parent="GameManager" node_paths=PackedStringArray("gameManager") instance=ExtResource("3_world")]
 gameManager = NodePath("..")
@@ -38,3 +56,6 @@ collisionShape = SubResource("RectangleShape2D_era35")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StockScreenIntBox"]
 shape = SubResource("RectangleShape2D_4asl2")
+
+[node name="BankTellerEnemy" parent="." instance=ExtResource("5_tnhq0")]
+position = Vector2(-950, 256)

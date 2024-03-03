@@ -15,10 +15,12 @@ public partial class Player : CharacterBody2D
 	public float DodgeSpeed = 800.0f;
 
 	public Timer dodgeTimer = null;
+	public AnimationPlayer anmPlayer;
 
 	public override void _Ready()
 	{
 		dodgeTimer = (Timer)GetNode("DodgeTimer");
+		anmPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -57,14 +59,25 @@ public partial class Player : CharacterBody2D
 		}
 
 
-		if (Input.IsActionJustPressed("Dodge") && dodgeTimer.IsStopped())
+		if (Input.IsActionJustPressed("Dodge") && dodgeTimer.IsStopped() && Velocity.Length() >= 0.5f)
 		{
 			velocity.X = direction.X * DodgeSpeed;
 			velocity.Y = direction.Y * DodgeSpeed;
 			dodgeTimer.Start();
 		}
 
+		if (!dodgeTimer.IsStopped() || anmPlayer.CurrentAnimation == "Roll") {
+			anmPlayer.Play("Roll");
+		} else if (Velocity.Length() > 0.5) {
+			anmPlayer.Play("Run");
+		} else {
+			anmPlayer.Play("Idle");
+		}
+
 		Velocity = velocity;
+
+		GetNode<Sprite2D>("Sprite2D").FlipH = (Velocity.X == 0)? GetNode<Sprite2D>("Sprite2D").FlipH : (Velocity.X > 0)?  false : true; 
+
 		MoveAndSlide();
 	}
 }
