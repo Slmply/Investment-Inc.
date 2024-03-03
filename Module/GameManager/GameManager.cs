@@ -26,7 +26,7 @@ public partial class GameManager : Node2D
 	private StockManager stockManager;
 	private Timer gameTick;
 
-    public override void _Ready()
+	public override void _Ready()
 	{
 		stockManager = GetNode<StockManager>("Stock Manager");
 		stockManager.updateStocks(0.0f);
@@ -43,19 +43,22 @@ public partial class GameManager : Node2D
 		stockManager.updateStocks(currentTime);
 	}
 
-	public void activateStockScreen() {
+	public void activateStockScreen()
+	{
 		stockManager.toggleStockInfo();
 		Visible = false;
 	}
 
-	public void disableStockScreen() {
+	public void disableStockScreen()
+	{
 		stockManager.hideStockInfo();
 		Visible = true;
 	}
 
-	
 
-	public static string timeToHour(double time) {
+
+	public static string timeToHour(double time)
+	{
 
 		string res = "";
 
@@ -63,14 +66,18 @@ public partial class GameManager : Node2D
 
 		time = time * 24.0;
 
-		if (time >= 12.0) {
-			res += "PM";
-		} else {
-			res += "AM";
+		if (time >= 12.0)
+		{
+			res += " PM";
+		}
+		else
+		{
+			res += " AM";
 		}
 
-		time =  (time % 12);
-		if (time < 1) {
+		time = (time % 12);
+		if (time < 1)
+		{
 			time += 12;
 		}
 		double mins = time % 1;
