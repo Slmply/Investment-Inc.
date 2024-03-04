@@ -1,11 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://rsfr8ntf1ysj"]
+[gd_scene load_steps=10 format=3 uid="uid://rsfr8ntf1ysj"]
 
 [ext_resource type="Texture2D" uid="uid://bcf2vfcb01mp7" path="res://Module/Enemies/BankTeller/EnemmyBankTeller.png" id="1_8tnyl"]
-[ext_resource type="Script" path="res://Module/Enemies/BankTeller/Enemy.cs" id="1_a1uec"]
+[ext_resource type="Script" path="res://Module/Enemies/BankTeller/BankTeller.cs" id="1_qhy2o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qvkl"]
 radius = 40.0
 height = 123.65
+
+[sub_resource type="Animation" id="Animation_ivack"]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
 
 [sub_resource type="Animation" id="Animation_wbt1i"]
 length = 0.1
@@ -63,33 +90,6 @@ tracks/1/keys = {
 "values": [1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_ivack"]
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [3, 4, 5, 6]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xj57l"]
 _data = {
 "Death": SubResource("Animation_ivack"),
@@ -98,10 +98,14 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t84d7"]
+radius = 750.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pgahk"]
 radius = 1500.0
 
 [node name="BankTellerEnemy" type="CharacterBody2D" node_paths=PackedStringArray("aggroArea", "deAggroArea")]
-script = ExtResource("1_a1uec")
+collision_layer = 4
+script = ExtResource("1_qhy2o")
 aggroArea = NodePath("AggroArea")
 deAggroArea = NodePath("DeAggroArea")
 
@@ -114,6 +118,7 @@ scale = Vector2(10, 10)
 texture = ExtResource("1_8tnyl")
 hframes = 3
 vframes = 3
+frame = 3
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -136,11 +141,13 @@ libraries = {
 }
 
 [node name="AggroArea" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
 shape = SubResource("CircleShape2D_t84d7")
 
 [node name="DeAggroArea" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeAggroArea"]
-shape = SubResource("CircleShape2D_t84d7")
+shape = SubResource("CircleShape2D_pgahk")

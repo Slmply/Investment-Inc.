@@ -39,7 +39,7 @@ public partial class GameManager : Node2D
 
 	public void updateTime()
 	{
-		currentTime += 0.0033f * timeScale;
+		currentTime += 0.00347222222f * timeScale;
 		stockManager.updateStocks(currentTime);
 	}
 

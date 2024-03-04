@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://mlteo27kantj"]
+[gd_scene load_steps=12 format=3 uid="uid://mlteo27kantj"]
 
 [ext_resource type="Script" path="res://Module/Player/Player.cs" id="1_e8dfr"]
 [ext_resource type="Texture2D" uid="uid://d1ry3tch15usb" path="res://Module/Player/PlayerCharacter.png" id="2_a8vsp"]
+[ext_resource type="Texture2D" uid="uid://clsc7gvfe6dgu" path="res://Module/Misc/Assets/DollarBill.png" id="3_1m8k4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nc3j"]
 radius = 24.0
@@ -35,6 +36,33 @@ tracks/1/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_5mauw"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7]
+}
+
 [sub_resource type="Animation" id="Animation_dvjtx"]
 length = 0.4
 loop_mode = 1
@@ -63,8 +91,9 @@ tracks/1/keys = {
 "values": [1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_5mauw"]
-length = 0.5
+[sub_resource type="Animation" id="Animation_2likf"]
+length = 1.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -84,20 +113,61 @@ tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [3, 4, 5, 6, 7]
+"values": [8, 9, 10, 11, 12, 13, 14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_5afmq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mi6c4"]
 _data = {
+"Hit": SubResource("Animation_2likf"),
 "Idle": SubResource("Animation_0sy32"),
+"RESET": SubResource("Animation_5afmq"),
 "Roll": SubResource("Animation_5mauw"),
 "Run": SubResource("Animation_dvjtx")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cvbip"]
+particle_flag_disable_z = true
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+initial_velocity_max = 500.0
+gravity = Vector3(0, -10, 0)
+damping_min = 40.0
+damping_max = 40.0
+scale_min = 2.0
+scale_max = 2.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_e8dfr")
 AccelMultiplier = 30.0
 
@@ -121,12 +191,12 @@ one_shot = true
 texture_filter = 1
 scale = Vector2(10, 10)
 texture = ExtResource("2_a8vsp")
-hframes = 3
-vframes = 3
-frame = 3
+hframes = 4
+vframes = 4
+frame = 11
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 0,
-"keep_anim_length": false,
+"keep_anim_length": true,
 "layer": "",
 "o_ex_p": "",
 "o_folder": "",
@@ -147,3 +217,11 @@ root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_mi6c4")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_cvbip")
+texture = ExtResource("3_1m8k4")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0

@@ -18,7 +18,7 @@ public partial class Enemy : CharacterBody2D
 	[Export]
 	public float circleRadius = 300f;
 	[Export]
-	public float hitCircleRadius = 100f;
+	public float hitCircleRadius = 150f;
 	[Export]
 	public EnemyState state = EnemyState.IDLE;
 
@@ -49,6 +49,7 @@ public partial class Enemy : CharacterBody2D
 					reRollRandom();
 				break;
 				case EnemyState.HIT:
+					reRollRandom();
 					attack();
 				break;
 			}
@@ -75,7 +76,7 @@ public partial class Enemy : CharacterBody2D
     {
         switch(state) {
 			case EnemyState.IDLE:
-
+				move(GlobalPosition, (float)delta);
 			break;
 			case EnemyState.FOLLOW:
 				move(targetPlayer.GlobalPosition, (float)delta);
@@ -90,29 +91,52 @@ public partial class Enemy : CharacterBody2D
 				move(targetPlayer.GlobalPosition, (float)delta);
 				if (targetPlayer.GlobalPosition.DistanceTo(GlobalPosition) <= hitCircleRadius) {
 					State = EnemyState.HIT;
-					GD.Print("AHHHHH");
 				}
 			break;
+			case EnemyState.HIT:
+				move(GlobalPosition, (float)delta);
+			break;
 		}
+		
+		animate();
     }
 
 	public virtual void attack() {
 
 	}
 
-    protected void move(Vector2 target, float delta) {
-		Vector2 direction = (target - GlobalPosition).Normalized();
-		Vector2 velocityDesired = direction * speed;
-		Velocity += (velocityDesired - Velocity) * delta * 1.5f;
+	public virtual void animate() {
+
+	}
+
+    protected void move(Vector2 target, float delta, float margin = 40f) {
+
+		if (target.DistanceTo(GlobalPosition) <= margin) {
+			Velocity = Lerp(Velocity, Vector2.Zero, delta * 2f);
+		} else {
+			Vector2 direction = (target - GlobalPosition).Normalized();
+			Vector2 velocityDesired = direction * speed;
+			Velocity += (velocityDesired - Velocity) * delta * 2.5f;
+		}
 
 		MoveAndSlide();
+	}
+
+	Vector2 Lerp(Vector2 firstVector, Vector2 secondVector, float by)
+	{
+		float retX = Lerp(firstVector.X, secondVector.X, by);
+		float retY = Lerp(firstVector.Y, secondVector.Y, by);
+		return new Vector2(retX, retY);
+	}
+	float Lerp(float firstFloat, float secondFloat, float by)
+	{
+		return firstFloat * (1 - by) + secondFloat * by;
 	}
 
 	public void enterAttack() {
 		if (state == EnemyState.CIRCLE) {
 			State = EnemyState.ATTACK;
 		}
-		
 	}
 
 	public void AggroEntered(Node2D node) {
