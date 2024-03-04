@@ -1,12 +1,14 @@
 using Godot;
 using System;
+using System.Collections;
 
 public enum EnemyState {
 	IDLE,
 	FOLLOW,
 	CIRCLE,
 	ATTACK,
-	HIT
+	HIT,
+	DEATH
 }
 
 public partial class Enemy : CharacterBody2D
@@ -21,7 +23,6 @@ public partial class Enemy : CharacterBody2D
 	public float hitCircleRadius = 150f;
 	[Export]
 	public EnemyState state = EnemyState.IDLE;
-
 	public EnemyState State {
 		get {
 			return state;
@@ -51,6 +52,7 @@ public partial class Enemy : CharacterBody2D
 				case EnemyState.HIT:
 					reRollRandom();
 					attack();
+					onDeath((targetPlayer.GlobalPosition - GlobalPosition).Normalized() * 600f);
 				break;
 			}
 			state = value;
@@ -60,9 +62,7 @@ public partial class Enemy : CharacterBody2D
 	public Area2D aggroArea = null;
 	[Export]
 	public Area2D deAggroArea = null;
-
 	private Player targetPlayer = null;
-
 	private double random = 0f;
 	private Timer attackTimer = null;
 
@@ -96,10 +96,20 @@ public partial class Enemy : CharacterBody2D
 			case EnemyState.HIT:
 				move(GlobalPosition, (float)delta);
 			break;
+			case EnemyState.DEATH:
+				Velocity = Velocity = Lerp(Velocity, Vector2.Zero, (float)delta * 2f);
+				MoveAndSlide();
+			break;
 		}
 		
 		animate();
     }
+
+	public virtual void onDeath(Vector2 launchVector) {
+		State = EnemyState.DEATH;
+
+		Velocity = launchVector;
+	}
 
 	public virtual void attack() {
 
@@ -112,7 +122,7 @@ public partial class Enemy : CharacterBody2D
     protected void move(Vector2 target, float delta, float margin = 40f) {
 
 		if (target.DistanceTo(GlobalPosition) <= margin) {
-			Velocity = Lerp(Velocity, Vector2.Zero, delta * 2f);
+			Velocity = Lerp(Velocity, Vector2.Zero, delta * 2.5f);
 		} else {
 			Vector2 direction = (target - GlobalPosition).Normalized();
 			Vector2 velocityDesired = direction * speed;
