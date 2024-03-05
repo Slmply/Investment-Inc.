@@ -8,7 +8,7 @@ radius = 40.0
 height = 123.65
 
 [sub_resource type="Animation" id="Animation_ivack"]
-length = 0.8
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -151,3 +151,5 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeAggroArea"]
 shape = SubResource("CircleShape2D_pgahk")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="AnimFinished"]

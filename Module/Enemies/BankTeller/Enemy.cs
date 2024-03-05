@@ -31,9 +31,11 @@ public partial class Enemy : CharacterBody2D
 			switch (value) {
 				case EnemyState.IDLE:
 					reRollRandom();
+					state = value;
 				break;
 				case EnemyState.FOLLOW:
 					reRollRandom();
+					state = value;
 				break;
 				case EnemyState.CIRCLE:
 					reRollRandom();
@@ -45,17 +47,23 @@ public partial class Enemy : CharacterBody2D
 					attackTimer.WaitTime = GD.RandRange(3, 10);
 					attackTimer.Timeout += enterAttack;
 					attackTimer.Start();
+					state = value;
 				break;
 				case EnemyState.ATTACK:
 					reRollRandom();
+					state = value;
 				break;
 				case EnemyState.HIT:
 					reRollRandom();
 					attack();
+					State = EnemyState.DEATH;
+				break;
+				case EnemyState.DEATH:
 					onDeath((targetPlayer.GlobalPosition - GlobalPosition).Normalized() * 600f);
+					state = value;
 				break;
 			}
-			state = value;
+			
 		}
 	}
 	[Export]
@@ -106,9 +114,8 @@ public partial class Enemy : CharacterBody2D
     }
 
 	public virtual void onDeath(Vector2 launchVector) {
-		State = EnemyState.DEATH;
-
 		Velocity = launchVector;
+
 	}
 
 	public virtual void attack() {
@@ -179,6 +186,10 @@ public partial class Enemy : CharacterBody2D
 		offset.Y = (float)Math.Sin(angle) * radius;
 
 		return offset + center;
+	}
+
+	public void destroySelf() {
+		QueueFree();
 	}
 
 }
