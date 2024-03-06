@@ -46,7 +46,6 @@ public partial class InteractionBox : Area2D
         if (@event.IsActionPressed("Interact") && playerInside) {
 			EmitSignal(SignalName.OnInteraction);
 			interacted = true;
-			GD.Print("You Interacted!");
 		}
     }
 

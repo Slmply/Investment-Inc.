@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Player : CharacterBody2D
 {
@@ -16,14 +17,45 @@ public partial class Player : CharacterBody2D
 
 	public Timer dodgeTimer = null;
 	public AnimationPlayer anmPlayer;
+	private Area2D pickupArea;
+	private Throwable heldItem;
+	[Export]
+	public Node2D holdPoint;
 
 	public override void _Ready()
 	{
 		dodgeTimer = (Timer)GetNode("DodgeTimer");
 		anmPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		pickupArea = GetNode<Area2D>("PickupArea");
 	}
 
-	public override void _PhysicsProcess(double delta)
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event.IsActionPressed("Interact")  && dodgeTimer.IsStopped()) {
+
+			GD.Print("Interacted");
+
+			if (heldItem == null) {
+				Node2D[] items = pickupArea.GetOverlappingBodies().ToArray<Node2D>();
+
+				foreach (Node2D n in items) {
+					if (n is Throwable) {
+						heldItem = (Throwable)n;
+						((Throwable)n).holder = this;
+						break;
+					}
+				}
+			} else {
+				heldItem.lob(Velocity.Normalized() * 750);
+				heldItem = null;
+			}
+			
+			
+
+		}
+    }
+
+    public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
@@ -65,6 +97,8 @@ public partial class Player : CharacterBody2D
 			velocity.Y = direction.Y * DodgeSpeed;
 			dodgeTimer.Start();
 		}
+
+
 
 		if (!dodgeTimer.IsStopped() || anmPlayer.CurrentAnimation == "Roll") {
 			anmPlayer.Play("Roll");

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mlteo27kantj"]
+[gd_scene load_steps=13 format=3 uid="uid://mlteo27kantj"]
 
 [ext_resource type="Script" path="res://Module/Player/Player.cs" id="1_e8dfr"]
 [ext_resource type="Texture2D" uid="uid://d1ry3tch15usb" path="res://Module/Player/PlayerCharacter.png" id="2_a8vsp"]
@@ -166,10 +166,14 @@ damping_max = 40.0
 scale_min = 2.0
 scale_max = 2.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_y13yp"]
+radius = 80.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("holdPoint")]
 collision_layer = 2
 script = ExtResource("1_e8dfr")
 AccelMultiplier = 30.0
+holdPoint = NodePath("HoldPoint")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0nc3j")
@@ -193,7 +197,7 @@ scale = Vector2(10, 10)
 texture = ExtResource("2_a8vsp")
 hframes = 4
 vframes = 4
-frame = 11
+frame = 8
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 0,
 "keep_anim_length": true,
@@ -225,3 +229,11 @@ texture = ExtResource("3_1m8k4")
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_y13yp")
+
+[node name="HoldPoint" type="Node2D" parent="."]
+position = Vector2(0, 7)
