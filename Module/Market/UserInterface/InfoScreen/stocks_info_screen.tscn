@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfteiby62cwd6"]
 
-[ext_resource type="Script" path="res://Module/Market/UserInterface/StocksInfoScreen.cs" id="1_6qfnc"]
+[ext_resource type="Script" path="res://Module/Market/UserInterface/InfoScreen/StocksInfoScreen.cs" id="1_6qfnc"]
 
 [node name="StocksInfoScreen" type="CanvasLayer"]
 script = ExtResource("1_6qfnc")

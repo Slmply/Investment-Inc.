@@ -62,6 +62,7 @@ public partial class Throwable : CharacterBody2D
       {
         enemy.State = EnemyState.DEATH;
         enemy.Velocity = (-1 * (GlobalPosition - enemy.GlobalPosition).Normalized()) * Velocity.Length();
+        Velocity = (-1 * Velocity) / 2;
       }
     }
 

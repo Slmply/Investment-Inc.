@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://3pbfnnnpiv3a"]
+
+[ext_resource type="Script" path="res://Module/Market/UserInterface/InfoScreen/StocksInfoScreen.cs" id="1_awefp"]
+
+[node name="StocksInfoScreen" type="CanvasLayer"]
+script = ExtResource("1_awefp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+horizontal_scroll_mode = 0
+
+[node name="StockInfoContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

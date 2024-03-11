@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bf5ikmpq34aqj"]
+[gd_scene load_steps=10 format=3 uid="uid://bf5ikmpq34aqj"]
 
 [ext_resource type="PackedScene" uid="uid://mlteo27kantj" path="res://Module/Player/player.tscn" id="1_5cg7d"]
 [ext_resource type="PackedScene" uid="uid://bha67jtn3frxc" path="res://Module/GameManager/game_manager.tscn" id="2_7uaau"]
 [ext_resource type="PackedScene" uid="uid://pi8q4eef8jam" path="res://Module/World/Interactable/InteractionBox.tscn" id="3_gepcf"]
-[ext_resource type="PackedScene" uid="uid://6cusovlngr28" path="res://Module/GameManager/player_hud.tscn" id="3_world"]
 [ext_resource type="PackedScene" uid="uid://rsfr8ntf1ysj" path="res://Module/Enemies/BankTeller/bank_teller_enemy.tscn" id="5_tnhq0"]
 [ext_resource type="PackedScene" uid="uid://6w3oquqhkcep" path="res://Module/Throwables/throwable.tscn" id="6_aty5p"]
 
@@ -45,9 +44,6 @@ metadata/_aseprite_wizard_interface_config_ = {
 position = Vector2(734, 380)
 
 [node name="GameManager" parent="." instance=ExtResource("2_7uaau")]
-
-[node name="PlayerHUD" parent="GameManager" node_paths=PackedStringArray("gameManager") instance=ExtResource("3_world")]
-gameManager = NodePath("..")
 
 [node name="StockScreenIntBox" parent="." instance=ExtResource("3_gepcf")]
 position = Vector2(1014, 341)

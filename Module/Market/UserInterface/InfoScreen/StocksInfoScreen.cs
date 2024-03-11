@@ -12,15 +12,17 @@ public partial class StocksInfoScreen : CanvasLayer
 	public override void _Ready()
 	{
 		stockScreen = GD.Load<PackedScene>("res://Module/Market/UserInterface/Graph/stock_graph.tscn");
-		stockInfoWidget = GD.Load<PackedScene>("res://Module/Market/UserInterface/stock_info.tscn");
+		// GD.Print(stockInfoWidget);
 	}
 
 	public override void _Process(double delta)
 	{
-		foreach (stock_info si in stockInfoContainer.GetChildren())
-		{
-			si.updateStockPriceLabel();
+		if (Visible) {
+			foreach (stock_info si in stockInfoContainer.GetChildren()){
+				si.updateStockPriceLabel();
+			}
 		}
+		
 	}
 
 	public void loadStocks(Stock[] stocks)
@@ -30,16 +32,14 @@ public partial class StocksInfoScreen : CanvasLayer
 
 		foreach (Stock s in stocks)
 		{
+			stockInfoWidget = GD.Load<PackedScene>("res://Module/Market/UserInterface/stock_info.tscn");
 			stock_info si = (stock_info)stockInfoWidget.Instantiate();
+			GD.Print(si);
 			si.Stock = s;
 			stockInfoContainer.AddChild(si);
 			si.activateScreen += stockSelected;
 		}
 	}
-
-
-
-
 
 	public void stockSelected(stock_info stockInfo, Stock stock)
 	{

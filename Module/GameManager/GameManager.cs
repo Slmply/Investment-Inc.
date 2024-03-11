@@ -25,6 +25,25 @@ public partial class GameManager : Node2D
 
 	private StockManager stockManager;
 	private Timer gameTick;
+	private CanvasLayer activeUi;
+	[Export]
+	public CanvasLayer ActiveUi {
+		get {
+			return activeUi;
+		}
+		set {
+			activeUi = value;
+			Node2D uiContainer = GetNode<Node2D>("UIContainer");
+
+			foreach (Node n in uiContainer.GetChildren()) {
+				if (n is CanvasLayer) {
+					((CanvasLayer) n ).Visible = false;
+				}
+			}
+
+			activeUi.Visible = true;
+		}
+	}
 
 	public override void _Ready()
 	{
@@ -33,7 +52,7 @@ public partial class GameManager : Node2D
 		gameTick = GetNode<Timer>("GameTick");
 		gameTick.Start();
 		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteraction += activateStockScreen;
-		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteractedLeave += disableStockScreen;
+		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteractedLeave += exitUi;
 	}
 
 
@@ -45,14 +64,12 @@ public partial class GameManager : Node2D
 
 	public void activateStockScreen()
 	{
-		stockManager.toggleStockInfo();
-		Visible = false;
+		ActiveUi = GetNode<CanvasLayer>("UIContainer/StocksInfoScreen");
 	}
 
-	public void disableStockScreen()
+	public void exitUi()
 	{
-		stockManager.hideStockInfo();
-		Visible = true;
+		ActiveUi = GetNode<CanvasLayer>("UIContainer/PlayerHUD");
 	}
 
 

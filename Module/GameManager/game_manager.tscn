@@ -1,13 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bha67jtn3frxc"]
+[gd_scene load_steps=5 format=3 uid="uid://bha67jtn3frxc"]
 
 [ext_resource type="Script" path="res://Module/GameManager/GameManager.cs" id="1_ox4q2"]
 [ext_resource type="PackedScene" uid="uid://ihaxhcjadw0n" path="res://Module/Market/stock_manager.tscn" id="2_0bbmr"]
+[ext_resource type="PackedScene" uid="uid://dfteiby62cwd6" path="res://Module/Market/UserInterface/InfoScreen/stocks_info_screen.tscn" id="3_f03t7"]
+[ext_resource type="PackedScene" uid="uid://6cusovlngr28" path="res://Module/GameManager/player_hud.tscn" id="4_lb0pe"]
 
-[node name="GameManager" type="Node2D"]
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("ActiveUi")]
 script = ExtResource("1_ox4q2")
+ActiveUi = NodePath("UIContainer/PlayerHUD")
 
-[node name="Stock Manager" parent="." instance=ExtResource("2_0bbmr")]
+[node name="Stock Manager" parent="." node_paths=PackedStringArray("sis") instance=ExtResource("2_0bbmr")]
+sis = NodePath("../UIContainer/StocksInfoScreen")
 
 [node name="GameTick" type="Timer" parent="."]
+
+[node name="UIContainer" type="Node2D" parent="."]
+
+[node name="StocksInfoScreen" parent="UIContainer" instance=ExtResource("3_f03t7")]
+visible = false
+
+[node name="PlayerHUD" parent="UIContainer" node_paths=PackedStringArray("gameManager") instance=ExtResource("4_lb0pe")]
+gameManager = NodePath("../..")
 
 [connection signal="timeout" from="GameTick" to="." method="updateTime"]

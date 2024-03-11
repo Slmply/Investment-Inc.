@@ -18,11 +18,12 @@ public partial class StockManager : Node
 
 	private float nextEventTime;
 	private float i = 0;
-	private StocksInfoScreen sis;
+	[Export]
+	public StocksInfoScreen sis = null;
 
 	public override void _Ready()
 	{
-		sis = GetNode<StocksInfoScreen>("StocksInfoScreen");
+		// sis = GetNode<StocksInfoScreen>("StocksInfoScreen");
 		initializeStocks();
 	}
 
@@ -94,25 +95,6 @@ public partial class StockManager : Node
 			}
 		}
 		return null;
-	}
-
-	public void showStockInfo()
-	{
-		sis.Visible = true;
-	}
-
-	public void hideStockInfo()
-	{
-		sis.Visible = false;
-	}
-
-	public void toggleStockInfo() {
-		if (sis.Visible) {
-			hideStockInfo();
-		}
-		else {
-			showStockInfo();
-		}
 	}
 
 }
