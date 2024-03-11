@@ -44,8 +44,14 @@ public partial class InteractionBox : Area2D
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("Interact") && playerInside) {
-			EmitSignal(SignalName.OnInteraction);
-			interacted = true;
+			if (interacted) {
+				EmitSignal(SignalName.OnInteractedLeave);
+				interacted = false;
+			} else {
+				EmitSignal(SignalName.OnInteraction);
+				interacted = true;
+			}
+			
 		}
     }
 

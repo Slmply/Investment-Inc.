@@ -32,7 +32,7 @@ public partial class StocksInfoScreen : CanvasLayer
 
 		foreach (Stock s in stocks)
 		{
-			stockInfoWidget = GD.Load<PackedScene>("res://Module/Market/UserInterface/stock_info.tscn");
+			stockInfoWidget = GD.Load<PackedScene>("res://Module/Market/UserInterface/InfoScreen/stock_info.tscn");
 			stock_info si = (stock_info)stockInfoWidget.Instantiate();
 			GD.Print(si);
 			si.Stock = s;

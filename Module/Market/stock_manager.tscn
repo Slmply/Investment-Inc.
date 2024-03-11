@@ -17,14 +17,13 @@ stockPrice = 0.01
 volatility = 0.0
 expectedGrowth = 100000.0
 
-[node name="Stock Manager" type="Node2D" node_paths=PackedStringArray("sis")]
+[node name="Stock Manager" type="Node2D"]
 script = ExtResource("1_7qwrp")
 stocks = [ExtResource("2_y2f23"), ExtResource("3_if3lv"), ExtResource("4_kthj0"), ExtResource("5_20d81"), SubResource("Resource_b7j27")]
 portfolio = {}
 eventList = [ExtResource("3_407cg"), ExtResource("6_74n68")]
 minEventWait = 0.05
 maxEventWait = 0.1
-sis = NodePath("")
 
 [node name="EventCooldownTimer" type="Timer" parent="."]
 one_shot = true
