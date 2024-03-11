@@ -231,6 +231,8 @@ explosiveness = 1.0
 randomness = 1.0
 
 [node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_y13yp")

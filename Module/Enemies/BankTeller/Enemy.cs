@@ -2,7 +2,8 @@ using Godot;
 using System;
 using System.Collections;
 
-public enum EnemyState {
+public enum EnemyState
+{
 	IDLE,
 	FOLLOW,
 	CIRCLE,
@@ -23,23 +24,28 @@ public partial class Enemy : CharacterBody2D
 	public float hitCircleRadius = 150f;
 	[Export]
 	public EnemyState state = EnemyState.IDLE;
-	public EnemyState State {
-		get {
+	public EnemyState State
+	{
+		get
+		{
 			return state;
 		}
-		set {
-			switch (value) {
+		set
+		{
+			switch (value)
+			{
 				case EnemyState.IDLE:
 					reRollRandom();
 					state = value;
-				break;
+					break;
 				case EnemyState.FOLLOW:
 					reRollRandom();
 					state = value;
-				break;
+					break;
 				case EnemyState.CIRCLE:
 					reRollRandom();
-					if (attackTimer == null) {
+					if (attackTimer == null)
+					{
 						attackTimer = new Timer();
 						AddChild(attackTimer);
 					}
@@ -48,22 +54,22 @@ public partial class Enemy : CharacterBody2D
 					attackTimer.Timeout += enterAttack;
 					attackTimer.Start();
 					state = value;
-				break;
+					break;
 				case EnemyState.ATTACK:
 					reRollRandom();
 					state = value;
-				break;
+					break;
 				case EnemyState.HIT:
 					reRollRandom();
 					attack();
 					State = EnemyState.DEATH;
-				break;
+					break;
 				case EnemyState.DEATH:
 					onDeath((targetPlayer.GlobalPosition - GlobalPosition).Normalized() * 600f);
 					state = value;
-				break;
+					break;
 			}
-			
+
 		}
 	}
 	[Export]
@@ -74,63 +80,73 @@ public partial class Enemy : CharacterBody2D
 	private double random = 0f;
 	private Timer attackTimer = null;
 
-    public override void _Ready()
-    {
-        aggroArea.BodyEntered += AggroEntered;
+	public override void _Ready()
+	{
+		aggroArea.BodyEntered += AggroEntered;
 		deAggroArea.BodyExited += DeAggroExited;
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
-        switch(state) {
+	public override void _PhysicsProcess(double delta)
+	{
+		switch (state)
+		{
 			case EnemyState.IDLE:
 				move(GlobalPosition, (float)delta);
-			break;
+				break;
 			case EnemyState.FOLLOW:
 				move(targetPlayer.GlobalPosition, (float)delta);
-				if (targetPlayer.GlobalPosition.DistanceTo(GlobalPosition) <= circleRadius) {
+				if (targetPlayer.GlobalPosition.DistanceTo(GlobalPosition) <= circleRadius)
+				{
 					State = EnemyState.CIRCLE;
 				}
-			break;
+				break;
 			case EnemyState.CIRCLE:
 				move(CirclePosition(targetPlayer.GlobalPosition, circleRadius), (float)delta);
-			break;
-			case EnemyState.ATTACK:	
+				break;
+			case EnemyState.ATTACK:
 				move(targetPlayer.GlobalPosition, (float)delta);
-				if (targetPlayer.GlobalPosition.DistanceTo(GlobalPosition) <= hitCircleRadius) {
+				if (targetPlayer.GlobalPosition.DistanceTo(GlobalPosition) <= hitCircleRadius)
+				{
 					State = EnemyState.HIT;
 				}
-			break;
+				break;
 			case EnemyState.HIT:
 				move(GlobalPosition, (float)delta);
-			break;
+				break;
 			case EnemyState.DEATH:
 				Velocity = Velocity = Lerp(Velocity, Vector2.Zero, (float)delta * 2f);
 				MoveAndSlide();
-			break;
+				break;
 		}
-		
+
 		animate();
-    }
+	}
 
-	public virtual void onDeath(Vector2 launchVector) {
-		Velocity = launchVector;
+	public virtual void onDeath(Vector2 launchVector)
+	{
+		// Velocity = launchVector;
 
 	}
 
-	public virtual void attack() {
+	public virtual void attack()
+	{
 
 	}
 
-	public virtual void animate() {
+	public virtual void animate()
+	{
 
 	}
 
-    protected void move(Vector2 target, float delta, float margin = 40f) {
+	protected void move(Vector2 target, float delta, float margin = 40f)
+	{
 
-		if (target.DistanceTo(GlobalPosition) <= margin) {
+		if (target.DistanceTo(GlobalPosition) <= margin)
+		{
 			Velocity = Lerp(Velocity, Vector2.Zero, delta * 2.5f);
-		} else {
+		}
+		else
+		{
 			Vector2 direction = (target - GlobalPosition).Normalized();
 			Vector2 velocityDesired = direction * speed;
 			Velocity += (velocityDesired - Velocity) * delta * 2.5f;
@@ -150,34 +166,42 @@ public partial class Enemy : CharacterBody2D
 		return firstFloat * (1 - by) + secondFloat * by;
 	}
 
-	public void enterAttack() {
-		if (state == EnemyState.CIRCLE) {
+	public void enterAttack()
+	{
+		if (state == EnemyState.CIRCLE)
+		{
 			State = EnemyState.ATTACK;
 		}
 	}
 
-	public void AggroEntered(Node2D node) {
+	public void AggroEntered(Node2D node)
+	{
 
-		if (node is Player) {
+		if (node is Player)
+		{
 			targetPlayer = (Player)node;
 			State = EnemyState.FOLLOW;
 		}
 	}
 
-	public void DeAggroExited(Node2D node) {
+	public void DeAggroExited(Node2D node)
+	{
 
-		if (targetPlayer != null && node is Player) {
+		if (targetPlayer != null && node is Player)
+		{
 			targetPlayer = null;
 			State = EnemyState.IDLE;
 		}
 	}
 
-	public void reRollRandom() {
+	public void reRollRandom()
+	{
 		Random rand = new Random();
 		random = rand.NextDouble();
 	}
 
-	public Vector2 CirclePosition(Vector2 center, float radius) {
+	public Vector2 CirclePosition(Vector2 center, float radius)
+	{
 
 		double angle = 2 * Math.PI * random;
 		Vector2 offset = Vector2.Zero;
@@ -188,7 +212,8 @@ public partial class Enemy : CharacterBody2D
 		return offset + center;
 	}
 
-	public void destroySelf() {
+	public void destroySelf()
+	{
 		QueueFree();
 	}
 

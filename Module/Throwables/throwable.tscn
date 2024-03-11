@@ -21,6 +21,10 @@ scale = Vector2(10, 10)
 texture = ExtResource("1_ucbck")
 
 [node name="HitArea" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource("CircleShape2D_aj8ev")
+
+[connection signal="body_entered" from="HitArea" to="." method="HitAreaEntered"]

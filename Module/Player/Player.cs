@@ -29,33 +29,42 @@ public partial class Player : CharacterBody2D
 		pickupArea = GetNode<Area2D>("PickupArea");
 	}
 
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        if (@event.IsActionPressed("Interact")  && dodgeTimer.IsStopped()) {
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event.IsActionPressed("Interact") && dodgeTimer.IsStopped())
+		{
 
 			GD.Print("Interacted");
 
-			if (heldItem == null) {
+			if (heldItem == null)
+			{
 				Node2D[] items = pickupArea.GetOverlappingBodies().ToArray<Node2D>();
 
-				foreach (Node2D n in items) {
-					if (n is Throwable) {
+				foreach (Node2D n in items)
+				{
+
+					GD.Print("Node:" + n);
+					if (n is Throwable)
+					{
 						heldItem = (Throwable)n;
 						((Throwable)n).holder = this;
 						break;
 					}
 				}
-			} else {
-				heldItem.lob(Velocity.Normalized() * 750);
+			}
+			else
+			{
+				GD.Print(Velocity.Normalized());
+				heldItem.lob(Velocity.Normalized());
 				heldItem = null;
 			}
-			
-			
+
+
 
 		}
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
@@ -100,17 +109,22 @@ public partial class Player : CharacterBody2D
 
 
 
-		if (!dodgeTimer.IsStopped() || anmPlayer.CurrentAnimation == "Roll") {
+		if (!dodgeTimer.IsStopped() || anmPlayer.CurrentAnimation == "Roll")
+		{
 			anmPlayer.Play("Roll");
-		} else if (Velocity.Length() > 0.5) {
+		}
+		else if (Velocity.Length() > 0.5)
+		{
 			anmPlayer.Play("Run");
-		} else {
+		}
+		else
+		{
 			anmPlayer.Play("Idle");
 		}
 
 		Velocity = velocity;
 
-		GetNode<Sprite2D>("Sprite2D").FlipH = (Velocity.X == 0)? GetNode<Sprite2D>("Sprite2D").FlipH : (Velocity.X > 0)?  false : true; 
+		GetNode<Sprite2D>("Sprite2D").FlipH = (Velocity.X == 0) ? GetNode<Sprite2D>("Sprite2D").FlipH : (Velocity.X > 0) ? false : true;
 
 		MoveAndSlide();
 	}
