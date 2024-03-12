@@ -68,7 +68,7 @@ public partial class StockManager : Node
 
 		randomStock.beginEvent(randomEvent, time);
 
-		nextEventTime = (((float)random.NextDouble() * maxEventWait) + minEventWait + time) + randomEvent.eventDuration;
+		nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + randomEvent.eventDuration;
 		GD.Print("Next Event at: " + nextEventTime);
 	}
 

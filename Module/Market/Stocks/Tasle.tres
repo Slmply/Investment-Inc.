@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://vf35m2fkw0mr"]
+
+[ext_resource type="Script" path="res://Module/Market/Stocks/Stock.cs" id="1_3nkbx"]
+
+[resource]
+script = ExtResource("1_3nkbx")
+companyName = "FloorMart"
+stockSymbol = "FM"
+stockPrice = 15.0
+volatility = 0.4
+expectedGrowth = 0.4

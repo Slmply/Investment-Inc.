@@ -71,7 +71,7 @@ public partial class StockGraph : Control
 			res += "AM";
 		}
 
-		time =  (time % 12);
+		time = time % 12;
 		if (time < 1) {
 			time += 12;
 		}

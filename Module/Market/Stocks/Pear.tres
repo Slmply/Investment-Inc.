@@ -8,4 +8,4 @@ companyName = "Pear"
 stockSymbol = "PR"
 stockPrice = 180.0
 volatility = 0.5
-expectedGrowth = 0.5
+expectedGrowth = 0.2

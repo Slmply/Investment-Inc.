@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cycd2s0y8q88a"]
+
+[ext_resource type="Script" path="res://Module/Market/Stocks/Stock.cs" id="1_ggr2w"]
+
+[resource]
+script = ExtResource("1_ggr2w")
+companyName = "Closed IA"
+stockSymbol = "CLIA"
+stockPrice = 6.64
+volatility = 0.8
+expectedGrowth = 0.52

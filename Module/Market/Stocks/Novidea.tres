@@ -7,5 +7,5 @@ script = ExtResource("1_5cknr")
 companyName = "Novidea"
 stockSymbol = "NVOD"
 stockPrice = 15.0
-volatility = 0.7
+volatility = 0.6
 expectedGrowth = 0.4

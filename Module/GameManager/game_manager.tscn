@@ -13,6 +13,7 @@ ActiveUi = NodePath("UIContainer/PlayerHUD")
 sis = NodePath("../UIContainer/StocksInfoScreen")
 
 [node name="GameTick" type="Timer" parent="."]
+wait_time = 0.008
 
 [node name="UIContainer" type="Node2D" parent="."]
 

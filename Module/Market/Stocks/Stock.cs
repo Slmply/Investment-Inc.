@@ -22,6 +22,12 @@ public partial class Stock : Resource
     private double timeOffset;
     private double seed;
 
+
+
+    private bool isZeroedOut() {
+        return stockPrice <= 0.01;
+    }
+
     public void init()
     {
         this.startingPrice = stockPrice;
@@ -33,6 +39,10 @@ public partial class Stock : Resource
 
     public void beginEvent(Event newEvent, double time)
     {
+        if (isZeroedOut()) {
+            return;
+        }
+
         this.activeEvent = newEvent;
         activeEvent.beginEvent(time);
         activeEvent.EventCompletion += endEvent;
@@ -51,6 +61,11 @@ public partial class Stock : Resource
 
     public double update(double time)
     {
+        if (isZeroedOut()) {
+            stockPrice = 0d;
+            stockHistory.AddLast(new Godot.Vector2((float)time, 0f));
+            return 0d;
+        }
 
         double res = stockPrice;
         if (activeEvent != null)
@@ -60,7 +75,7 @@ public partial class Stock : Resource
             if (activeEvent != null)
             {
                 res = (res + 1) * startingPrice;
-                stockHistory.AddLast(new Godot.Vector2((float)time, (float)res));
+                stockHistory.AddLast(new Godot.Vector2((float)time, (float)Math.Max(res, 0f)));
             }
 
         }
@@ -70,7 +85,7 @@ public partial class Stock : Resource
             res = this.stockPriceEq(offsetTime);
 
             res = (res + 1) * startingPrice;
-            stockHistory.AddLast(new Godot.Vector2((float)time, (float)res));
+            stockHistory.AddLast(new Godot.Vector2((float)time, (float)Math.Max(res, 0f)));
         }
 
 
@@ -80,7 +95,8 @@ public partial class Stock : Resource
 
     private double stockPriceEq(double time)
     {
-        var i = 0.1d * Math.Sin((10 * volatility) * (time + volatility * seed)) + (expectedGrowth * time) / 15;
+        double volatility = this.volatility / 2d;
+        var i = 0.1d * Math.Sin(10 * volatility * (time + volatility * seed)) + expectedGrowth * time / 15d;
         i += -0.2d * volatility * Math.Sin(time - 3);
         i += 0.06d * volatility * Math.Sin(time);
         i -= 0.8d * volatility * volatility * Math.Cos(10 * (time + seed + 4.8));
@@ -88,6 +104,10 @@ public partial class Stock : Resource
         i -= 0.8d * volatility * volatility * Math.Cos(8 * (time + seed + 8.8));
         i -= volatility * volatility * volatility * Math.Cos(70 * (time + seed + 5.8));
         i -= 0.4d * volatility * volatility * Math.Cos(100 * (time + seed + 43.8342));
+        i -= 0.432d * volatility * volatility * Math.Cos(231 * (time + seed + 4.234));
+        i -= 0.123d * volatility * volatility * Math.Cos(54 * (time + seed + 43.543));
+        i -= 0.2d * volatility * volatility * Math.Cos(543 * (time + seed + 2.321));
+        i -= 0.3d * volatility * volatility * Math.Cos(674 * (time + seed + 2.8342));
 
         return i;
     }

@@ -12,6 +12,10 @@ public partial class stock_info : Control
 	private Boolean active;
 	private Boolean mouseOver = false;
 
+	private double lastUpdatePriceTime = 0;
+
+	private const double STOCK_PRICE_UPDATE_INTERVAL = 500;
+
 	[Signal]
 	public delegate void activateScreenEventHandler(stock_info stockInfo, Stock stock);
 
@@ -54,8 +58,18 @@ public partial class stock_info : Control
 		}
 	}
 
+	private double systemTimeMillis() {
+		return DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+	}
+
 	public void updateStockPriceLabel()
 	{
+		if (systemTimeMillis() - lastUpdatePriceTime < STOCK_PRICE_UPDATE_INTERVAL) {
+			return;
+		}
+
+		lastUpdatePriceTime = systemTimeMillis();
+
 		Label l = GetNode<Label>("StockPrice");
 
 		var last = stock.stockHistory.Last;

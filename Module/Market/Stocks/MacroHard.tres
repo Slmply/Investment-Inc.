@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://di00ytllvr0im"]
+
+[ext_resource type="Script" path="res://Module/Market/Stocks/Stock.cs" id="1_2a56o"]
+
+[resource]
+script = ExtResource("1_2a56o")
+companyName = "Tasle"
+stockSymbol = "TASL"
+stockPrice = 177.77
+volatility = 0.6
+expectedGrowth = -0.165
