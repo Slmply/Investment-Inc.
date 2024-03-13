@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmpyjn1h3j88d"]
+
+[ext_resource type="Script" path="res://Module/Market/UserInterface/PurchaseScreen/PurchaseScreen.cs" id="1_3i6t3"]
+[ext_resource type="FontFile" uid="uid://b8g5gkqsp0ufi" path="res://Fonts/DeliciousHandrawn-Regular.ttf" id="2_kpiv7"]
+[ext_resource type="Texture2D" uid="uid://drurnc4hiuglx" path="res://Module/Market/UserInterface/PurchaseScreen/arrow_downward_FILL0_wght400_GRAD0_opsz24.svg" id="3_7uucl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqa1d"]
+font = ExtResource("2_kpiv7")
+font_size = 50
+
+[node name="PurchaseScreen" type="CanvasLayer"]
+script = ExtResource("1_3i6t3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+horizontal_scroll_mode = 0
+
+[node name="StockInfoContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PurchaseContainer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/PurchaseContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.247059, 0.247059, 0.247059, 1)
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/PurchaseContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="Placeholder" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder3" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Purchase: Stock"
+label_settings = SubResource("LabelSettings_oqa1d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Placeholder2" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder4" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder5" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DownButton" type="Button" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/DownButton"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("3_7uucl")
+
+[node name="Amount" type="TextEdit" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="UpButton" type="Button" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Placeholder6" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
