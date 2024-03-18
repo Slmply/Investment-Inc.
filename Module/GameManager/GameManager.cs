@@ -53,6 +53,8 @@ public partial class GameManager : Node2D
 		gameTick.Start();
 		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteraction += activateStockScreen;
 		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteractedLeave += exitUi;
+		GetParent().GetNode<InteractionBox>("Purchase Screen Box").OnInteraction += activatePurchaseScreen;
+		GetParent().GetNode<InteractionBox>("Purchase Screen Box").OnInteractedLeave += exitUi;
 	}
 
 
@@ -65,6 +67,10 @@ public partial class GameManager : Node2D
 	public void activateStockScreen()
 	{
 		ActiveUi = GetNode<CanvasLayer>("UIContainer/StocksInfoScreen");
+	}
+
+	public void activatePurchaseScreen() {
+		ActiveUi = GetNode<CanvasLayer>("UIContainer/PurchaseScreen");
 	}
 
 	public void exitUi()

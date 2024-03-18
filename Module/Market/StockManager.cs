@@ -20,11 +20,14 @@ public partial class StockManager : Node
 	private float i = 0;
 	[Export]
 	public StocksInfoScreen sis = null;
+	[Export]
+	public PurchaseScreen pss = null;
 
 	public override void _Ready()
 	{
 		// sis = GetNode<StocksInfoScreen>("StocksInfoScreen");
 		initializeStocks();
+		portfolio = new Dictionary<Stock, float>();
 	}
 
 	public void initializeStocks()
@@ -37,11 +40,12 @@ public partial class StockManager : Node
 			stocks[k].init();
 		}
 		sis.loadStocks(stocks);
+		pss.loadStocks(stocks);
 	}
 
 	public float purchaseStock(Stock s, float amount)
 	{
-		return 0.0f;
+		if ()
 	}
 
 	public void updateStocks(float time)

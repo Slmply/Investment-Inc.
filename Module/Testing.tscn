@@ -44,14 +44,24 @@ metadata/_aseprite_wizard_interface_config_ = {
 position = Vector2(734, 380)
 
 [node name="GameManager" parent="." instance=ExtResource("2_7uaau")]
+money = 50.0
 
 [node name="StockScreenIntBox" parent="." instance=ExtResource("3_gepcf")]
 position = Vector2(1014, 341)
 collision_mask = 2
-interactionPrompt = "Interact (Enter)"
+interactionPrompt = "View (Enter)"
 collisionShape = SubResource("RectangleShape2D_era35")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StockScreenIntBox"]
+shape = SubResource("RectangleShape2D_4asl2")
+
+[node name="Purchase Screen Box" parent="." instance=ExtResource("3_gepcf")]
+position = Vector2(1014, 689)
+collision_mask = 2
+interactionPrompt = "Buy (Enter)"
+collisionShape = SubResource("RectangleShape2D_era35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Purchase Screen Box"]
 shape = SubResource("RectangleShape2D_4asl2")
 
 [node name="BankTellerEnemy" parent="." instance=ExtResource("5_tnhq0")]

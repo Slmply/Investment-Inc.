@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmpyjn1h3j88d"]
+[gd_scene load_steps=7 format=3 uid="uid://bmpyjn1h3j88d"]
 
 [ext_resource type="Script" path="res://Module/Market/UserInterface/PurchaseScreen/PurchaseScreen.cs" id="1_3i6t3"]
 [ext_resource type="FontFile" uid="uid://b8g5gkqsp0ufi" path="res://Fonts/DeliciousHandrawn-Regular.ttf" id="2_kpiv7"]
 [ext_resource type="Texture2D" uid="uid://drurnc4hiuglx" path="res://Module/Market/UserInterface/PurchaseScreen/arrow_downward_FILL0_wght400_GRAD0_opsz24.svg" id="3_7uucl"]
+[ext_resource type="Texture2D" uid="uid://dyp8744jqflfh" path="res://Module/Market/UserInterface/PurchaseScreen/arrow_upward_FILL0_wght400_GRAD0_opsz24.svg" id="4_hlgqm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oqa1d"]
 font = ExtResource("2_kpiv7")
 font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_0duko"]
+font_size = 35
 
 [node name="PurchaseScreen" type="CanvasLayer"]
 script = ExtResource("1_3i6t3")
@@ -39,7 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.247059, 0.247059, 0.247059, 1)
+color = Color(0.247059, 0.247059, 0.247059, 0.54902)
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/PurchaseContainer/ColorRect"]
 layout_mode = 1
@@ -60,7 +64,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+[node name="PurchaseLabel" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -97,10 +101,24 @@ offset_right = 24.0
 offset_bottom = 24.0
 texture = ExtResource("3_7uucl")
 
-[node name="Amount" type="TextEdit" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="BuyAmtLabel" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0.00"
+label_settings = SubResource("LabelSettings_0duko")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UpButton" type="Button" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
 custom_minimum_size = Vector2(75, 75)
@@ -108,7 +126,43 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/UpButton"]
+custom_minimum_size = Vector2(75, 75)
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("4_hlgqm")
+
 [node name="Placeholder6" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Placeholder7" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder8" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Purchase Button" type="Button" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+custom_minimum_size = Vector2(95, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Purchase" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/Purchase Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/DownButton" to="." method="buyAmtDown"]
+[connection signal="pressed" from="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/UpButton" to="." method="buyAmtUp"]

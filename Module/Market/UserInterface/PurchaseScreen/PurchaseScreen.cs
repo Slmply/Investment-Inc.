@@ -6,6 +6,10 @@ public partial class PurchaseScreen : CanvasLayer
 	private VBoxContainer stockInfoContainer;
 	private PackedScene stockInfoWidget;
 	private stock_info activeStockInfo;
+	private Stock currentStock;
+	private float currentBuyAmt;
+	[Export]
+	public GameManager gm;
 
 	public override void _Ready()
 	{
@@ -52,13 +56,46 @@ public partial class PurchaseScreen : CanvasLayer
 			}
 		}
 
-		Control sgContainer = GetNode<Control>("HBoxContainer/StockGraphContainer");
+		currentBuyAmt = 0;
 
-		foreach (Node n in sgContainer.GetChildren())
-		{
-			n.QueueFree();
-		}
+		currentStock = activeStockInfo.stock;
+		updatePurchaseScreen();
 	}
 
+	public void updatePurchaseScreen() {
 
+		if (currentStock != null) {
+			GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/PurchaseLabel").Text = "Purchase: " + currentStock.companyName;
+		} else {
+			GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/PurchaseLabel").Text = "N/A";
+		}
+
+		GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/ColorRect/BuyAmtLabel").Text = currentBuyAmt.ToString("0.00");
+
+	}
+
+	public void buyAmtUp() {
+		currentBuyAmt++;
+		clampBuyAmount();
+		updatePurchaseScreen();
+	}
+
+	public void buyAmtDown() {
+		currentBuyAmt--;
+		clampBuyAmount();
+		updatePurchaseScreen();
+	}
+
+	public void clampBuyAmount() {
+		if (currentStock != null) {
+			if (currentBuyAmt * (float)currentStock.stockPrice >= gm.money) {
+				currentBuyAmt = gm.money / (float)currentStock.stockPrice;
+			}
+			if (currentBuyAmt < 0 ) {
+				currentBuyAmt = 0;
+			}
+		} else {
+			currentBuyAmt = 0;
+		}
+	}
 }
