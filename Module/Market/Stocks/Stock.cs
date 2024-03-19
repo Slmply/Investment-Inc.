@@ -22,6 +22,8 @@ public partial class Stock : Resource
     private double timeOffset;
     private double seed;
 
+    public float sharesHeld = 0f;
+
 
 
     private bool isZeroedOut() {
@@ -39,9 +41,9 @@ public partial class Stock : Resource
 
     public void beginEvent(Event newEvent, double time)
     {
-        if (isZeroedOut()) {
-            return;
-        }
+        // if (isZeroedOut()) {
+        //     return;
+        // }
 
         this.activeEvent = newEvent;
         activeEvent.beginEvent(time);
@@ -61,11 +63,11 @@ public partial class Stock : Resource
 
     public double update(double time)
     {
-        if (isZeroedOut()) {
-            stockPrice = 0d;
-            stockHistory.AddLast(new Godot.Vector2((float)time, 0f));
-            return 0d;
-        }
+        // if (isZeroedOut()) {
+        //     stockPrice = 0d;
+        //     stockHistory.AddLast(new Godot.Vector2((float)time, 0f));
+        //     return 0d;
+        // }
 
         double res = stockPrice;
         if (activeEvent != null)
@@ -96,7 +98,7 @@ public partial class Stock : Resource
     private double stockPriceEq(double time)
     {
         double volatility = this.volatility / 2d;
-        var i = 0.1d * Math.Sin(10 * volatility * (time + volatility * seed)) + expectedGrowth * time / 15d;
+        var i = 0.1d * Math.Sin(10 * volatility * (time + volatility * seed)) + expectedGrowth * time / 5d;
         i += -0.2d * volatility * Math.Sin(time - 3);
         i += 0.06d * volatility * Math.Sin(time);
         i -= 0.8d * volatility * volatility * Math.Cos(10 * (time + seed + 4.8));

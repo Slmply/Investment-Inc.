@@ -98,4 +98,15 @@ public partial class PurchaseScreen : CanvasLayer
 			currentBuyAmt = 0;
 		}
 	}
+
+	public void OnPurchasePressed() {
+
+		if (gm.money >= currentBuyAmt * currentStock.stockPrice) {
+			gm.GetNode<StockManager>("Stock Manager").purchaseStock(currentStock, currentBuyAmt);
+		} else {
+
+		}
+
+		
+	}
 }

@@ -7,5 +7,5 @@ script = ExtResource("1_yycgj")
 companyName = "Skibidi Toilet Ltd."
 stockSymbol = "SKIB"
 stockPrice = 420.69
-volatility = 100.0
+volatility = 0.0
 expectedGrowth = 3.0

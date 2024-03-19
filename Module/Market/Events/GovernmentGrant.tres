@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bitfc87geb077"]
+
+[ext_resource type="Script" path="res://Module/Market/Events/GovernmentGrant.cs" id="1_stxog"]
+
+[resource]
+script = ExtResource("1_stxog")
+eventName = "Government Grant"
+eventDescription = " has recieved a grant from the government for their latest project!"
+eventDuration = 0.8
+eventScale = 1.1

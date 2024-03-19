@@ -20,5 +20,6 @@ public partial class PlayerHud : CanvasLayer
 	{
 		timeLabel.Text = GameManager.timeToHour(gameManager.currentTime).ToLower();
 		moneyLabel.Text = gameManager.money.ToString();
+		moneyLabel.Text += " ($" + string.Format("{0:N2}", gameManager.stockManager.getTotalStockInventoryValue()) + ")";
 	}
 }

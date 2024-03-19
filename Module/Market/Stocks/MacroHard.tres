@@ -8,4 +8,4 @@ companyName = "Tasle"
 stockSymbol = "TASL"
 stockPrice = 177.77
 volatility = 0.6
-expectedGrowth = -0.165
+expectedGrowth = 0.6

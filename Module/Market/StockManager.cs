@@ -8,8 +8,6 @@ public partial class StockManager : Node
 	[Export]
 	public Stock[] stocks;
 	[Export]
-	public Dictionary<Stock, float> portfolio;
-	[Export]
 	public Event[] eventList;
 	[Export]
 	public float minEventWait;
@@ -27,7 +25,6 @@ public partial class StockManager : Node
 	{
 		// sis = GetNode<StocksInfoScreen>("StocksInfoScreen");
 		initializeStocks();
-		portfolio = new Dictionary<Stock, float>();
 	}
 
 	public void initializeStocks()
@@ -43,9 +40,9 @@ public partial class StockManager : Node
 		pss.loadStocks(stocks);
 	}
 
-	public float purchaseStock(Stock s, float amount)
+	public void purchaseStock(Stock s, float amount)
 	{
-		if ()
+		s.sharesHeld += amount;
 	}
 
 	public void updateStocks(float time)
@@ -60,6 +57,17 @@ public partial class StockManager : Node
 		{
 			eventSelection(time);
 		}
+	}
+
+	public float getTotalStockInventoryValue() {
+		float res = 0;
+
+		foreach (Stock s in stocks) {
+			res += (float) s.stockPrice * s.sharesHeld;
+		}
+
+
+		return res;
 	}
 
 	public void eventSelection(float time)

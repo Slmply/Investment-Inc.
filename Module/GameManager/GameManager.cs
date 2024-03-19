@@ -23,7 +23,7 @@ public partial class GameManager : Node2D
 
 	public float currentTime = 0;
 
-	private StockManager stockManager;
+	public StockManager stockManager;
 	private Timer gameTick;
 	private CanvasLayer activeUi;
 	[Export]

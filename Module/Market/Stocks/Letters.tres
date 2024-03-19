@@ -8,4 +8,4 @@ companyName = "Letters"
 stockSymbol = "LTTRS"
 stockPrice = 171.44
 volatility = 0.3
-expectedGrowth = -0.38
+expectedGrowth = 0.38
