@@ -1,24 +1,27 @@
 [gd_scene load_steps=5 format=3 uid="uid://6w3oquqhkcep"]
 
 [ext_resource type="Script" path="res://Module/Throwables/Throwable.cs" id="1_2mwby"]
-[ext_resource type="Texture2D" uid="uid://clsc7gvfe6dgu" path="res://Module/Misc/Assets/DollarBill.png" id="1_ucbck"]
+[ext_resource type="Texture2D" uid="uid://c714bpk7y2uio" path="res://Module/Throwables/Throwables.png" id="2_j0r35"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwkcj"]
-size = Vector2(120, 60)
+size = Vector2(80, 80)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj8ev"]
-radius = 80.0
+radius = 60.0
 
 [node name="Throwable" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_2mwby")
+rotationAmount = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jwkcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(10, 10)
-texture = ExtResource("1_ucbck")
+texture = ExtResource("2_j0r35")
+hframes = 2
+vframes = 2
 
 [node name="HitArea" type="Area2D" parent="."]
 collision_layer = 7

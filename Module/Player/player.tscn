@@ -238,4 +238,4 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_y13yp")
 
 [node name="HoldPoint" type="Node2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, 20)

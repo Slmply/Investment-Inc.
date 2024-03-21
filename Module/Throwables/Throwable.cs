@@ -6,8 +6,12 @@ public partial class Throwable : CharacterBody2D
 
   [Export]
   public float throwSpeed = 1500f;
+  [Export]
+  public float rotationAmount = 1f;
   public Player holder;
   private Area2D hitArea;
+  private Sprite2D sprite;
+  
 
 
 
@@ -16,6 +20,10 @@ public partial class Throwable : CharacterBody2D
     base._Ready();
 
     hitArea = GetNode<Area2D>("HitArea");
+
+    sprite = GetNode<Sprite2D>("Sprite2D");
+    int rand = GD.RandRange(0, sprite.Vframes - 1);
+    sprite.FrameCoords = new Vector2I(0, rand);
   }
 
   public override void _PhysicsProcess(double delta)
@@ -24,10 +32,14 @@ public partial class Throwable : CharacterBody2D
     if (holder != null)
     {
       this.GlobalPosition = holder.holdPoint.GlobalPosition;
+      sprite.RotationDegrees = 0;
     }
     else
     {
       Velocity = Lerp(Velocity, Vector2.Zero, (float)delta * 2.5f);
+      if (Velocity.Length() > 0) {
+        sprite.RotationDegrees += (Velocity.X / throwSpeed) * rotationAmount;
+      }
       MoveAndSlide();
     }
 

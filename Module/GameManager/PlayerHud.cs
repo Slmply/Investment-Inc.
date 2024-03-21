@@ -19,7 +19,7 @@ public partial class PlayerHud : CanvasLayer
 	public override void _Process(double delta)
 	{
 		timeLabel.Text = GameManager.timeToHour(gameManager.currentTime).ToLower();
-		moneyLabel.Text = gameManager.money.ToString();
+		moneyLabel.Text = "$" + gameManager.money.ToString("0.00");
 		moneyLabel.Text += " ($" + string.Format("{0:N2}", gameManager.stockManager.getTotalStockInventoryValue()) + ")";
 	}
 }

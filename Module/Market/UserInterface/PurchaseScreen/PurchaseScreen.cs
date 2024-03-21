@@ -65,23 +65,30 @@ public partial class PurchaseScreen : CanvasLayer
 	public void updatePurchaseScreen() {
 
 		if (currentStock != null) {
-			GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/PurchaseLabel").Text = "Purchase: " + currentStock.companyName;
+			GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/PurchaseLabel").Text = currentStock.companyName;
+			GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/CurrentShares Label").Text = "Shares Held: " + currentStock.sharesHeld.ToString("0.00");
 		} else {
 			GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/PurchaseLabel").Text = "N/A";
+			GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/CurrentShares Label").Text = "";
 		}
 
 		GetNode<Label>("HBoxContainer/PurchaseContainer/ColorRect/GridContainer/ColorRect/BuyAmtLabel").Text = currentBuyAmt.ToString("0.00");
 
 	}
 
+	private float getCurrentJump() {
+		float res = (gm.money / (float)currentStock.stockPrice) / 10f;
+		return res;
+	}
+
 	public void buyAmtUp() {
-		currentBuyAmt++;
+		currentBuyAmt += getCurrentJump();
 		clampBuyAmount();
 		updatePurchaseScreen();
 	}
 
 	public void buyAmtDown() {
-		currentBuyAmt--;
+		currentBuyAmt -= getCurrentJump();
 		clampBuyAmount();
 		updatePurchaseScreen();
 	}
@@ -101,10 +108,14 @@ public partial class PurchaseScreen : CanvasLayer
 
 	public void OnPurchasePressed() {
 
+		clampBuyAmount();
 		if (gm.money >= currentBuyAmt * currentStock.stockPrice) {
 			gm.GetNode<StockManager>("Stock Manager").purchaseStock(currentStock, currentBuyAmt);
+			gm.money -= currentBuyAmt * (float)currentStock.stockPrice;
+			currentBuyAmt = 0;
+			updatePurchaseScreen();
 		} else {
-
+			
 		}
 
 		

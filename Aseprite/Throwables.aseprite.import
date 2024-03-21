@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://v46ydm3jy5m4"
+path="res://.godot/imported/Throwables.aseprite-df294cdad724f93a0a465be8cb9d13a8.res"
+
+[deps]
+
+source_file="res://Aseprite/Throwables.aseprite"
+dest_files=["res://.godot/imported/Throwables.aseprite-df294cdad724f93a0a465be8cb9d13a8.res"]
+
+[params]
+

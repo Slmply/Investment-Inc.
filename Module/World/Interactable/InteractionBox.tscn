@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://pi8q4eef8jam"]
+[gd_scene load_steps=4 format=3 uid="uid://pi8q4eef8jam"]
 
 [ext_resource type="Script" path="res://Module/World/Interactable/InteractionBox.cs" id="1_gv6ah"]
+[ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="2_yjwdt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dafik"]
+font = ExtResource("2_yjwdt")
 
 [node name="InteractionBox" type="Area2D"]
 script = ExtResource("1_gv6ah")
@@ -36,6 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Interact (E)
 "
+label_settings = SubResource("LabelSettings_dafik")
 horizontal_alignment = 1
 vertical_alignment = 1
 

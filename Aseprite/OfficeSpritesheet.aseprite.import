@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bq1cxgjhyxk24"
+path="res://.godot/imported/OfficeSpritesheet.aseprite-6a9750b85d2d190c6cdfa79efab5a641.res"
+
+[deps]
+
+source_file="res://Aseprite/OfficeSpritesheet.aseprite"
+dest_files=["res://.godot/imported/OfficeSpritesheet.aseprite-6a9750b85d2d190c6cdfa79efab5a641.res"]
+
+[params]
+

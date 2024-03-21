@@ -66,7 +66,6 @@ public partial class StockManager : Node
 			res += (float) s.stockPrice * s.sharesHeld;
 		}
 
-
 		return res;
 	}
 
