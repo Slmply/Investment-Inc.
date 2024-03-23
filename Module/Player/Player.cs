@@ -21,6 +21,10 @@ public partial class Player : CharacterBody2D
 	private Throwable heldItem;
 	[Export]
 	public Node2D holdPoint;
+	public Boolean stunned = false;
+
+	[Signal]
+	public delegate void onHitEventHandler();
 
 	public override void _Ready()
 	{
@@ -64,11 +68,37 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	public void hit() {
+		if (!stunned && dodgeTimer.IsStopped()) {
+			stunned = true;
+			anmPlayer.Play("Hit");
+			EmitSignal(SignalName.onHit);
+		}
+	}
+
+	public void animFinished(string anim) {
+		if (anim == "Hit") {
+			stunned = false;
+		}
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
 		// Get the input direction and handle the movement/deceleration.
+
+		if (stunned) {
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, DecelSpeed * (float)delta * AccelMultiplier);
+			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, DecelSpeed * (float)delta * AccelMultiplier);
+
+			Velocity = velocity;
+
+			GetNode<Sprite2D>("Sprite2D").FlipH = (Velocity.X == 0) ? GetNode<Sprite2D>("Sprite2D").FlipH : (Velocity.X > 0) ? false : true;
+
+			MoveAndSlide();
+			return;
+		}
 
 		Vector2 direction = Input.GetVector("Move_Left", "Move_Right", "Move_Up", "Move_Down");
 		direction = direction.Normalized();

@@ -1,0 +1,232 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7gmrihgo1yd8"]
+
+[ext_resource type="Script" path="res://Module/Market/UserInterface/SellScreen/SellScreen.cs" id="1_o5jue"]
+[ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="2_5dnpv"]
+[ext_resource type="Texture2D" uid="uid://drurnc4hiuglx" path="res://Module/Market/UserInterface/PurchaseScreen/arrow_downward_FILL0_wght400_GRAD0_opsz24.svg" id="3_gfcxy"]
+[ext_resource type="Texture2D" uid="uid://dyp8744jqflfh" path="res://Module/Market/UserInterface/PurchaseScreen/arrow_upward_FILL0_wght400_GRAD0_opsz24.svg" id="4_4wqnn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqa1d"]
+font = ExtResource("2_5dnpv")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqg0e"]
+font = ExtResource("2_5dnpv")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_0duko"]
+font = ExtResource("2_5dnpv")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ulvf"]
+font = ExtResource("2_5dnpv")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_0jxyi"]
+font = ExtResource("2_5dnpv")
+font_size = 26
+
+[node name="SellScreen" type="CanvasLayer"]
+script = ExtResource("1_o5jue")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+horizontal_scroll_mode = 0
+
+[node name="StockInfoContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PurchaseContainer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/PurchaseContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.247059, 0.247059, 0.247059, 0.54902)
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/PurchaseContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="Placeholder" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder3" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PurchaseLabel" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sell: Stock"
+label_settings = SubResource("LabelSettings_oqa1d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Placeholder2" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder4" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder9" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder10" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CurrentShares Label" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+text = "Current Shares: 0.00"
+label_settings = SubResource("LabelSettings_dqg0e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Placeholder12" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder13" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder5" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DownButton" type="Button" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/DownButton"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("3_gfcxy")
+
+[node name="Placeholder11" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/Placeholder11"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/Placeholder11/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="BuyAmtLabel" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/Placeholder11/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0.00"
+label_settings = SubResource("LabelSettings_0duko")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SellAmount" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/Placeholder11/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "$0.00"
+label_settings = SubResource("LabelSettings_1ulvf")
+horizontal_alignment = 1
+
+[node name="UpButton" type="Button" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/UpButton"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("4_4wqnn")
+
+[node name="Placeholder6" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder7" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placeholder8" type="Control" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Purchase Button" type="Button" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer"]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Purchase" type="Label" parent="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/Purchase Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sell
+  "
+label_settings = SubResource("LabelSettings_0jxyi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/DownButton" to="." method="buyAmtDown"]
+[connection signal="pressed" from="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/UpButton" to="." method="buyAmtUp"]
+[connection signal="pressed" from="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/Purchase Button" to="." method="OnPurchasePressed"]

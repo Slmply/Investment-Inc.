@@ -24,6 +24,7 @@ public partial class GameManager : Node2D
 	public float currentTime = 0;
 
 	public StockManager stockManager;
+	public EnemyManager enemyManager;
 	private Timer gameTick;
 	private CanvasLayer activeUi;
 	[Export]
@@ -44,10 +45,20 @@ public partial class GameManager : Node2D
 			activeUi.Visible = true;
 		}
 	}
+	[Export]
+	public Player player;
+
+	public void playerHit() {
+		money = money * (float)GD.RandRange(0.9, 0.98);
+		exitUi();
+	}
 
 	public override void _Ready()
 	{
+		player.onHit += playerHit;
 		stockManager = GetNode<StockManager>("Stock Manager");
+		enemyManager = GetNode<EnemyManager>("EnemyManager");
+		enemyManager.spawnPointContainer = GetParent().GetNode<Node2D>("SpawnPointContainers");
 		stockManager.updateStocks(0.0f);
 		gameTick = GetNode<Timer>("GameTick");
 		gameTick.Start();
@@ -55,6 +66,8 @@ public partial class GameManager : Node2D
 		GetParent().GetNode<InteractionBox>("StockScreenIntBox").OnInteractedLeave += exitUi;
 		GetParent().GetNode<InteractionBox>("Purchase Screen Box").OnInteraction += activatePurchaseScreen;
 		GetParent().GetNode<InteractionBox>("Purchase Screen Box").OnInteractedLeave += exitUi;
+		GetParent().GetNode<InteractionBox>("SellScreenBox").OnInteraction += activateSellScreen;
+		GetParent().GetNode<InteractionBox>("SellScreenBox").OnInteractedLeave += exitUi;
 	}
 
 
@@ -62,17 +75,25 @@ public partial class GameManager : Node2D
 	{
 		currentTime += 0.00347222222f * 0.008f * timeScale;
 		stockManager.updateStocks(currentTime);
+		enemyManager.updateSpawns(player, currentTime);
 	}
 
 	public void activateStockScreen()
 	{
 		ActiveUi = GetNode<CanvasLayer>("UIContainer/StocksInfoScreen");
+		// enemyManager.spawnEnemy(enemyManager.getBestSpawnPoint(player.GlobalPosition));
 	}
 
 	public void activatePurchaseScreen() {
 		ActiveUi = GetNode<CanvasLayer>("UIContainer/PurchaseScreen");
+		// enemyManager.spawnEnemy(enemyManager.getBestSpawnPoint(player.GlobalPosition));
 	}
 
+
+	public void activateSellScreen() {
+		ActiveUi = GetNode<CanvasLayer>("UIContainer/SellScreen");
+		// enemyManager.spawnEnemy(enemyManager.getBestSpawnPoint(player.GlobalPosition));
+	}
 	public void exitUi()
 	{
 		ActiveUi = GetNode<CanvasLayer>("UIContainer/PlayerHUD");

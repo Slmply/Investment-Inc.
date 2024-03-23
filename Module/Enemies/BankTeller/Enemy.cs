@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Xml.Schema;
 
 public enum EnemyState
 {
@@ -67,7 +68,7 @@ public partial class Enemy : CharacterBody2D
 				case EnemyState.HIT:
 					reRollRandom();
 					attack();
-					State = EnemyState.DEATH;
+					state = value;
 					break;
 				case EnemyState.DEATH:
 					onDeath((targetPlayer.GlobalPosition - GlobalPosition).Normalized() * 600f);
@@ -81,7 +82,7 @@ public partial class Enemy : CharacterBody2D
 	public Area2D aggroArea = null;
 	[Export]
 	public Area2D deAggroArea = null;
-	private Player targetPlayer = null;
+	protected Player targetPlayer = null;
 	private double random = 0f;
 	private Timer attackTimer = null;
 
@@ -93,15 +94,17 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		GD.Print(state);
 		switch (state)
 		{
 			case EnemyState.IDLE:
 				move(GlobalPosition, (float)delta);
 				break;
 			case EnemyState.ALERT:
+				move(GlobalPosition, (float)delta);
 				RayCast2D visionRay = GetNode<RayCast2D>("VisibilityCast");
 				visionRay.TargetPosition = targetPlayer.GlobalPosition;
-				if (!visionRay.IsColliding()) {
+				if (!(visionRay.IsColliding())) {
 					State = EnemyState.FOLLOW;
 				}
 				break;
@@ -191,6 +194,7 @@ public partial class Enemy : CharacterBody2D
 
 		if (node is Player && targetPlayer == null)
 		{
+			GD.Print("Aggrod");
 			targetPlayer = (Player)node;
 			State = EnemyState.ALERT;
 		}
@@ -199,10 +203,11 @@ public partial class Enemy : CharacterBody2D
 	public void DeAggroExited(Node2D node)
 	{
 
-		if (targetPlayer != null && node is Player)
+		if (node is Player)
 		{
-			targetPlayer = null;
+			GD.Print("DeAggrod");
 			State = EnemyState.IDLE;
+			targetPlayer = null;
 		}
 	}
 

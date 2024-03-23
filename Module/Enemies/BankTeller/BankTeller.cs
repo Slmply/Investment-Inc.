@@ -5,6 +5,14 @@ public partial class BankTeller : Enemy
 {
 
     private AnimationPlayer animPlayer;
+    [Export]
+    public float attackDistance = 250f;
+
+    public void attackDamage() {
+        if (targetPlayer.Position.DistanceTo(GlobalPosition) <= attackDistance) {
+            targetPlayer.hit();
+        }
+    }
 
     public override void _Ready()
     {
@@ -14,7 +22,7 @@ public partial class BankTeller : Enemy
 
     public override void attack()
     {
-        
+        animPlayer.Play("Attack");
     }
 
     public override void onDeath(Vector2 launchVector)
@@ -27,6 +35,10 @@ public partial class BankTeller : Enemy
     public void AnimFinished(string anim) {
         if (anim == "Death") {
             destroySelf();
+        } else if (anim == "Attack") {
+
+
+            State = EnemyState.CIRCLE;
         }
     }
 

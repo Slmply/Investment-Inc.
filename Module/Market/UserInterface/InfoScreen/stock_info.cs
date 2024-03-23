@@ -98,7 +98,6 @@ public partial class stock_info : Control
 		l.Text = "$" + string.Format("{0:N2}", stock.stockPrice);
 		l.Text += " ($" + string.Format("{0:N2}", stock.stockPrice * stock.sharesHeld) + ")";
 
-
 	}
 
 	public void OnMouseEnter()

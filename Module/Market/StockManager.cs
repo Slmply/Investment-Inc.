@@ -13,6 +13,8 @@ public partial class StockManager : Node
 	public float minEventWait;
 	[Export]
 	public float maxEventWait;
+	[Export]
+	public float eventNotifyPercentage = 0.6f;
 
 	private float nextEventTime;
 	private float i = 0;
@@ -20,6 +22,12 @@ public partial class StockManager : Node
 	public StocksInfoScreen sis = null;
 	[Export]
 	public PurchaseScreen pss = null;
+	[Export]
+	public SellScreen ss = null;
+
+	public Event nextEvent;
+	public Stock nextEventStock;
+	public float nextEventNotifyTime = 0.0f;
 
 	public override void _Ready()
 	{
@@ -31,18 +39,26 @@ public partial class StockManager : Node
 	{
 		Random random = new Random();
 		nextEventTime = ((float)random.NextDouble() * maxEventWait) + minEventWait;
-		GD.Print("Next Event at: " + nextEventTime);
+		nextEventNotifyTime = nextEventTime * eventNotifyPercentage;
+		eventSelection(0.0f);
 		for (int k = 0; k < stocks.Length; k++)
 		{
 			stocks[k].init();
 		}
 		sis.loadStocks(stocks);
 		pss.loadStocks(stocks);
+		ss.loadStocks(stocks);
 	}
 
 	public void purchaseStock(Stock s, float amount)
 	{
 		s.sharesHeld += amount;
+	}
+
+	public float sellStock(Stock s, float amount) {
+
+		s.sharesHeld -= amount;
+		return (float)s.stockPrice * amount;
 	}
 
 	public void updateStocks(float time)
@@ -55,7 +71,11 @@ public partial class StockManager : Node
 
 		if (time >= nextEventTime)
 		{
+			nextEventStock.beginEvent(nextEvent, time);
 			eventSelection(time);
+		}
+		if (time >= nextEventNotifyTime) {
+			// Add to news
 		}
 	}
 
@@ -74,13 +94,12 @@ public partial class StockManager : Node
 
 		Random random = new Random();
 
-		Stock randomStock = randomWeighted();
-		Event randomEvent = eventList[random.Next(0, eventList.Length)];
+		nextEventStock = randomWeighted();
+		nextEvent = eventList[random.Next(0, eventList.Length)];
 
-		randomStock.beginEvent(randomEvent, time);
+		nextEventNotifyTime = time + ((nextEventTime - time) * eventNotifyPercentage);
 
-		nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + randomEvent.eventDuration;
-		GD.Print("Next Event at: " + nextEventTime);
+		nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + nextEvent.eventDuration;
 	}
 
 	public Stock randomWeighted()

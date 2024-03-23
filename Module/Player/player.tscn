@@ -10,7 +10,6 @@ height = 95.81
 
 [sub_resource type="Animation" id="Animation_2likf"]
 length = 1.2
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -197,7 +196,7 @@ scale = Vector2(10, 10)
 texture = ExtResource("2_a8vsp")
 hframes = 4
 vframes = 4
-frame = 8
+frame = 7
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 0,
 "keep_anim_length": true,
@@ -239,3 +238,5 @@ shape = SubResource("CircleShape2D_y13yp")
 
 [node name="HoldPoint" type="Node2D" parent="."]
 position = Vector2(0, 20)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="animFinished"]

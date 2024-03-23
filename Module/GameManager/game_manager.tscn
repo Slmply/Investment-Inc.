@@ -1,18 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://bha67jtn3frxc"]
+[gd_scene load_steps=8 format=3 uid="uid://bha67jtn3frxc"]
 
 [ext_resource type="Script" path="res://Module/GameManager/GameManager.cs" id="1_ox4q2"]
 [ext_resource type="PackedScene" uid="uid://ihaxhcjadw0n" path="res://Module/Market/stock_manager.tscn" id="2_0bbmr"]
 [ext_resource type="PackedScene" uid="uid://dfteiby62cwd6" path="res://Module/Market/UserInterface/InfoScreen/stocks_info_screen.tscn" id="3_f03t7"]
 [ext_resource type="PackedScene" uid="uid://6cusovlngr28" path="res://Module/GameManager/player_hud.tscn" id="4_lb0pe"]
 [ext_resource type="PackedScene" uid="uid://bmpyjn1h3j88d" path="res://Module/Market/UserInterface/PurchaseScreen/PurchaseScreen.tscn" id="5_l1jqq"]
+[ext_resource type="PackedScene" uid="uid://c7gmrihgo1yd8" path="res://Module/Market/UserInterface/SellScreen/SellScreen.tscn" id="6_uwu1i"]
+[ext_resource type="Script" path="res://Module/GameManager/EnemyManager.cs" id="7_d84fl"]
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("ActiveUi")]
 script = ExtResource("1_ox4q2")
 ActiveUi = NodePath("UIContainer/PlayerHUD")
 
-[node name="Stock Manager" parent="." node_paths=PackedStringArray("sis", "pss") instance=ExtResource("2_0bbmr")]
+[node name="Stock Manager" parent="." node_paths=PackedStringArray("sis", "pss", "ss") instance=ExtResource("2_0bbmr")]
 sis = NodePath("../UIContainer/StocksInfoScreen")
 pss = NodePath("../UIContainer/PurchaseScreen")
+ss = NodePath("../UIContainer/SellScreen")
 
 [node name="GameTick" type="Timer" parent="."]
 wait_time = 0.008
@@ -28,5 +31,15 @@ gameManager = NodePath("../..")
 [node name="PurchaseScreen" parent="UIContainer" node_paths=PackedStringArray("gm") instance=ExtResource("5_l1jqq")]
 visible = false
 gm = NodePath("../..")
+
+[node name="SellScreen" parent="UIContainer" node_paths=PackedStringArray("gm") instance=ExtResource("6_uwu1i")]
+visible = false
+gm = NodePath("../..")
+
+[node name="EnemyManager" type="Node2D" parent="." node_paths=PackedStringArray("gm")]
+script = ExtResource("7_d84fl")
+gm = NodePath("..")
+enemySpawnTimeMin = 0.2
+enemySpawnTimeMax = 0.14
 
 [connection signal="timeout" from="GameTick" to="." method="updateTime"]
