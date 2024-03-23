@@ -5,6 +5,7 @@ using System.Collections;
 public enum EnemyState
 {
 	IDLE,
+	ALERT,
 	FOLLOW,
 	CIRCLE,
 	ATTACK,
@@ -35,6 +36,10 @@ public partial class Enemy : CharacterBody2D
 			switch (value)
 			{
 				case EnemyState.IDLE:
+					reRollRandom();
+					state = value;
+					break;
+				case EnemyState.ALERT:
 					reRollRandom();
 					state = value;
 					break;
@@ -92,6 +97,13 @@ public partial class Enemy : CharacterBody2D
 		{
 			case EnemyState.IDLE:
 				move(GlobalPosition, (float)delta);
+				break;
+			case EnemyState.ALERT:
+				RayCast2D visionRay = GetNode<RayCast2D>("VisibilityCast");
+				visionRay.TargetPosition = targetPlayer.GlobalPosition;
+				if (!visionRay.IsColliding()) {
+					State = EnemyState.FOLLOW;
+				}
 				break;
 			case EnemyState.FOLLOW:
 				move(targetPlayer.GlobalPosition, (float)delta);
@@ -177,10 +189,10 @@ public partial class Enemy : CharacterBody2D
 	public void AggroEntered(Node2D node)
 	{
 
-		if (node is Player)
+		if (node is Player && targetPlayer == null)
 		{
 			targetPlayer = (Player)node;
-			State = EnemyState.FOLLOW;
+			State = EnemyState.ALERT;
 		}
 	}
 

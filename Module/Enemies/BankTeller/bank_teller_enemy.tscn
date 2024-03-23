@@ -152,4 +152,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeAggroArea"]
 shape = SubResource("CircleShape2D_pgahk")
 
+[node name="VisibilityCast" type="RayCast2D" parent="."]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="AnimFinished"]

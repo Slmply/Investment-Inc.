@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://biepf77i68kj7"
+path="res://.godot/imported/BuyStocksSprite.aseprite-bfb66e4537aab28eb93f018a8faa9a34.res"
+
+[deps]
+
+source_file="res://Aseprite/BuyStocksSprite.aseprite"
+dest_files=["res://.godot/imported/BuyStocksSprite.aseprite-bfb66e4537aab28eb93f018a8faa9a34.res"]
+
+[params]
+
