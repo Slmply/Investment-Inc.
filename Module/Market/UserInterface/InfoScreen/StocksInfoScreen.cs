@@ -12,7 +12,6 @@ public partial class StocksInfoScreen : CanvasLayer
 	public override void _Ready()
 	{
 		stockScreen = GD.Load<PackedScene>("res://Module/Market/UserInterface/Graph/stock_graph.tscn");
-		// GD.Print(stockInfoWidget);
 	}
 
 	public override void _Process(double delta)
@@ -34,7 +33,6 @@ public partial class StocksInfoScreen : CanvasLayer
 		{
 			stockInfoWidget = GD.Load<PackedScene>("res://Module/Market/UserInterface/InfoScreen/stock_info.tscn");
 			stock_info si = (stock_info)stockInfoWidget.Instantiate();
-			GD.Print(si);
 			si.Stock = s;
 			stockInfoContainer.AddChild(si);
 			si.activateScreen += stockSelected;
@@ -43,8 +41,6 @@ public partial class StocksInfoScreen : CanvasLayer
 
 	public void stockSelected(stock_info stockInfo, Stock stock)
 	{
-
-		GD.Print("Activate Signal Recieved " + stock.companyName);
 		activeStockInfo = stockInfo;
 
 		foreach (stock_info si in stockInfoContainer.GetChildren())

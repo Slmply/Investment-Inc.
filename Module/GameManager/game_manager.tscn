@@ -1,21 +1,39 @@
-[gd_scene load_steps=8 format=3 uid="uid://bha67jtn3frxc"]
+[gd_scene load_steps=21 format=3 uid="uid://bha67jtn3frxc"]
 
 [ext_resource type="Script" path="res://Module/GameManager/GameManager.cs" id="1_ox4q2"]
 [ext_resource type="PackedScene" uid="uid://ihaxhcjadw0n" path="res://Module/Market/stock_manager.tscn" id="2_0bbmr"]
 [ext_resource type="PackedScene" uid="uid://dfteiby62cwd6" path="res://Module/Market/UserInterface/InfoScreen/stocks_info_screen.tscn" id="3_f03t7"]
+[ext_resource type="Resource" uid="uid://bonmmglq3x4jg" path="res://Module/Market/Stocks/Amazing.tres" id="3_lyi5u"]
+[ext_resource type="Resource" uid="uid://cycd2s0y8q88a" path="res://Module/Market/Stocks/ClosedIA.tres" id="4_inf5i"]
 [ext_resource type="PackedScene" uid="uid://6cusovlngr28" path="res://Module/GameManager/player_hud.tscn" id="4_lb0pe"]
+[ext_resource type="Resource" uid="uid://d3xbeeyxv4xlh" path="res://Module/Market/Stocks/FloorMart.tres" id="5_hkv7j"]
 [ext_resource type="PackedScene" uid="uid://bmpyjn1h3j88d" path="res://Module/Market/UserInterface/PurchaseScreen/PurchaseScreen.tscn" id="5_l1jqq"]
+[ext_resource type="Resource" uid="uid://bvjryy282t2wc" path="res://Module/Market/Stocks/GreatRailways.tres" id="6_kneex"]
 [ext_resource type="PackedScene" uid="uid://c7gmrihgo1yd8" path="res://Module/Market/UserInterface/SellScreen/SellScreen.tscn" id="6_uwu1i"]
 [ext_resource type="Script" path="res://Module/GameManager/EnemyManager.cs" id="7_d84fl"]
+[ext_resource type="Resource" uid="uid://dp0id2djutd26" path="res://Module/Market/Stocks/Letters.tres" id="7_o527j"]
+[ext_resource type="PackedScene" uid="uid://by2kh2svbds3y" path="res://Module/Market/UserInterface/NewsScreen/NewsScreen.tscn" id="7_s0i3u"]
+[ext_resource type="Resource" uid="uid://di00ytllvr0im" path="res://Module/Market/Stocks/MacroHard.tres" id="8_4bgsy"]
+[ext_resource type="Resource" uid="uid://c16dqqyf1gb3r" path="res://Module/Market/Stocks/Novidea.tres" id="9_q5ym3"]
+[ext_resource type="Resource" uid="uid://ctvr6ofy5qisc" path="res://Module/Market/Stocks/Pear.tres" id="10_dbsgm"]
+[ext_resource type="Resource" uid="uid://f6a8348r67fn" path="res://Module/Market/Events/ProductHit.tres" id="11_rg1cy"]
+[ext_resource type="Resource" uid="uid://cejsf632wpwbh" path="res://Module/Market/Events/DistastefulPost.tres" id="12_exopj"]
+[ext_resource type="Resource" uid="uid://bitfc87geb077" path="res://Module/Market/Events/GovernmentGrant.tres" id="13_6mlgs"]
+[ext_resource type="Resource" uid="uid://b6uut66517xpq" path="res://Module/Market/Events/EmployeeStrike.tres" id="14_fpbhq"]
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("ActiveUi")]
 script = ExtResource("1_ox4q2")
 ActiveUi = NodePath("UIContainer/PlayerHUD")
 
-[node name="Stock Manager" parent="." node_paths=PackedStringArray("sis", "pss", "ss") instance=ExtResource("2_0bbmr")]
+[node name="Stock Manager" parent="." node_paths=PackedStringArray("sis", "pss", "ss", "ns", "ph") instance=ExtResource("2_0bbmr")]
+stocks = Array[Resource]([ExtResource("3_lyi5u"), ExtResource("4_inf5i"), ExtResource("5_hkv7j"), ExtResource("6_kneex"), ExtResource("7_o527j"), ExtResource("8_4bgsy"), ExtResource("9_q5ym3"), ExtResource("10_dbsgm")])
+eventList = [ExtResource("11_rg1cy"), ExtResource("12_exopj"), ExtResource("13_6mlgs"), ExtResource("14_fpbhq")]
+eventNotifyPercentage = 0.35
 sis = NodePath("../UIContainer/StocksInfoScreen")
 pss = NodePath("../UIContainer/PurchaseScreen")
 ss = NodePath("../UIContainer/SellScreen")
+ns = NodePath("../UIContainer/NewsScreen")
+ph = NodePath("../UIContainer/PlayerHUD")
 
 [node name="GameTick" type="Timer" parent="."]
 wait_time = 0.008
@@ -36,10 +54,13 @@ gm = NodePath("../..")
 visible = false
 gm = NodePath("../..")
 
+[node name="NewsScreen" parent="UIContainer" instance=ExtResource("7_s0i3u")]
+visible = false
+
 [node name="EnemyManager" type="Node2D" parent="." node_paths=PackedStringArray("gm")]
 script = ExtResource("7_d84fl")
 gm = NodePath("..")
-enemySpawnTimeMin = 0.2
+enemySpawnTimeMin = 0.05
 enemySpawnTimeMax = 0.14
 
 [connection signal="timeout" from="GameTick" to="." method="updateTime"]

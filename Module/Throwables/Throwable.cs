@@ -63,6 +63,12 @@ public partial class Throwable : CharacterBody2D
     // GD.Print(Velocity);
   }
 
+  public void drop(Vector2 lobDir) {
+    holder = null;
+    Velocity = lobDir * 100f;
+    // GD.Print(Velocity);
+  }
+
   public void HitAreaEntered(Node2D body)
   {
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b6uut66517xpq"]
+
+[ext_resource type="Script" path="res://Module/Market/Events/EmployeeStrike.cs" id="1_4ja26"]
+
+[resource]
+script = ExtResource("1_4ja26")
+eventName = "Employee Strike"
+eventDescription = "'s Employees have begun to strike due to low wages!  Production lines will be temporarily shut down!"
+eventDuration = 0.4
+eventScale = 1.0

@@ -94,7 +94,6 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(state);
 		switch (state)
 		{
 			case EnemyState.IDLE:
@@ -194,7 +193,6 @@ public partial class Enemy : CharacterBody2D
 
 		if (node is Player && targetPlayer == null)
 		{
-			GD.Print("Aggrod");
 			targetPlayer = (Player)node;
 			State = EnemyState.ALERT;
 		}
@@ -205,7 +203,6 @@ public partial class Enemy : CharacterBody2D
 
 		if (node is Player)
 		{
-			GD.Print("DeAggrod");
 			State = EnemyState.IDLE;
 			targetPlayer = null;
 		}

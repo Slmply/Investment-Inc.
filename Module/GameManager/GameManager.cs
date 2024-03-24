@@ -68,6 +68,8 @@ public partial class GameManager : Node2D
 		GetParent().GetNode<InteractionBox>("Purchase Screen Box").OnInteractedLeave += exitUi;
 		GetParent().GetNode<InteractionBox>("SellScreenBox").OnInteraction += activateSellScreen;
 		GetParent().GetNode<InteractionBox>("SellScreenBox").OnInteractedLeave += exitUi;
+		GetParent().GetNode<InteractionBox>("News Screen Box2").OnInteraction += activateNewsScreen;
+		GetParent().GetNode<InteractionBox>("News Screen Box2").OnInteractedLeave += exitUi;
 	}
 
 
@@ -83,6 +85,13 @@ public partial class GameManager : Node2D
 		ActiveUi = GetNode<CanvasLayer>("UIContainer/StocksInfoScreen");
 		// enemyManager.spawnEnemy(enemyManager.getBestSpawnPoint(player.GlobalPosition));
 	}
+
+	public void activateNewsScreen()
+	{
+		ActiveUi = GetNode<CanvasLayer>("UIContainer/NewsScreen");
+		// enemyManager.spawnEnemy(enemyManager.getBestSpawnPoint(player.GlobalPosition));
+	}
+
 
 	public void activatePurchaseScreen() {
 		ActiveUi = GetNode<CanvasLayer>("UIContainer/PurchaseScreen");

@@ -38,7 +38,6 @@ public partial class Player : CharacterBody2D
 		if (@event.IsActionPressed("Interact") && dodgeTimer.IsStopped())
 		{
 
-			GD.Print("Interacted");
 
 			if (heldItem == null)
 			{
@@ -47,7 +46,6 @@ public partial class Player : CharacterBody2D
 				foreach (Node2D n in items)
 				{
 
-					GD.Print("Node:" + n);
 					if (n is Throwable)
 					{
 						heldItem = (Throwable)n;
@@ -58,7 +56,6 @@ public partial class Player : CharacterBody2D
 			}
 			else
 			{
-				GD.Print(Velocity.Normalized());
 				heldItem.lob(Velocity.Normalized());
 				heldItem = null;
 			}
@@ -73,6 +70,11 @@ public partial class Player : CharacterBody2D
 			stunned = true;
 			anmPlayer.Play("Hit");
 			EmitSignal(SignalName.onHit);
+
+			if (heldItem != null) {
+				heldItem.drop(Velocity.Normalized());
+				heldItem = null;
+			}
 		}
 	}
 

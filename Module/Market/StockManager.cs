@@ -24,6 +24,10 @@ public partial class StockManager : Node
 	public PurchaseScreen pss = null;
 	[Export]
 	public SellScreen ss = null;
+	[Export]
+	public NewsScreen ns = null;
+	[Export]
+	public PlayerHud ph = null;
 
 	public Event nextEvent;
 	public Stock nextEventStock;
@@ -72,10 +76,13 @@ public partial class StockManager : Node
 		if (time >= nextEventTime)
 		{
 			nextEventStock.beginEvent(nextEvent, time);
+			
 			eventSelection(time);
 		}
-		if (time >= nextEventNotifyTime) {
-			// Add to news
+		if (time >= nextEventNotifyTime && nextEventNotifyTime >= 0) {
+			ns.addNewsWidget(nextEventStock, nextEvent, nextEventTime);
+			ph.playEventAnimation();
+			nextEventNotifyTime = -1;
 		}
 	}
 
@@ -91,15 +98,24 @@ public partial class StockManager : Node
 
 	public void eventSelection(float time)
 	{
-
 		Random random = new Random();
+
+		if (nextEvent != null) {
+			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + nextEvent.eventDuration;
+		} else {
+			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time ;
+		}
+		
+		nextEventNotifyTime = time + ((nextEventTime - time) * eventNotifyPercentage);
 
 		nextEventStock = randomWeighted();
 		nextEvent = eventList[random.Next(0, eventList.Length)];
 
-		nextEventNotifyTime = time + ((nextEventTime - time) * eventNotifyPercentage);
+		
 
-		nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + nextEvent.eventDuration;
+		
+		GD.Print("Next Event At " + GameManager.timeToHour(nextEventTime));
+		GD.Print("Next Notify Time At " + GameManager.timeToHour(nextEventNotifyTime));
 	}
 
 	public Stock randomWeighted()

@@ -28,7 +28,8 @@ public partial class stock_info : Control
 		set
 		{
 			stock = value;
-			GetNode<Label>("StockName").Text = stock.companyName + "\n(" + stock.stockSymbol + ")";
+			GetNode<Label>("HBoxContainer/VBoxContainer/StockName").Text = stock.companyName + "\n(" + stock.stockSymbol + ")";
+			GetNode<CompanyLogo>("HBoxContainer/CompanyLogo").setStockLogo(stock);
 		}
 	}
 
@@ -70,7 +71,7 @@ public partial class stock_info : Control
 
 		lastUpdatePriceTime = systemTimeMillis();
 
-		Label l = GetNode<Label>("StockPrice");
+		Label l = GetNode<Label>("HBoxContainer/VBoxContainer/StockPrice");
 
 		var last = stock.stockHistory.Last;
 		var penult = last.Previous;

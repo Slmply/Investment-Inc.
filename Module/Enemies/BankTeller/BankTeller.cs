@@ -66,7 +66,15 @@ public partial class BankTeller : Enemy
 
         Sprite2D sprt = GetNode<Sprite2D>("Sprite2D");
 
-        sprt.FlipH = (Velocity.X != 0)? ((Velocity.X > 0)? false : true) : sprt.FlipH;
+        if (Velocity.X != 0) {
+            if (Velocity.X > 10) {
+                sprt.FlipH = false;
+            } else if (Velocity.X < 10) {
+                sprt.FlipH = true;
+            }
+        }
+
+        sprt.FlipH = (Velocity.X != 0)? ((Velocity.X > 10)? false : true) : sprt.FlipH;
 
         if (state == EnemyState.DEATH) {
             sprt.FlipH = !sprt.FlipH;

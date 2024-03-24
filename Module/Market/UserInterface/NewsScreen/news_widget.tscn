@@ -1,0 +1,156 @@
+[gd_scene load_steps=16 format=3 uid="uid://dtkf8f7nn272i"]
+
+[ext_resource type="PackedScene" uid="uid://dadwx0bagiwln" path="res://Module/Market/Stocks/CompanyLogo.tscn" id="1_krfiu"]
+[ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="2_ce7kh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jn8nk"]
+font = ExtResource("2_ce7kh")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5gkqm"]
+font = ExtResource("2_ce7kh")
+font_size = 25
+font_color = Color(0.0980392, 1, 0.168627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvook"]
+font = ExtResource("2_ce7kh")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4f05"]
+font = ExtResource("2_ce7kh")
+font_size = 18
+
+[sub_resource type="Animation" id="Animation_6yjpm"]
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_n1vg7"]
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_mcm08"]
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_cl0yp"]
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_h4vju"]
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_on74e"]
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_hg1ib"]
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_obsbx"]
+resource_name = "GR"
+length = 0.1
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rvkpm"]
+_data = {
+"CLIA": SubResource("Animation_n1vg7"),
+"FM": SubResource("Animation_mcm08"),
+"GR": SubResource("Animation_obsbx"),
+"LTTRS": SubResource("Animation_cl0yp"),
+"MAHD": SubResource("Animation_6yjpm"),
+"NVOD": SubResource("Animation_on74e"),
+"PR": SubResource("Animation_hg1ib"),
+"TASL": SubResource("Animation_h4vju")
+}
+
+[node name="NewsWidget" type="Control"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -498.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.313726, 0.313726, 0.313726, 0.894118)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CompanyLogo" parent="ColorRect/HBoxContainer" instance=ExtResource("1_krfiu")]
+layout_mode = 2
+
+[node name="CompanySymbol" type="Label" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "N
+A
+S
+Q"
+label_settings = SubResource("LabelSettings_jn8nk")
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EventName" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Event Name"
+label_settings = SubResource("LabelSettings_5gkqm")
+horizontal_alignment = 1
+
+[node name="Event Description" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Event Description
+"
+label_settings = SubResource("LabelSettings_qvook")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TimeLabel" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Projected Time"
+label_settings = SubResource("LabelSettings_f4f05")
+horizontal_alignment = 1
+
+[node name="Projected Time" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "0/00/00 00:00 PM"
+label_settings = SubResource("LabelSettings_qvook")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rvkpm")
+}

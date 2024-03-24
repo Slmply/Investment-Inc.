@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bf5ikmpq34aqj"]
+[gd_scene load_steps=15 format=3 uid="uid://bf5ikmpq34aqj"]
 
 [ext_resource type="PackedScene" uid="uid://mlteo27kantj" path="res://Module/Player/player.tscn" id="1_5cg7d"]
 [ext_resource type="PackedScene" uid="uid://bha67jtn3frxc" path="res://Module/GameManager/game_manager.tscn" id="2_7uaau"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://drv3bggbptagy" path="res://Module/World/Environment/OfficeTileSet.tres" id="4_xgjoq"]
 [ext_resource type="Texture2D" uid="uid://csucgvra4ysq4" path="res://Module/World/Environment/ViewStocksSprite.png" id="5_r4ufj"]
 [ext_resource type="Texture2D" uid="uid://cjjmrxosbma2g" path="res://Module/World/Environment/BuyStocksSprite.png" id="6_48thl"]
+[ext_resource type="PackedScene" uid="uid://6w3oquqhkcep" path="res://Module/Throwables/throwable.tscn" id="7_aqvhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_era35"]
 size = Vector2(50, 50)
@@ -19,6 +20,9 @@ size = Vector2(240, 320)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yxjg"]
 size = Vector2(400, 240)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_absxs"]
+size = Vector2(400, 160)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvpqn"]
 size = Vector2(280, 159)
 
@@ -28,10 +32,11 @@ size = Vector2(330.5, 280.5)
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5cg7d")]
-position = Vector2(-706, -701)
+position = Vector2(2217, -1205)
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_7uaau")]
 money = 500.0
+timeScale = 20.0
 player = NodePath("../Player")
 
 [node name="StockScreenIntBox" parent="." instance=ExtResource("3_gepcf")]
@@ -63,6 +68,16 @@ collisionShape = SubResource("RectangleShape2D_era35")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Purchase Screen Box"]
 shape = SubResource("RectangleShape2D_8yxjg")
+
+[node name="News Screen Box2" parent="." instance=ExtResource("3_gepcf")]
+position = Vector2(-840, 1682)
+collision_mask = 2
+interactionPrompt = "News  (Enter)"
+collisionShape = SubResource("RectangleShape2D_era35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="News Screen Box2"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_absxs")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -3
@@ -119,3 +134,50 @@ texture = ExtResource("6_48thl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/BuyScreens"]
 position = Vector2(-15.25, -0.25)
 shape = SubResource("RectangleShape2D_osogs")
+
+[node name="Throwables" type="Node2D" parent="."]
+
+[node name="Throwable" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(-288, 1958)
+
+[node name="Throwable2" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(-437, 1164)
+
+[node name="Throwable3" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(-1156, 1958)
+
+[node name="Throwable4" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(1163, 1161)
+
+[node name="Throwable5" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(2592, 1315)
+
+[node name="Throwable6" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(2117, 42)
+
+[node name="Throwable7" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(2253, 1065)
+
+[node name="Throwable8" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(1309, 670)
+
+[node name="Throwable9" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(202, 42)
+
+[node name="Throwable10" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(-438, 437)
+
+[node name="Throwable11" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(772, -515)
+
+[node name="Throwable12" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(2196, -1007)
+
+[node name="Throwable13" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(1727, -1476)
+
+[node name="Throwable14" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(-286, -763)
+
+[node name="Throwable15" parent="Throwables" instance=ExtResource("7_aqvhs")]
+position = Vector2(-1064, -370)

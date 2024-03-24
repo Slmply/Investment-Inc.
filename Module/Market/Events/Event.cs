@@ -34,4 +34,9 @@ public abstract partial class Event : Resource
         return 1;
     }
 
+    public static double variation(double x) {
+        return .07 * Math.Sin(3 * x - 2) + 0.04 * Math.Cos(3 * x) - 0.008 * Math.Sin(576 * x)
+                        + 0.08 * Math.Cos(32 * x) - 0.08 * Math.Cos(2 * x) - 0.05 * Math.Sin(10 * x) + 0.03 * Math.Cos(80 * x + 3);
+    }
+
 }

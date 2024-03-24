@@ -50,7 +50,7 @@ public partial class StockGraph : Control
 
 	}
 
-	public string timeToDay(double time) {
+	public static string timeToDay(double time) {
 
 		int day = (int)time;
 

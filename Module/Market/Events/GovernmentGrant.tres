@@ -6,5 +6,5 @@
 script = ExtResource("1_stxog")
 eventName = "Government Grant"
 eventDescription = " has recieved a grant from the government for their latest project!"
-eventDuration = 0.8
-eventScale = 1.1
+eventDuration = 0.5
+eventScale = 1.3
