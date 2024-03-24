@@ -27,7 +27,7 @@ ActiveUi = NodePath("UIContainer/PlayerHUD")
 
 [node name="Stock Manager" parent="." node_paths=PackedStringArray("sis", "pss", "ss", "ns", "ph") instance=ExtResource("2_0bbmr")]
 stocks = Array[Resource]([ExtResource("3_lyi5u"), ExtResource("4_inf5i"), ExtResource("5_hkv7j"), ExtResource("6_kneex"), ExtResource("7_o527j"), ExtResource("8_4bgsy"), ExtResource("9_q5ym3"), ExtResource("10_dbsgm")])
-eventList = [ExtResource("11_rg1cy"), ExtResource("12_exopj"), ExtResource("13_6mlgs"), ExtResource("14_fpbhq")]
+eventList = [ExtResource("14_fpbhq"), ExtResource("12_exopj"), ExtResource("13_6mlgs"), ExtResource("11_rg1cy")]
 eventNotifyPercentage = 0.35
 sis = NodePath("../UIContainer/StocksInfoScreen")
 pss = NodePath("../UIContainer/PurchaseScreen")

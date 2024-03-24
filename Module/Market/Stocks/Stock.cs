@@ -21,7 +21,8 @@ public partial class Stock : Resource
     private double startingPrice;
     private double timeOffset;
     private double seed;
-
+    private double zeroing;
+    private bool eventEnding = false;
     public float sharesHeld = 0f;
 
 
@@ -36,7 +37,9 @@ public partial class Stock : Resource
         this.timeOffset = 0;
         Random rnd = new Random();
         this.seed = rnd.NextDouble() * 100;
-        GD.Print("Initializing - " + companyName);
+        this.zeroing = stockPriceEq(0d);
+
+        // GD.Print("Initializing - " + companyName);
     }
 
     public void beginEvent(Event newEvent, double time)
@@ -49,16 +52,25 @@ public partial class Stock : Resource
         activeEvent.beginEvent(time);
         activeEvent.EventCompletion += endEvent;
         this.startingPrice = stockPrice;
-        GD.Print(companyName + " " + activeEvent.eventDescription);
+        timeOffset = time;
+        // zeroing = stockPriceEq(time);
+        // GD.Print(companyName + " " + activeEvent.eventDescription);
+        eventEnding = false;
     }
 
     public void endEvent(double time)
     {
+        eventEnding = true;
+    }
+
+    public void removeEvent(double time) {
         timeOffset = time;
         GD.Print("Event " + activeEvent.eventName + " Ended");
         activeEvent.EventCompletion -= endEvent;
         activeEvent = null;
+        // zeroing = stockPriceEq(0f);
         this.startingPrice = stockPrice;
+        eventEnding = false;
     }
 
     public double update(double time)
@@ -69,21 +81,24 @@ public partial class Stock : Resource
         //     return 0d;
         // }
 
+        var offsetTime = time - timeOffset;
+
         double res = stockPrice;
         if (activeEvent != null)
         {
-            res = activeEvent.eventFunction(time);
+            
+            res = stockPriceEq(offsetTime);
+            res += (activeEvent.eventFunction(offsetTime) * volatility * 3);
+            res = (res + 1) * startingPrice;
 
-            if (activeEvent != null)
-            {
-                res = (res + 1) * startingPrice;
-                stockHistory.AddLast(new Godot.Vector2((float)time, (float)Math.Max(res, 0f)));
-            }
+
+            stockHistory.AddLast(new Godot.Vector2((float)time, (float)Math.Max(res, 0f)));
+
+            
 
         }
         else
         {
-            var offsetTime = time - timeOffset;
             res = this.stockPriceEq(offsetTime);
 
             res = (res + 1) * startingPrice;
@@ -92,7 +107,16 @@ public partial class Stock : Resource
 
 
         stockPrice = res;
+
+        if (eventEnding) {
+            removeEvent(time);
+        }
+
         return res;
+    }
+
+    private double zerodPriceEq(double time) {
+        return stockPriceEq(time) - zeroing;
     }
 
     private double stockPriceEq(double time)

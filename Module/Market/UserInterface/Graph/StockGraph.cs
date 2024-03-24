@@ -31,7 +31,7 @@ public partial class StockGraph : Control
 	public Range rng = Range.AllTime;
 
 	private float minX, minY = 0;
-	private float maxY = 50;
+	private float maxY = 0;
 	private float maxX = 1;
 	private float rectHeight, rectWidth;
 	private float rectX, rectY;

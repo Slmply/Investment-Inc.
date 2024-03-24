@@ -26,7 +26,7 @@ public abstract partial class Event : Resource
     }
     public virtual double eventFunction(double time)
     {
-        if (time - eventStartTime >= eventDuration)
+        if (time >= eventDuration)
         {
             EmitSignal(SignalName.EventCompletion, time);
             return -1;
