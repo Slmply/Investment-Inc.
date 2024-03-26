@@ -8,7 +8,11 @@ public partial class BankTeller : Enemy
     [Export]
     public float attackDistance = 250f;
 
+    [Signal]
+    public delegate void EnemyDeathEventHandler();
+
     public void attackDamage() {
+        GetNode<AudioStreamPlayer>("AttackSound").Play();
         if (targetPlayer.Position.DistanceTo(GlobalPosition) <= attackDistance) {
             targetPlayer.hit();
         }
@@ -28,7 +32,9 @@ public partial class BankTeller : Enemy
     public override void onDeath(Vector2 launchVector)
     {
         base.onDeath(launchVector);
+        GetNode<AudioStreamPlayer>("HitSound").Play();
         animPlayer.Play("Death");
+        EmitSignal(SignalName.EnemyDeath);
 
     }
 

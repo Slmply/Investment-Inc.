@@ -14,7 +14,6 @@ public partial class Player : CharacterBody2D
 	public float AccelMultiplier = 25.0f;
 	[Export]
 	public float DodgeSpeed = 800.0f;
-
 	public Timer dodgeTimer = null;
 	public AnimationPlayer anmPlayer;
 	private Area2D pickupArea;
@@ -22,6 +21,7 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public Node2D holdPoint;
 	public Boolean stunned = false;
+	private Timer iTimer = null;
 
 	[Signal]
 	public delegate void onHitEventHandler();
@@ -31,6 +31,7 @@ public partial class Player : CharacterBody2D
 		dodgeTimer = (Timer)GetNode("DodgeTimer");
 		anmPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		pickupArea = GetNode<Area2D>("PickupArea");
+		iTimer = GetNode<Timer>("InvincibilityTimer");
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -66,7 +67,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	public void hit() {
-		if (!stunned && dodgeTimer.IsStopped()) {
+		if (!stunned && dodgeTimer.IsStopped() && iTimer.IsStopped()) {
 			stunned = true;
 			anmPlayer.Play("Hit");
 			EmitSignal(SignalName.onHit);
@@ -81,8 +82,11 @@ public partial class Player : CharacterBody2D
 	public void animFinished(string anim) {
 		if (anim == "Hit") {
 			stunned = false;
+			iTimer.Start();
 		}
 	}
+
+
 
 	public override void _PhysicsProcess(double delta)
 	{

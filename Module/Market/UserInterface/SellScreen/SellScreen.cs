@@ -26,6 +26,14 @@ public partial class SellScreen : CanvasLayer
 		
 	}
 
+	public void playSFX() {
+		AudioStreamPlayer sp = GetNode<AudioStreamPlayer>("UISfx");
+
+		sp.PitchScale = (float)GD.RandRange(0.6, 1.4);
+
+		sp.Play();
+	}
+
 	public void loadStocks(Stock[] stocks)
 	{
 
@@ -81,12 +89,14 @@ public partial class SellScreen : CanvasLayer
 	}
 
 	public void buyAmtUp() {
+		playSFX();
 		currentBuyAmt += getCurrentJump();
 		clampBuyAmount();
 		updatePurchaseScreen();
 	}
 
 	public void buyAmtDown() {
+		playSFX();
 		currentBuyAmt -= getCurrentJump();
 		clampBuyAmount();
 		updatePurchaseScreen();
@@ -105,6 +115,8 @@ public partial class SellScreen : CanvasLayer
 	}
 
 	public void OnPurchasePressed() {
+
+		playSFX();
 
 		clampBuyAmount();
 		if (currentStock.sharesHeld >= currentBuyAmt) {

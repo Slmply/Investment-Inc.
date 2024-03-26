@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://btdb0mc41iwwm"]
+[gd_scene load_steps=7 format=3 uid="uid://btdb0mc41iwwm"]
 
 [ext_resource type="Script" path="res://Module/Market/UserInterface/InfoScreen/stock_info.cs" id="1_vag3d"]
 [ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="2_3i3gj"]
 [ext_resource type="PackedScene" uid="uid://dadwx0bagiwln" path="res://Module/Market/Stocks/CompanyLogo.tscn" id="2_q4ysh"]
+[ext_resource type="AudioStream" uid="uid://bfrn7f7uoklti" path="res://Audio/SFX/blipSelect.wav" id="4_7xkkk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f75wy"]
 font = ExtResource("2_3i3gj")
@@ -66,7 +67,20 @@ label_settings = SubResource("LabelSettings_2syrx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="UISfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7xkkk")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
 [connection signal="mouse_entered" from="ColorRect" to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="ColorRect" to="." method="OnMouseExit"]
+[connection signal="pressed" from="Button" to="." method="pressed"]

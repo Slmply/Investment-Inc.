@@ -87,7 +87,7 @@ public partial class GameManager : Node2D
 		stockManager.updateStocks(currentTime);
 		enemyManager.updateSpawns(player, currentTime);
 
-		if (currentTime >= 10.00f) {
+		if (currentTime >= 4.00f) {
 			onGameCompletion();
 		}
 	}

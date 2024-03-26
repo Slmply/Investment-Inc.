@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxyan6l767kkt"]
+[gd_scene load_steps=17 format=3 uid="uid://cxyan6l767kkt"]
 
 [ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="1_12nsa"]
 [ext_resource type="TileSet" uid="uid://drv3bggbptagy" path="res://Module/World/Environment/OfficeTileSet.tres" id="1_kxtwk"]
 [ext_resource type="Script" path="res://Module/MainMenu/MainMenu.cs" id="1_whovs"]
 [ext_resource type="Texture2D" uid="uid://1vraceekejkr" path="res://Module/MainMenu/PlayerCharacter.png" id="2_aasr4"]
 [ext_resource type="Texture2D" uid="uid://c714bpk7y2uio" path="res://Module/Throwables/Throwables.png" id="3_1mw1d"]
+[ext_resource type="AudioStream" uid="uid://cdwvnekigcc3l" path="res://Audio/Music/Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg" id="6_rrjp6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dytbr"]
 font = ExtResource("1_12nsa")
@@ -286,6 +287,10 @@ texture = ExtResource("3_1mw1d")
 hframes = 2
 vframes = 2
 frame = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_rrjp6")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="Play"]
 [connection signal="pressed" from="CanvasLayer/Info Button" to="." method="Info"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bf5ikmpq34aqj"]
+[gd_scene load_steps=20 format=3 uid="uid://bf5ikmpq34aqj"]
 
 [ext_resource type="PackedScene" uid="uid://mlteo27kantj" path="res://Module/Player/player.tscn" id="1_tkwrn"]
 [ext_resource type="PackedScene" uid="uid://bha67jtn3frxc" path="res://Module/GameManager/game_manager.tscn" id="2_4y0ph"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b01sjh5d0hiju" path="res://Module/NewsSprite.png" id="7_q1e3w"]
 [ext_resource type="Texture2D" uid="uid://b88g2noqfxln4" path="res://Module/SellSprite.png" id="8_2ug0q"]
 [ext_resource type="PackedScene" uid="uid://6w3oquqhkcep" path="res://Module/Throwables/throwable.tscn" id="9_dlo5b"]
+[ext_resource type="AudioStream" uid="uid://u44khtcka4il" path="res://Audio/Music/Juhani Junkala [Chiptune Adventures] 2. Stage 2.ogg" id="10_dp6gk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_era35"]
 size = Vector2(50, 50)
@@ -44,6 +45,7 @@ position = Vector2(760, 350)
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_4y0ph")]
 money = 500.0
+timeScale = 30.0
 player = NodePath("../Player")
 
 [node name="StockScreenIntBox" parent="." instance=ExtResource("3_emm4x")]
@@ -291,3 +293,7 @@ position = Vector2(-286, -763)
 
 [node name="Throwable15" parent="Throwables" instance=ExtResource("9_dlo5b")]
 position = Vector2(-1064, -370)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_dp6gk")
+autoplay = true

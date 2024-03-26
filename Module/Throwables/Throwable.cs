@@ -60,6 +60,7 @@ public partial class Throwable : CharacterBody2D
   {
     holder = null;
     Velocity = lobDir * throwSpeed;
+    GetNode<AudioStreamPlayer>("ThrowSFX").Play();
     // GD.Print(Velocity);
   }
 

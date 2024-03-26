@@ -40,9 +40,10 @@ public partial class EnemyManager : Node2D
     public void spawnEnemy (Node2D spawnPoint) {
 
 		if (GetChildCount() <= maxEnemyCount) {
-			Enemy enemy = (BankTeller) bankTellerScene.Instantiate();
+			BankTeller enemy = (BankTeller) bankTellerScene.Instantiate();
 
 			AddChild(enemy);
+			enemy.EnemyDeath += onDeath;
 
 			enemy.GlobalPosition = spawnPoint.GlobalPosition;
 		}
@@ -50,6 +51,10 @@ public partial class EnemyManager : Node2D
 		
 
 		// GD.Print("Enemy Spawned");
+	}
+
+	public void onDeath() {
+		gm.money += 10;
 	}
 
 	public Node2D getBestSpawnPoint(Vector2 playerPosition) {

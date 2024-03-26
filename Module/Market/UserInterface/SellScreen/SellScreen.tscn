@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7gmrihgo1yd8"]
+[gd_scene load_steps=11 format=3 uid="uid://c7gmrihgo1yd8"]
 
 [ext_resource type="Script" path="res://Module/Market/UserInterface/SellScreen/SellScreen.cs" id="1_o5jue"]
 [ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="2_5dnpv"]
 [ext_resource type="Texture2D" uid="uid://drurnc4hiuglx" path="res://Module/Market/UserInterface/PurchaseScreen/arrow_downward_FILL0_wght400_GRAD0_opsz24.svg" id="3_gfcxy"]
 [ext_resource type="Texture2D" uid="uid://dyp8744jqflfh" path="res://Module/Market/UserInterface/PurchaseScreen/arrow_upward_FILL0_wght400_GRAD0_opsz24.svg" id="4_4wqnn"]
+[ext_resource type="AudioStream" uid="uid://bfrn7f7uoklti" path="res://Audio/SFX/blipSelect.wav" id="5_bjul3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oqa1d"]
 font = ExtResource("2_5dnpv")
@@ -226,6 +227,9 @@ text = "Sell
 label_settings = SubResource("LabelSettings_0jxyi")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UISfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bjul3")
 
 [connection signal="pressed" from="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/DownButton" to="." method="buyAmtDown"]
 [connection signal="pressed" from="HBoxContainer/PurchaseContainer/ColorRect/GridContainer/UpButton" to="." method="buyAmtUp"]

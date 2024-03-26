@@ -248,4 +248,8 @@ position = Vector2(0, 24)
 scale = Vector2(10, 10)
 texture = ExtResource("4_30yc5")
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animFinished"]

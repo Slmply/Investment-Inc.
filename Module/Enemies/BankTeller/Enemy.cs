@@ -201,11 +201,11 @@ public partial class Enemy : CharacterBody2D
 	public void DeAggroExited(Node2D node)
 	{
 
-		if (node is Player)
-		{
-			State = EnemyState.IDLE;
-			targetPlayer = null;
-		}
+		// if (node is Player)
+		// {
+		// 	State = EnemyState.IDLE;
+		// 	targetPlayer = null;
+		// }
 	}
 
 	public void reRollRandom()

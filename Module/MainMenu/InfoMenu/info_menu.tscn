@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://chf03jonwk8hm"]
+[gd_scene load_steps=9 format=3 uid="uid://chf03jonwk8hm"]
 
 [ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="1_ncp0g"]
 [ext_resource type="Script" path="res://Module/MainMenu/InfoMenu/info_menu.cs" id="1_nlppm"]
+[ext_resource type="AudioStream" uid="uid://r1ajxjbmtixx" path="res://Audio/Music/Juhani Junkala [Chiptune Adventures] 4. Stage Select.ogg" id="3_xiunu"]
 
 [sub_resource type="Theme" id="Theme_1hvjn"]
 default_font = ExtResource("1_ncp0g")
@@ -115,7 +116,7 @@ offset_top = 463.0
 offset_right = 222.5
 offset_bottom = 564.0
 grow_horizontal = 2
-text = "10 Days"
+text = "4 Days"
 label_settings = SubResource("LabelSettings_4uewq")
 horizontal_alignment = 1
 
@@ -183,5 +184,9 @@ You can fight back by picking up and throwing various objects
 around the office by pressing enter.  "
 label_settings = SubResource("LabelSettings_7elgl")
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xiunu")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ExitButton" to="." method="Exit"]

@@ -88,7 +88,7 @@ public partial class Stock : Resource
         {
             
             res = stockPriceEq(offsetTime);
-            res += (activeEvent.eventFunction(offsetTime) * volatility * 5);
+            res += (activeEvent.eventFunction(offsetTime) * volatility * 3.5);
             res = (res + 1) * startingPrice;
 
             stockHistory.AddLast(new Godot.Vector2((float)time, (float)Math.Max(res, 0f)));
@@ -104,6 +104,7 @@ public partial class Stock : Resource
 
 
         stockPrice = res;
+        stockPrice = (stockPrice < 2.0)? 2:stockPrice;
 
         if (eventEnding) {
             removeEvent(time);

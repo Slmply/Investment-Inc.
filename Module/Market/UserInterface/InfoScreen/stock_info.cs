@@ -33,6 +33,14 @@ public partial class stock_info : Control
 		}
 	}
 
+	public void playSFX() {
+		AudioStreamPlayer sp = GetNode<AudioStreamPlayer>("UISfx");
+
+		sp.PitchScale = (float)GD.RandRange(0.6, 1.4);
+
+		sp.Play();
+	}
+
 	public Boolean Active
 	{
 		get
@@ -45,22 +53,28 @@ public partial class stock_info : Control
 			GetNode<ColorRect>("ColorRect").Color = (active) ? activeColor : deactiveColor;
 			if (active)
 			{
+				playSFX();
 				EmitSignal(SignalName.activateScreen, this, stock);
-				GD.Print("Activate Signal Emitted.");
+				
+				// GD.Print("Activate Signal Emitted.");
 			}
 		}
 	}
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("Select") && mouseOver)
-		{
-			Active = true;
-		}
+		// if (Input.IsActionJustPressed("Select") && mouseOver)
+		// {
+		// 	Active = true;
+		// }
 	}
 
 	private double systemTimeMillis() {
 		return DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+	}
+
+	public void pressed() {
+		Active = true;
 	}
 
 	public void updateStockPriceLabel()
@@ -101,13 +115,13 @@ public partial class stock_info : Control
 
 	}
 
-	public void OnMouseEnter()
-	{
-		mouseOver = true;
-	}
+	// public void OnMouseEnter()
+	// {
+	// 	mouseOver = true;
+	// }
 
-	public void OnMouseExit()
-	{
-		mouseOver = false;
-	}
+	// public void OnMouseExit()
+	// {
+	// 	mouseOver = false;
+	// }
 }
