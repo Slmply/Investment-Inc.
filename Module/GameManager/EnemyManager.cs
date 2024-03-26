@@ -55,6 +55,7 @@ public partial class EnemyManager : Node2D
 
 	public void onDeath() {
 		gm.money += 10;
+		gm.enemyDefeatCount++;
 	}
 
 	public Node2D getBestSpawnPoint(Vector2 playerPosition) {

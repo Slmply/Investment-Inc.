@@ -45,7 +45,7 @@ position = Vector2(760, 350)
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_4y0ph")]
 money = 500.0
-timeScale = 30.0
+timeScale = 10.0
 player = NodePath("../Player")
 
 [node name="StockScreenIntBox" parent="." instance=ExtResource("3_emm4x")]

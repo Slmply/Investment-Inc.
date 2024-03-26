@@ -19,7 +19,7 @@ font_size = 50
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rfvn2"]
-line_spacing = 10.0
+line_spacing = 50.0
 font = ExtResource("1_ncp0g")
 font_size = 30
 
@@ -132,15 +132,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -371.0
-offset_top = -259.5
+offset_top = -131.0
 offset_right = 371.0
-offset_bottom = -116.5
+offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "WASD & Arrow Keys - Move
+text = "Arrow Keys - Move
 Space - Dodge
-Enter - Interact and Throw
-ESC - Exit Screen "
+LShift - Interact and Throw
+"
 label_settings = SubResource("LabelSettings_rfvn2")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -101,7 +101,7 @@ public partial class StockManager : Node
 		Random random = new Random();
 
 		if (nextEvent != null) {
-			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + nextEvent.eventDuration;
+			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + nextEvent.eventDuration / 2;
 		} else {
 			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time ;
 		}
@@ -135,11 +135,18 @@ public partial class StockManager : Node
 		foreach (Stock s in stocks)
 		{
 			cursor += (float)s.volatility;
-			if (cursor >= random)
+			if (cursor >= random && s.activeEvent == null)
 			{
 				return s;
 			}
 		}
+
+		foreach(Stock s in stocks) {
+			if (s.activeEvent == null) {
+				return s;
+			}
+		}
+
 		return null;
 	}
 

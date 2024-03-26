@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://6cusovlngr28"]
+[gd_scene load_steps=11 format=3 uid="uid://6cusovlngr28"]
 
 [ext_resource type="Script" path="res://Module/GameManager/PlayerHud.cs" id="1_fsw8u"]
 [ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="2_hgjx6"]
+[ext_resource type="AudioStream" uid="uid://dj6t0a4tvgnj1" path="res://Audio/SFX/NewsAlarm.wav" id="3_fwvba"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2g0g"]
 font = ExtResource("2_hgjx6")
@@ -51,6 +52,29 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(451, -100), Vector2(451, 0), Vector2(451, 0), Vector2(451, -100)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_fwvba")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_fwvba")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_fwvba")
+}],
+"times": PackedFloat32Array(0.6, 2, 3.4)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3dw2s"]
 _data = {
@@ -108,9 +132,9 @@ layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -125.0
+offset_left = -189.0
 offset_top = -100.0
-offset_right = 125.0
+offset_right = 61.0
 offset_bottom = -25.0
 grow_horizontal = 2
 
@@ -153,3 +177,5 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_3dw2s")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

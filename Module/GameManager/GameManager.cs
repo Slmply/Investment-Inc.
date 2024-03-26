@@ -47,6 +47,7 @@ public partial class GameManager : Node2D
 	}
 	[Export]
 	public Player player;
+	public int enemyDefeatCount = 0;
 
 	[Signal]
 	public delegate void GameCompletionEventHandler(float money, int enemiesKilled);
@@ -88,7 +89,9 @@ public partial class GameManager : Node2D
 		enemyManager.updateSpawns(player, currentTime);
 
 		if (currentTime >= 4.00f) {
-			onGameCompletion();
+			gameTick.Stop();
+			GetParent().GetParent().GetParent<SceneManager>().summary(money + stockManager.getTotalStockInventoryValue(), enemyDefeatCount);
+			GetParent().GetParent().GetParent<SceneManager>().transitionScenes(GD.Load<PackedScene>("res://Module/SummaryMenu/summary_scene.tscn"));
 		}
 	}
 

@@ -82,7 +82,7 @@ public partial class BankTeller : Enemy
 
         sprt.FlipH = (Velocity.X != 0)? ((Velocity.X > 10)? false : true) : sprt.FlipH;
 
-        if (state == EnemyState.DEATH) {
+        if (state == EnemyState.DEATH && Math.Abs(Velocity.X) > 10) {
             sprt.FlipH = !sprt.FlipH;
         }
         
