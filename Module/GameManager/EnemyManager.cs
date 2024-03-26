@@ -14,7 +14,9 @@ public partial class EnemyManager : Node2D
 	[Export]
 	public float enemySpawnTimeMax = 0.25f;
 	[Export]
-	public int enemyMaxGroupSpawnAmount = 3;
+	public int enemyMaxGroupSpawnAmount = 6;
+	[Export]
+	public int maxEnemyCount = 15;
 
 	private float nextSpawnTime = 0f;
 
@@ -36,13 +38,18 @@ public partial class EnemyManager : Node2D
     }
 
     public void spawnEnemy (Node2D spawnPoint) {
-		Enemy enemy = (BankTeller) bankTellerScene.Instantiate();
 
-		AddChild(enemy);
+		if (GetChildCount() <= maxEnemyCount) {
+			Enemy enemy = (BankTeller) bankTellerScene.Instantiate();
 
-		enemy.GlobalPosition = spawnPoint.GlobalPosition;
+			AddChild(enemy);
 
-		GD.Print("Enemy Spawned");
+			enemy.GlobalPosition = spawnPoint.GlobalPosition;
+		}
+
+		
+
+		// GD.Print("Enemy Spawned");
 	}
 
 	public Node2D getBestSpawnPoint(Vector2 playerPosition) {

@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=3 uid="uid://5tcy83em5564"]
+
+[ext_resource type="Script" path="res://Module/SceneManager/SceneManager.cs" id="1_2y3mq"]
+[ext_resource type="Texture2D" uid="uid://dpmnrpal1bd6l" path="res://Module/SceneManager/LoadScreenSprite.png" id="2_icbg7"]
+
+[sub_resource type="Animation" id="Animation_g83x8"]
+resource_name = "SceneTransitionIn"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -900), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bidqd"]
+resource_name = "SceneTransitionOut"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -900)]
+}
+
+[sub_resource type="Animation" id="Animation_sqb7d"]
+resource_name = "DummyTransition"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -900), Vector2(0, 0), Vector2(0, -900)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dummyTransitionCall"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ygxlr"]
+_data = {
+"DummyTransition": SubResource("Animation_sqb7d"),
+"SceneTransitionIn": SubResource("Animation_g83x8"),
+"SceneTransitionOut": SubResource("Animation_bidqd")
+}
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource("1_2y3mq")
+
+[node name="SceneTransition" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="ColorRect" type="ColorRect" parent="SceneTransition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -900.0
+offset_bottom = -720.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="SceneTransition/ColorRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_icbg7")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://Aseprite/LoadScreenSprite.aseprite"
+}
+
+[node name="SceneTransitionPlayer" type="AnimationPlayer" parent="SceneTransition"]
+libraries = {
+"": SubResource("AnimationLibrary_ygxlr")
+}
+
+[node name="SceneHolder" type="Node2D" parent="."]

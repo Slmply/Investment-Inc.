@@ -56,7 +56,7 @@ public partial class Enemy : CharacterBody2D
 						AddChild(attackTimer);
 					}
 					attackTimer.OneShot = true;
-					attackTimer.WaitTime = GD.RandRange(3, 10);
+					attackTimer.WaitTime = GD.RandRange(2, 6);
 					attackTimer.Timeout += enterAttack;
 					attackTimer.Start();
 					state = value;

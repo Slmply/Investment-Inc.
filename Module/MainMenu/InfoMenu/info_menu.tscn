@@ -1,0 +1,187 @@
+[gd_scene load_steps=8 format=3 uid="uid://chf03jonwk8hm"]
+
+[ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="1_ncp0g"]
+[ext_resource type="Script" path="res://Module/MainMenu/InfoMenu/info_menu.cs" id="1_nlppm"]
+
+[sub_resource type="Theme" id="Theme_1hvjn"]
+default_font = ExtResource("1_ncp0g")
+
+[sub_resource type="Theme" id="Theme_crg6q"]
+default_font = ExtResource("1_ncp0g")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7elgl"]
+font = ExtResource("1_ncp0g")
+
+[sub_resource type="LabelSettings" id="LabelSettings_4uewq"]
+font = ExtResource("1_ncp0g")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfvn2"]
+line_spacing = 10.0
+font = ExtResource("1_ncp0g")
+font_size = 30
+
+[node name="InfoMenu" type="Node2D"]
+script = ExtResource("1_nlppm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1hvjn")
+text = "Exit"
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_crg6q")
+tab_alignment = 1
+
+[node name="Story" type="Control" parent="CanvasLayer/VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="StoryLabelA" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Story"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -424.0
+offset_top = 45.0
+offset_right = 424.0
+offset_bottom = 146.0
+grow_horizontal = 2
+text = "After Inheriting a dying investment firm from your father, 
+you recieve a call from the Big Bank Corp.
+They Inform you that youre fathers company was in debt. 
+A total of:"
+label_settings = SubResource("LabelSettings_7elgl")
+horizontal_alignment = 1
+
+[node name="StoryLabelA3" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Story"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -424.0
+offset_top = 271.0
+offset_right = 424.0
+offset_bottom = 593.0
+grow_horizontal = 2
+text = "Now, Its up to you and only you
+to make back the money to save the dying firm
+from the grasps of the Big Bad Bank
+
+But Be weary, as the CEO has caught wind of your plans,
+and has sent his bank minions to keep you 
+from earning money, and has set a deadline of:
+
+
+
+
+
+will you be able to collect enough money in time?"
+label_settings = SubResource("LabelSettings_7elgl")
+horizontal_alignment = 1
+
+[node name="StoryLabelA2" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Story"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -222.5
+offset_top = 168.0
+offset_right = 222.5
+offset_bottom = 269.0
+grow_horizontal = 2
+text = "$10,000"
+label_settings = SubResource("LabelSettings_4uewq")
+horizontal_alignment = 1
+
+[node name="StoryLabelA4" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Story"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -222.5
+offset_top = 463.0
+offset_right = 222.5
+offset_bottom = 564.0
+grow_horizontal = 2
+text = "10 Days"
+label_settings = SubResource("LabelSettings_4uewq")
+horizontal_alignment = 1
+
+[node name="Controls" type="Control" parent="CanvasLayer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -371.0
+offset_top = -259.5
+offset_right = 371.0
+offset_bottom = -116.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "WASD & Arrow Keys - Move
+Space - Dodge
+Enter - Interact and Throw
+ESC - Exit Screen "
+label_settings = SubResource("LabelSettings_rfvn2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="How To Play" type="Control" parent="CanvasLayer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="StoryLabelA5" type="Label" parent="CanvasLayer/VBoxContainer/TabContainer/How To Play"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -481.0
+offset_top = 47.0
+offset_right = 482.0
+offset_bottom = 619.0
+grow_horizontal = 2
+text = "To Make money, buy and sell stocks on the stock market.
+you can view all stocks and a graph of stocks
+on the terminal in the upper right corner of youre office.
+
+To purchase stocks, use the terminal in the 
+upper left corner of the office and select the amount of shares
+you would like to purchase.
+
+To sell youre stocks, use the terminal in the bottom right corner
+of youre office and select the amount of shares you
+would like to sell.
+
+Every so often, and event will occur, drastically impacting a stock. 
+You will be notified ahead of time of events occuring in
+the news terminal located in the bottom left corner of the office.
+Be sure to act quick, as events give an opportunity to grow a 
+large amount of money in a short time period!
+
+Bank minions will periodically break into the office to attack. 
+Dodge out of the way of their attacks to avoid them.
+Getting hit will cause you to lose a portion of youre money.
+You can fight back by picking up and throwing various objects 
+around the office by pressing enter.  "
+label_settings = SubResource("LabelSettings_7elgl")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ExitButton" to="." method="Exit"]

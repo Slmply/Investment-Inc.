@@ -48,9 +48,17 @@ public partial class GameManager : Node2D
 	[Export]
 	public Player player;
 
+	[Signal]
+	public delegate void GameCompletionEventHandler(float money, int enemiesKilled);
+
 	public void playerHit() {
 		money = money * (float)GD.RandRange(0.9, 0.98);
 		exitUi();
+	}
+
+
+	public void resetPlayerPosition() {
+		GetParent().GetParent<SceneManager>().dummyTransition(() => {player.Position = new Vector2(760, 350); return 0;});
 	}
 
 	public override void _Ready()
@@ -78,6 +86,16 @@ public partial class GameManager : Node2D
 		currentTime += 0.00347222222f * 0.008f * timeScale;
 		stockManager.updateStocks(currentTime);
 		enemyManager.updateSpawns(player, currentTime);
+
+		if (currentTime >= 10.00f) {
+			onGameCompletion();
+		}
+	}
+
+	public void onGameCompletion () {
+		EmitSignal(SignalName.GameCompletion, money, 0);
+		exitUi();
+		gameTick.Paused = true;
 	}
 
 	public void activateStockScreen()
@@ -107,9 +125,6 @@ public partial class GameManager : Node2D
 	{
 		ActiveUi = GetNode<CanvasLayer>("UIContainer/PlayerHUD");
 	}
-
-
-
 	public static string timeToHour(double time)
 	{
 

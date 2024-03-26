@@ -60,7 +60,8 @@ visible = false
 [node name="EnemyManager" type="Node2D" parent="." node_paths=PackedStringArray("gm")]
 script = ExtResource("7_d84fl")
 gm = NodePath("..")
-enemySpawnTimeMin = 0.05
-enemySpawnTimeMax = 0.14
+enemySpawnTimeMin = 0.005
+enemySpawnTimeMax = 0.015
+enemyMaxGroupSpawnAmount = 4
 
 [connection signal="timeout" from="GameTick" to="." method="updateTime"]

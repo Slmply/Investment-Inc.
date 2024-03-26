@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://mlteo27kantj"]
+[gd_scene load_steps=14 format=3 uid="uid://mlteo27kantj"]
 
 [ext_resource type="Script" path="res://Module/Player/Player.cs" id="1_e8dfr"]
 [ext_resource type="Texture2D" uid="uid://d1ry3tch15usb" path="res://Module/Player/PlayerCharacter.png" id="2_a8vsp"]
 [ext_resource type="Texture2D" uid="uid://clsc7gvfe6dgu" path="res://Module/Misc/Assets/DollarBill.png" id="3_1m8k4"]
+[ext_resource type="Texture2D" uid="uid://4w8tfrwoi21i" path="res://Module/Player/Shadow.png" id="4_30yc5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nc3j"]
 radius = 24.0
@@ -178,6 +179,7 @@ holdPoint = NodePath("HoldPoint")
 shape = SubResource("CapsuleShape2D_0nc3j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -191,6 +193,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 scale = Vector2(10, 10)
 texture = ExtResource("2_a8vsp")
@@ -238,5 +241,11 @@ shape = SubResource("CircleShape2D_y13yp")
 
 [node name="HoldPoint" type="Node2D" parent="."]
 position = Vector2(0, 20)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(0, 24)
+scale = Vector2(10, 10)
+texture = ExtResource("4_30yc5")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animFinished"]

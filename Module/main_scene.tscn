@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp87i7ghmv8of"]
+
+[ext_resource type="PackedScene" uid="uid://5tcy83em5564" path="res://Module/SceneManager/scene_manager.tscn" id="1_7cnsx"]
+[ext_resource type="PackedScene" uid="uid://cxyan6l767kkt" path="res://Module/MainMenu/MainMenu.tscn" id="2_cqy1e"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="SceneManager" parent="." instance=ExtResource("1_7cnsx")]
+startingScene = ExtResource("2_cqy1e")

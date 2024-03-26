@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://6w3oquqhkcep"]
+[gd_scene load_steps=6 format=3 uid="uid://6w3oquqhkcep"]
 
 [ext_resource type="Script" path="res://Module/Throwables/Throwable.cs" id="1_2mwby"]
 [ext_resource type="Texture2D" uid="uid://c714bpk7y2uio" path="res://Module/Throwables/Throwables.png" id="2_j0r35"]
+[ext_resource type="Texture2D" uid="uid://4w8tfrwoi21i" path="res://Module/Player/Shadow.png" id="3_6pof8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwkcj"]
 size = Vector2(80, 80)
@@ -29,5 +30,11 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource("CircleShape2D_aj8ev")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(0, 24)
+scale = Vector2(10, 10)
+texture = ExtResource("3_6pof8")
 
 [connection signal="body_entered" from="HitArea" to="." method="HitAreaEntered"]

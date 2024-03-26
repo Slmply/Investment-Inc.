@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bg4q6lwi7o2jf"
+path="res://.godot/imported/LoadScreenSprite.aseprite-e8516e190b78f1f440133c62c38632ed.res"
+
+[deps]
+
+source_file="res://Aseprite/LoadScreenSprite.aseprite"
+dest_files=["res://.godot/imported/LoadScreenSprite.aseprite-e8516e190b78f1f440133c62c38632ed.res"]
+
+[params]
+

@@ -88,13 +88,10 @@ public partial class Stock : Resource
         {
             
             res = stockPriceEq(offsetTime);
-            res += (activeEvent.eventFunction(offsetTime) * volatility * 3);
+            res += (activeEvent.eventFunction(offsetTime) * volatility * 5);
             res = (res + 1) * startingPrice;
 
-
             stockHistory.AddLast(new Godot.Vector2((float)time, (float)Math.Max(res, 0f)));
-
-            
 
         }
         else
@@ -122,7 +119,7 @@ public partial class Stock : Resource
     private double stockPriceEq(double time)
     {
         double volatility = this.volatility / 2d;
-        var i = 0.1d * Math.Sin(10 * volatility * (time + volatility * seed)) + expectedGrowth * time / 5d;
+        var i = 0.1d * Math.Sin(10 * volatility * (time + volatility * seed)) + expectedGrowth * time / 3d;
         i += -0.2d * volatility * Math.Sin(time - 3);
         i += 0.06d * volatility * Math.Sin(time);
         i -= 0.8d * volatility * volatility * Math.Cos(10 * (time + seed + 4.8));

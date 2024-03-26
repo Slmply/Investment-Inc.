@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c1wlberd0wws3"
+path="res://.godot/imported/SellSprite.aseprite-6ada19336274ebbcd20f73f2b0dfe9ed.res"
+
+[deps]
+
+source_file="res://Aseprite/SellSprite.aseprite"
+dest_files=["res://.godot/imported/SellSprite.aseprite-6ada19336274ebbcd20f73f2b0dfe9ed.res"]
+
+[params]
+
