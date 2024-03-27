@@ -90,8 +90,8 @@ public partial class GameManager : Node2D
 
 		if (currentTime >= 4.00f) {
 			gameTick.Stop();
-			GetParent().GetParent().GetParent<SceneManager>().summary(money + stockManager.getTotalStockInventoryValue(), enemyDefeatCount);
-			GetParent().GetParent().GetParent<SceneManager>().transitionScenes(GD.Load<PackedScene>("res://Module/SummaryMenu/summary_scene.tscn"));
+			// GetParent().GetParent().GetParent<SceneManager>().summary(money + stockManager.getTotalStockInventoryValue(), enemyDefeatCount);
+			// GetParent().GetParent().GetParent<SceneManager>().transitionScenes(GD.Load<PackedScene>("res://Module/SummaryMenu/summary_scene.tscn"));
 		}
 	}
 

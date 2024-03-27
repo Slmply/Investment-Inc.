@@ -64,4 +64,11 @@ public partial class SceneManager : Node2D
 	public void dummyTransitionCall() {
 		dummyFunc();
 	}
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("Exit")) {
+			dummyTransition(() => {GetTree().Quit(); return 0;});
+		}
+    }
 }
