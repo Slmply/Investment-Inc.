@@ -90,8 +90,8 @@ public partial class GameManager : Node2D
 
 		if (currentTime >= 4.00f) {
 			gameTick.Stop();
-			// GetParent().GetParent().GetParent<SceneManager>().summary(money + stockManager.getTotalStockInventoryValue(), enemyDefeatCount);
-			// GetParent().GetParent().GetParent<SceneManager>().transitionScenes(GD.Load<PackedScene>("res://Module/SummaryMenu/summary_scene.tscn"));
+			GetParent().GetParent().GetParent<SceneManager>().summary(money + stockManager.getTotalStockInventoryValue(), enemyDefeatCount);
+			GetParent().GetParent().GetParent<SceneManager>().transitionScenes(GD.Load<PackedScene>("res://Module/SummaryMenu/summary_scene.tscn"));
 		}
 	}
 
@@ -160,6 +160,10 @@ public partial class GameManager : Node2D
 		res = string.Format("{0:N2}", time) + res;
 
 		return res.Replace('.', ':');
+	}
+
+	public AudioStreamPlayer getMusicPlayer() {
+		return GetParent().GetNode<AudioStreamPlayer>("AudioStreamPlayer");
 	}
 
 }

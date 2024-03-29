@@ -12,6 +12,6 @@ public partial class SummaryScene : Node2D
 		GetNode<Label>("CanvasLayer/MoneyEarned").Text = "$" + money.ToString("0.00");
 		GetNode<Label>("CanvasLayer/Enemies Defeated").Text = enemies.ToString();
 		GetNode<Label>("CanvasLayer/Firm Saved").Text = (money > 10000)? "The Firm Was \nSaved!": "You Lost The\nFirm.";
-		GetNode<Label>("CanvasLayer/Firm Saved").LabelSettings.FontColor = (money > 10000)? new Color(0, 255, 0) : new Color(255, 0, 0);
+		GetNode<Label>("CanvasLayer/Firm Saved").LabelSettings.FontColor = (money > 10000)? new Color(0, 160, 0) : new Color(160, 0, 0);
 	}
 }

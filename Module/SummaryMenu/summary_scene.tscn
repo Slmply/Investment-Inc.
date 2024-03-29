@@ -17,7 +17,7 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_k06f1"]
 font = ExtResource("1_mufns")
 font_size = 50
-font_color = Color(0, 1, 0, 1)
+font_color = Color(0, 0.627451, 0, 1)
 
 [sub_resource type="Theme" id="Theme_vr2ie"]
 default_font = ExtResource("1_mufns")

@@ -155,13 +155,14 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -481.0
-offset_top = 47.0
+offset_top = 24.0
 offset_right = 482.0
-offset_bottom = 619.0
+offset_bottom = 621.0
 grow_horizontal = 2
 text = "To Make money, buy and sell stocks on the stock market.
 you can view all stocks and a graph of stocks
 on the terminal in the upper right corner of youre office.
+Time moving too slow?  Fast forward from the graph screen.
 
 To purchase stocks, use the terminal in the 
 upper left corner of the office and select the amount of shares
@@ -181,7 +182,7 @@ Bank minions will periodically break into the office to attack.
 Dodge out of the way of their attacks to avoid them.
 Getting hit will cause you to lose a portion of youre money.
 You can fight back by picking up and throwing various objects 
-around the office by pressing enter.  "
+around the office by pressing Left Shift.  "
 label_settings = SubResource("LabelSettings_7elgl")
 horizontal_alignment = 1
 

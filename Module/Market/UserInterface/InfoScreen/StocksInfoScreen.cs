@@ -8,6 +8,8 @@ public partial class StocksInfoScreen : CanvasLayer
 	private PackedScene stockInfoWidget;
 	private stock_info activeStockInfo;
 	private StockGraph activeStockGraph;
+	[Export]
+	public GameManager gm = null;
 
 	public override void _Ready()
 	{
@@ -60,6 +62,7 @@ public partial class StocksInfoScreen : CanvasLayer
 
 		StockGraph sg = (StockGraph)stockScreen.Instantiate();
 		sg.targetStock = stock;
+		sg.gm = gm;
 
 		sgContainer.AddChild(sg);
 		activeStockGraph = sg;

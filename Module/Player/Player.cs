@@ -141,6 +141,12 @@ public partial class Player : CharacterBody2D
 			velocity.X = direction.X * DodgeSpeed;
 			velocity.Y = direction.Y * DodgeSpeed;
 			dodgeTimer.Start();
+			GetNode<AudioStreamPlayer>("DodgeSound").Play();
+
+			if (heldItem != null) {
+				heldItem.drop(Velocity.Normalized());
+				heldItem = null;
+			}
 		}
 
 

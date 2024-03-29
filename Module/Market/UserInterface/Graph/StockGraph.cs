@@ -35,11 +35,21 @@ public partial class StockGraph : Control
 	private float maxX = 1;
 	private float rectHeight, rectWidth;
 	private float rectX, rectY;
+	public GameManager gm = null;
+	private float startTS = 1.3f;
 
 
 	public override void _Process(double delta)
 	{
 		updateStockGraph();
+
+		if (GetNode<Button>("GridContainer/Button").ButtonPressed == true) {
+			gm.timeScale = startTS * 10;
+			gm.getMusicPlayer().PitchScale = 1.75f;
+		} else {
+			gm.timeScale = startTS;
+			gm.getMusicPlayer().PitchScale = 1f;
+		}
 	}
 
 	public enum Range{
@@ -233,10 +243,14 @@ public partial class StockGraph : Control
 		return rectHeight - ((pos - minY) * rectHeight / dy) + rectY / 2;
 	}
 
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		updateStockGraph();
+		if (gm != null) {
+			startTS = gm.timeScale; 
+		}
 	}
 
 	public void OnTodayPressed() 

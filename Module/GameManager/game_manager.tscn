@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bha67jtn3frxc"]
+[gd_scene load_steps=22 format=3 uid="uid://bha67jtn3frxc"]
 
 [ext_resource type="Script" path="res://Module/GameManager/GameManager.cs" id="1_ox4q2"]
 [ext_resource type="PackedScene" uid="uid://ihaxhcjadw0n" path="res://Module/Market/stock_manager.tscn" id="2_0bbmr"]
@@ -20,12 +20,13 @@
 [ext_resource type="Resource" uid="uid://cejsf632wpwbh" path="res://Module/Market/Events/DistastefulPost.tres" id="12_exopj"]
 [ext_resource type="Resource" uid="uid://bitfc87geb077" path="res://Module/Market/Events/GovernmentGrant.tres" id="13_6mlgs"]
 [ext_resource type="Resource" uid="uid://b6uut66517xpq" path="res://Module/Market/Events/EmployeeStrike.tres" id="14_fpbhq"]
+[ext_resource type="PackedScene" uid="uid://c7giaf3q4jgkn" path="res://Module/GameManager/news_ui.tscn" id="21_k43uq"]
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("ActiveUi")]
 script = ExtResource("1_ox4q2")
 ActiveUi = NodePath("UIContainer/PlayerHUD")
 
-[node name="Stock Manager" parent="." node_paths=PackedStringArray("sis", "pss", "ss", "ns", "ph") instance=ExtResource("2_0bbmr")]
+[node name="Stock Manager" parent="." node_paths=PackedStringArray("sis", "pss", "ss", "ns", "newsAnim") instance=ExtResource("2_0bbmr")]
 stocks = Array[Resource]([ExtResource("3_lyi5u"), ExtResource("4_inf5i"), ExtResource("5_hkv7j"), ExtResource("6_kneex"), ExtResource("7_o527j"), ExtResource("8_4bgsy"), ExtResource("9_q5ym3"), ExtResource("10_dbsgm")])
 eventList = [ExtResource("14_fpbhq"), ExtResource("12_exopj"), ExtResource("13_6mlgs"), ExtResource("11_rg1cy")]
 eventNotifyPercentage = 0.35
@@ -33,15 +34,16 @@ sis = NodePath("../UIContainer/StocksInfoScreen")
 pss = NodePath("../UIContainer/PurchaseScreen")
 ss = NodePath("../UIContainer/SellScreen")
 ns = NodePath("../UIContainer/NewsScreen")
-ph = NodePath("../UIContainer/PlayerHUD")
+newsAnim = NodePath("../NewsUi")
 
 [node name="GameTick" type="Timer" parent="."]
 wait_time = 0.008
 
 [node name="UIContainer" type="Node2D" parent="."]
 
-[node name="StocksInfoScreen" parent="UIContainer" instance=ExtResource("3_f03t7")]
+[node name="StocksInfoScreen" parent="UIContainer" node_paths=PackedStringArray("gm") instance=ExtResource("3_f03t7")]
 visible = false
+gm = NodePath("../..")
 
 [node name="PlayerHUD" parent="UIContainer" node_paths=PackedStringArray("gameManager") instance=ExtResource("4_lb0pe")]
 gameManager = NodePath("../..")
@@ -64,5 +66,7 @@ enemySpawnTimeMin = 0.005
 enemySpawnTimeMax = 0.015
 enemyMaxGroupSpawnAmount = 3
 maxEnemyCount = 7
+
+[node name="NewsUi" parent="." instance=ExtResource("21_k43uq")]
 
 [connection signal="timeout" from="GameTick" to="." method="updateTime"]

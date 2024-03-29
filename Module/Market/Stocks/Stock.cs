@@ -120,7 +120,7 @@ public partial class Stock : Resource
     private double stockPriceEq(double time)
     {
         double volatility = this.volatility / 2d;
-        var i = 0.1d * Math.Sin(10 * volatility * (time + volatility * seed)) + expectedGrowth * time / 3d;
+        var i = 0.1d * Math.Sin(10 * volatility * (time + volatility * seed)) + expectedGrowth * time;
         i += -0.2d * volatility * Math.Sin(time - 3);
         i += 0.06d * volatility * Math.Sin(time);
         i -= 0.8d * volatility * volatility * Math.Cos(10 * (time + seed + 4.8));

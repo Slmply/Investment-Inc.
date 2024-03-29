@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnlnosiyvgkwg"]
+[gd_scene load_steps=7 format=3 uid="uid://dnlnosiyvgkwg"]
 
 [ext_resource type="Script" path="res://Module/Market/UserInterface/Graph/StockGraph.cs" id="1_887oi"]
 [ext_resource type="FontFile" uid="uid://cs8ou6flmo6ng" path="res://Fonts/Daydream.ttf" id="2_kagwl"]
@@ -14,6 +14,9 @@ font_size = 13
 [sub_resource type="LabelSettings" id="LabelSettings_kpl32"]
 font = ExtResource("2_kagwl")
 font_size = 13
+
+[sub_resource type="Theme" id="Theme_ybamx"]
+default_font = ExtResource("2_kagwl")
 
 [node name="StockGraph" type="Control" node_paths=PackedStringArray("line")]
 layout_mode = 3
@@ -138,6 +141,22 @@ text = "X Label
 label_settings = SubResource("LabelSettings_kpl32")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Placeholder3" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Placeholder4" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Button" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_ybamx")
+button_mask = 7
+text = "Fast Forward"
 
 [connection signal="pressed" from="GridContainer/HBoxContainer/Today" to="." method="OnTodayPressed"]
 [connection signal="pressed" from="GridContainer/HBoxContainer/24Hours" to="." method="OnTwentyFourPressed"]

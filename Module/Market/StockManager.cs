@@ -27,7 +27,7 @@ public partial class StockManager : Node
 	[Export]
 	public NewsScreen ns = null;
 	[Export]
-	public PlayerHud ph = null;
+	public CanvasLayer newsAnim = null;
 
 	public Event nextEvent;
 	public Stock nextEventStock;
@@ -81,7 +81,7 @@ public partial class StockManager : Node
 		}
 		if (time >= nextEventNotifyTime && nextEventNotifyTime >= 0) {
 			ns.addNewsWidget(nextEventStock, nextEvent, nextEventTime);
-			ph.playEventAnimation();
+			newsAnim.GetNode<AnimationPlayer>("AnimationPlayer").Play("NewsAnim");
 			nextEventNotifyTime = -1;
 		}
 	}
@@ -101,7 +101,7 @@ public partial class StockManager : Node
 		Random random = new Random();
 
 		if (nextEvent != null) {
-			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + nextEvent.eventDuration / 2;
+			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time + nextEvent.eventDuration / 2.5f;
 		} else {
 			nextEventTime = (float)random.NextDouble() * maxEventWait + minEventWait + time ;
 		}
