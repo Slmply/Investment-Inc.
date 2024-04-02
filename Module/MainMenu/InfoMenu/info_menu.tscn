@@ -60,8 +60,8 @@ offset_right = 424.0
 offset_bottom = 146.0
 grow_horizontal = 2
 text = "After Inheriting a dying investment firm from your father, 
-you recieve a call from the Big Bank Corp.
-They Inform you that youre fathers company was in debt. 
+you receive a call from the Big Bank Corp.
+They Inform you that your fathers company was in debt. 
 A total of:"
 label_settings = SubResource("LabelSettings_7elgl")
 horizontal_alignment = 1
