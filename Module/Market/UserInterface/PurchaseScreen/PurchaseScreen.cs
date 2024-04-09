@@ -104,7 +104,7 @@ public partial class PurchaseScreen : CanvasLayer
 	public void clampBuyAmount() {
 		if (currentStock != null) {
 			if (currentBuyAmt * (float)currentStock.stockPrice >= gm.money) {
-				currentBuyAmt = gm.money / (float)currentStock.stockPrice;
+				currentBuyAmt = gm.money / (float)currentStock.stockPrice - 0.001f;
 			}
 			if (currentBuyAmt < 0 ) {
 				currentBuyAmt = 0;

@@ -23,7 +23,7 @@ public partial class PlayerHud : CanvasLayer
 		timeLabel.Text = GameManager.timeToHour(gameManager.currentTime).ToLower();
 		dateLabel.Text = StockGraph.timeToDay(gameManager.currentTime);
 		moneyLabel.Text = "$" + gameManager.money.ToString("0.00");
-		moneyLabel.Text += " ($" + string.Format("{0:N2}", gameManager.stockManager.getTotalStockInventoryValue()) + ")";
+		moneyLabel.Text += "\n($" + string.Format("{0:N2}", gameManager.stockManager.getTotalStockInventoryValue()) + ")";
 	}
 
 	public void playEventAnimation() {

@@ -16,12 +16,12 @@ public partial class SceneManager : Node2D
 
 	private bool nextSummary = false;
 
-    public override void _Ready()
-    {
-        sceneTransitionPlayer = GetNode<AnimationPlayer>("SceneTransition/SceneTransitionPlayer");
+	public override void _Ready()
+	{
+		sceneTransitionPlayer = GetNode<AnimationPlayer>("SceneTransition/SceneTransitionPlayer");
 		sceneHolder = GetNode<Node2D>("SceneHolder");
 		transitionScenes(startingScene);
-    }
+	}
 
 	public void summary(float money, int enemies) {
 		nextSummary = true;
@@ -65,10 +65,10 @@ public partial class SceneManager : Node2D
 		dummyFunc();
 	}
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("Exit")) {
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("Exit")) {
 			dummyTransition(() => {GetTree().Quit(); return 0;});
 		}
-    }
+	}
 }

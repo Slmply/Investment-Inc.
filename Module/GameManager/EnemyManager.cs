@@ -31,13 +31,13 @@ public partial class EnemyManager : Node2D
 	}
 
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		bankTellerScene = GD.Load<PackedScene>("res://Module/Enemies/BankTeller/bank_teller_enemy.tscn");
 		nextSpawnTime = (float)GD.RandRange((double)enemySpawnTimeMin, (double)enemySpawnTimeMax);
-    }
+	}
 
-    public void spawnEnemy (Node2D spawnPoint) {
+	public void spawnEnemy (Node2D spawnPoint) {
 
 		if (GetChildCount() <= maxEnemyCount) {
 			BankTeller enemy = (BankTeller) bankTellerScene.Instantiate();
