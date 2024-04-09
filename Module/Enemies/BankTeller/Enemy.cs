@@ -191,7 +191,7 @@ public partial class Enemy : CharacterBody2D
 	public void AggroEntered(Node2D node)
 	{
 
-		if (node is Player && targetPlayer == null)
+		if (node is Player && !(node is multiplayerCharacter) && targetPlayer == null)
 		{
 			targetPlayer = (Player)node;
 			State = EnemyState.ALERT;

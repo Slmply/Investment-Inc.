@@ -51,14 +51,30 @@ public partial class GameManager : Node2D
 
 	[Signal]
 	public delegate void GameCompletionEventHandler(float money, int enemiesKilled);
+	private multiplayerCharacter mpc;
 
 	public void playerHit() {
 		money = money * (float)GD.RandRange(0.9, 0.98);
 		exitUi();
 	}
 
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("SpawnMP")) {
+			if (mpc == null) {
+				mpc = (multiplayerCharacter)GD.Load<PackedScene>("res://Module/Player/multiplayerCharacter.tscn").Instantiate();
+				AddChild(mpc);
+				mpc.owner = player;
+				mpc.GlobalPosition = player.GlobalPosition;
+			} else {
+				mpc.QueueFree();
+				mpc = null;
+			}
+		}
+    }
 
-	public void resetPlayerPosition() {
+
+    public void resetPlayerPosition() {
 		GetParent().GetParent<SceneManager>().dummyTransition(() => {player.Position = new Vector2(760, 350); return 0;});
 	}
 

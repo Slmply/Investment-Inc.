@@ -11,17 +11,17 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public float DecelSpeed = 100.0f;
 	[Export]
-	public float AccelMultiplier = 25.0f;
+	public float AccelMultiplier = 30.0f;
 	[Export]
 	public float DodgeSpeed = 800.0f;
 	public Timer dodgeTimer = null;
 	public AnimationPlayer anmPlayer;
-	private Area2D pickupArea;
-	private Throwable heldItem;
+	protected Area2D pickupArea;
+	protected Throwable heldItem;
 	[Export]
 	public Node2D holdPoint;
 	public Boolean stunned = false;
-	private Timer iTimer = null;
+	protected Timer iTimer = null;
 
 	[Signal]
 	public delegate void onHitEventHandler();
@@ -49,9 +49,14 @@ public partial class Player : CharacterBody2D
 
 					if (n is Throwable)
 					{
-						heldItem = (Throwable)n;
-						((Throwable)n).holder = this;
-						break;
+						Throwable i = (Throwable)n;
+							if (i.holder == null) {
+								heldItem = i;
+							
+							i.holder = this;
+							break;
+						}
+						
 					}
 				}
 			}

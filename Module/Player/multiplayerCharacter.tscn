@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://mlteo27kantj"]
+[gd_scene load_steps=15 format=3 uid="uid://c5ferb3ow5n4d"]
 
-[ext_resource type="Script" path="res://Module/Player/Player.cs" id="1_e8dfr"]
-[ext_resource type="Texture2D" uid="uid://d1ry3tch15usb" path="res://Module/Player/PlayerCharacter.png" id="2_a8vsp"]
-[ext_resource type="Texture2D" uid="uid://clsc7gvfe6dgu" path="res://Module/Misc/Assets/DollarBill.png" id="3_1m8k4"]
-[ext_resource type="Texture2D" uid="uid://4w8tfrwoi21i" path="res://Module/Player/Shadow.png" id="4_30yc5"]
-[ext_resource type="AudioStream" uid="uid://dyxiemc8vfet4" path="res://Audio/SFX/Throw.wav" id="5_46457"]
+[ext_resource type="Script" path="res://Module/Player/multiplayerCharacter.cs" id="1_goalh"]
+[ext_resource type="Texture2D" uid="uid://d1ry3tch15usb" path="res://Module/Player/PlayerCharacter.png" id="2_3hiip"]
+[ext_resource type="Texture2D" uid="uid://clsc7gvfe6dgu" path="res://Module/Misc/Assets/DollarBill.png" id="3_xqkdk"]
+[ext_resource type="Texture2D" uid="uid://4w8tfrwoi21i" path="res://Module/Player/Shadow.png" id="4_uuyv2"]
+[ext_resource type="AudioStream" uid="uid://dyxiemc8vfet4" path="res://Audio/SFX/Throw.wav" id="5_3an2g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nc3j"]
 radius = 24.0
@@ -170,33 +170,24 @@ scale_max = 2.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_y13yp"]
 radius = 80.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("holdPoint")]
+[node name="mpChar" type="CharacterBody2D" node_paths=PackedStringArray("holdPoint")]
 collision_layer = 2
-script = ExtResource("1_e8dfr")
+script = ExtResource("1_goalh")
 holdPoint = NodePath("HoldPoint")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0nc3j")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.8, 0.8)
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.15
-drag_top_margin = 0.15
-drag_right_margin = 0.15
-drag_bottom_margin = 0.15
 
 [node name="DodgeTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.584314)
 z_index = 1
 texture_filter = 1
 scale = Vector2(10, 10)
-texture = ExtResource("2_a8vsp")
+texture = ExtResource("2_3hiip")
 hframes = 4
 vframes = 4
 frame = 14
@@ -213,7 +204,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprite/PlayerCharacter.aseprite"
 }
 metadata/_aseprite_wizard_interface_config_ = {
-"animation_section": true,
+"animation_section": false,
 "layer_section": false,
 "output_section": true
 }
@@ -227,7 +218,7 @@ libraries = {
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_cvbip")
-texture = ExtResource("3_1m8k4")
+texture = ExtResource("3_xqkdk")
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
@@ -246,14 +237,14 @@ position = Vector2(0, 20)
 z_index = -2
 position = Vector2(0, 24)
 scale = Vector2(10, 10)
-texture = ExtResource("4_30yc5")
+texture = ExtResource("4_uuyv2")
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
 [node name="DodgeSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_46457")
+stream = ExtResource("5_3an2g")
 pitch_scale = 0.5
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="animFinished"]

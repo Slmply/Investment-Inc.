@@ -361,7 +361,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet"]
@@ -386,7 +385,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet2"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet2"]
@@ -411,7 +409,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet3"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet3"]
@@ -436,7 +433,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet4"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet4"]
@@ -461,7 +457,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet5"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet5"]
@@ -486,7 +481,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet6"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet6"]
@@ -511,7 +505,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet7"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet7"]
@@ -536,7 +529,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet8"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet8"]
@@ -561,7 +553,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet9"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet9"]
@@ -586,7 +577,6 @@ scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Filing Cabinet10"]
 position = Vector2(9.83476e-08, 2.86102e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_80wur")
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Filing Cabinet10"]
